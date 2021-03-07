@@ -52,11 +52,11 @@ app.post("/registration", (req, res) => {
    // console.log("req.params van /registration", req.body);
     //first, last, email, password uit registration.js input name
     const { first, last, email, password } = req.body;
-   
+
     hash(password).then((hashedPassword) => {
         db.addUser(first, last, email, hashedPassword).then(({rows}) => {
             console.log("response van db.addUser", rows[0]);
-            req.session.userId = rows[0].user_id // user_id in een cookie zetten
+            req.session.userId = rows[0].id // user_id in een cookie zetten
               res.json({ success: true });
         }).catch((err) => {
             console.log("error in db.addUser 💔", err);

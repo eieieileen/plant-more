@@ -13,16 +13,17 @@ export default class Registration extends React.Component {
     handleClick() {
         console.log("clicked!!!");
         axios.post("/registration", this.state).then(({data}) => {
-            // if (everything went according to plan - no errors!) {
-            //     //redirect
-            //     location.replace("/");
-            // } else {
-            //     //render an error message
-            //     this.setState({
-            //         error: true
-            //     });
+            console.log("/registration data", data);
+            if (data) {
+                //redirect
+                location.replace("/");
+            } else {
+                //render an error message
+                this.setState({
+                    error: true
+                });
 
-            // }
+            }
         }).catch((err) => {
             console.log("error in handleclick exios post /registration", err);
         });
