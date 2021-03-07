@@ -1,14 +1,15 @@
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
+import Logo from "./logo";
 
 let elem; 
 if (location.pathname === "/welcome") {
     elem = <Welcome />;
 } else {
-    elem = <p>my main page of website</p>;
+    elem = <Logo />;
 }
 
-ReactDOM.render(<Welcome />, document.querySelector("main"));
+ReactDOM.render(elem, document.querySelector("main"));
 
 
 // function HelloWorld() {

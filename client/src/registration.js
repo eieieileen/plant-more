@@ -6,27 +6,32 @@ export default class Registration extends React.Component {
     constructor() {
         super();
         this.state = {
-            error: false
+            error: false,
         };
     }
 
     handleClick() {
         console.log("clicked!!!");
-        axios.post("/registration", this.state).then(({data}) => {
-            console.log("/registration data", data);
-            if (data) {
-                //redirect
-                location.replace("/");
-            } else {
-                //render an error message
-                this.setState({
-                    error: true
-                });
-
-            }
-        }).catch((err) => {
-            console.log("error in handleclick exios post /registration", err);
-        });
+        axios
+            .post("/registration", this.state)
+            .then(({ data }) => {
+                console.log("/registration data", data);
+                if (data.success) {
+                    //redirect
+                    location.replace("/");
+                } else {
+                    //render an error message
+                    this.setState({
+                        error: true,
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(
+                    "error in handleclick exios post /registration",
+                    err
+                );
+            });
     }
 
     handleChange(e) {
@@ -47,9 +52,9 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1> Registration </h1>
-                { this.state.error && <p>something went wront :(</p> }
+            <div id="registerDiv">
+                <h1 id="registerHere"> REGISTER HERE </h1>
+                {this.state.error && <p>something went wront </p>}
                 <input
                     name="first"
                     placeholder="first name"
@@ -71,7 +76,12 @@ export default class Registration extends React.Component {
                     type="password"
                     onChange={(e) => this.handleChange(e)}
                 />
-                <button onClick={() => this.handleClick()}>Submit!</button>
+                <button
+                    className="submitButton"
+                    onClick={() => this.handleClick()}
+                >
+                    SUBMIT
+                </button>
             </div>
         );
     }

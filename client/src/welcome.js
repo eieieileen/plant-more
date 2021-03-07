@@ -1,10 +1,14 @@
 import Registration from "./registration";
+import Logo from "./logo";
+import Footer from "./footer";
 
 export default function Welcome() {
     return (
-        <div>
-            <h1>Welcome</h1>
+        <div id="welcomePage">
+            <Logo />
+            <h1 id="h1Welcome">TACO NETWORK</h1>
             <Registration />
+            <Footer />
         </div>
     );
 }
