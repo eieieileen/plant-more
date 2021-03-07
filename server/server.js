@@ -1,11 +1,31 @@
+////// links //////
 const express = require("express");
 const app = express();
 const compression = require("compression");
 const path = require("path");
+const cookieSession = require("cookie-session");
+const { hash, compare } = require("./bcrypt.js");
+const db = require("./db")
 
+
+////// links //////
+
+////// middleware //////
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 14
+}));
 app.use(compression());
-
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
+app.use((req, res, next) => {
+    console.log(`MIDDLEWARE LOG: ${req.method} to ${req.url} route`);
+    next();
+});
+app.use(express.json());
+////// middleware //////
+
+////// routes //////
 
 //need cookie session middleware
 app.get("/welcome", (req, res) => {
@@ -28,6 +48,28 @@ app.get("*", function (req, res) {
     }
 });
 
-app.listen(process.env.PORT || 3001, function () {
-    console.log("I'm listening.");
+app.post("/registration", (req, res) => {
+   // console.log("req.params van /registration", req.body);
+    //first, last, email, password uit registration.js input name
+    const { first, last, email, password } = req.body;
+   
+    hash(password).then((hashedPassword) => {
+        db.addUser(first, last, email, hashedPassword).then(({rows}) => {
+            console.log("response van db.addUser", rows[0]);
+            req.session.userId = rows[0].user_id // user_id in een cookie zetten
+              res.json({ success: true });
+        }).catch((err) => {
+            console.log("error in db.addUser 💔", err);
+              res.json({ success: false });
+        })
+    });
 });
+
+////// routes //////
+
+
+////// listening //////
+app.listen(process.env.PORT || 3001, function () {
+    console.log("✨ my queen, don't worry, you're doing great ✨");
+});
+////// llistening //////
