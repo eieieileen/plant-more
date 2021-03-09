@@ -92,6 +92,15 @@ app.post("/login", (req, res) => {
     }).catch((err) => console.log("error in app.post /login :((((", err));
 });
 
+app.post("/resetpassword", (req, res) => {
+    //db query to check if email exists. same query you use in login
+
+});
+
+app.post("/resetpasswordverify", (req, res) => {
+
+});
+
 ////// routes //////
 
 ////// listening //////

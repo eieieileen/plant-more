@@ -38,11 +38,21 @@ export default class Login extends React.Component {
         return (
             <div id="loginDiv">
                 <h1> LOG IN </h1>
-                <input name="email" placeholder="email" onChange={(e) => this.handleChange(e)} />
-                <input name="password" placeholder="password" type="password" onChange={(e) => this.handleChange(e)} />
+                <input
+                    name="email"
+                    placeholder="email"
+                    onChange={(e) => this.handleChange(e)}
+                />
+                <input
+                    name="password"
+                    placeholder="password"
+                    type="password"
+                    onChange={(e) => this.handleChange(e)}
+                />
                 <button onClick={() => this.handleClick()}>SUBMIT</button>
 
-                <Link to={"/"}>CLICK HERE TO REGISTER</Link> 
+                <Link to={"/"}>CLICK HERE TO REGISTER</Link> <br></br>
+                <Link to={"/resetpassword"}>FORGOT PASSWORD?</Link>
             </div>
         );
     }
