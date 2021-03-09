@@ -46,13 +46,16 @@
     position: fixed;
     bottom: 0;
     left: 10px;
+    z-index: 1;
 }
 
-.footer img {
-    width: 50px;
+.footer div.image {
+    width: 100vw;
     bottom: 0;
     right: 0;
+    height: 70px;
     position: fixed;
     background-repeat: repeat-x;
-    background-image: url("./taco.jpg");
+    background-image: url("taco.jpg");
+    background-size: 100px;
 }
