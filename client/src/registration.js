@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+import axios from "./axios";
+import { Link }  from "react-router-dom";
 
 export default class Registration extends React.Component {
     //React.Component should always be written like this with capital R and C
@@ -15,7 +16,7 @@ export default class Registration extends React.Component {
         axios
             .post("/registration", this.state)
             .then(({ data }) => {
-                console.log("/registration data", data);
+                // console.log("/registration data", data);
                 if (data.success) {
                     //redirect
                     location.replace("/");
@@ -46,7 +47,7 @@ export default class Registration extends React.Component {
             {
                 [e.target.name]: e.target.value,
             },
-            () => console.log("this.state after setState: ", this.state)
+            () => console.log("this.state after setState: ")
         );
     }
 
@@ -82,6 +83,8 @@ export default class Registration extends React.Component {
                 >
                     SUBMIT
                 </button>
+
+                <Link to={"/login"}>CLICK HERE TO LOG IN</Link> 
             </div>
         );
     }

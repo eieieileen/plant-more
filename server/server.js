@@ -6,6 +6,7 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bcrypt.js");
 const db = require("./db");
+const csurf = require("csurf");
 
 ////// links //////
 
@@ -24,11 +25,16 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
+app.use(csurf());
+
+app.use(function (req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 ////// middleware //////
 
 ////// routes //////
 
-//need cookie session middleware
 app.get("/welcome", (req, res) => {
     //is going to run if the user puts /welcome in the url bar
     if (req.session.userId) {
@@ -67,6 +73,23 @@ app.post("/registration", (req, res) => {
                 res.json({ success: false });
             });
     });
+});
+
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+    db.checkPassword(email).then(({rows}) => {
+        // console.log("response van db loginUser", response);
+        const id = rows[0].id;
+        compare(password, rows[0].password_hash).then((match) => {
+            if (match == true) {
+                req.session.loggedIn = id;
+                res.json({success: true});
+                res.redirect("/");
+            } else {
+                res.json({success: false});
+            }    
+        });
+    }).catch((err) => console.log("error in app.post /login :((((", err));
 });
 
 ////// routes //////

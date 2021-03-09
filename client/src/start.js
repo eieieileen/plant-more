@@ -12,6 +12,3 @@ if (location.pathname === "/welcome") {
 ReactDOM.render(elem, document.querySelector("main"));
 
 
-// function HelloWorld() {
-//     return <div>Hello, World!</div>;
-// }
