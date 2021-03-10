@@ -93,13 +93,17 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/resetpassword", (req, res) => {
+    const { email } = req.body;
+    db.checkPassword(email).then(({rows}) => {
+        console.log("response van /resetpassword", rows);
+    }).catch((err) => console.log("error in app post /resetpassword", err));
     //db query to check if email exists. same query you use in login
 
 });
 
-app.post("/resetpasswordverify", (req, res) => {
+// app.post("/resetpasswordverify", (req, res) => {
 
-});
+// });
 
 ////// routes //////
 
