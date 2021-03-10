@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bcrypt.js");
 const db = require("./db");
 const csurf = require("csurf");
+const { sendEmail } = require("./ses");
 
 ////// links //////
 
@@ -97,7 +98,7 @@ app.post("/login", (req, res) => {
                     }
                 });
             } else {
-                res.json({success: false});
+                res.json({ success: false });
             }
         })
         .catch((err) => {
@@ -110,15 +111,64 @@ app.post("/resetpassword", (req, res) => {
     const { email } = req.body;
     db.checkPassword(email)
         .then(() => {
-            console.log("response van /resetpassword", rows);
+            const cryptoRandomString = require("crypto-random-string");
+            const secretCode = cryptoRandomString({
+                length: 6,
+            });
+            db.insertSecretCode(email, secretCode)
+                .then(() => {
+                    sendEmail(
+                        email,
+                        secretCode,
+                        "HERE IS YOUR TACO NETWORK CODE TACO TACO TACO"
+                    )
+                        .then(() => {
+                            res.json({ success: true });
+                        })
+                        .catch((err) =>
+                            console.log(
+                                "error in insertSecretCode :((( 🐸",
+                                err
+                            )
+                        );
+                })
+                .catch((err) => {
+                    console.log("error in db.insertSecretCode 🧜‍♀️", err);
+                    res.json({ success: false });
+                });
         })
         .catch((err) => console.log("error in app post /resetpassword", err));
     //db query to check if email exists. same query you use in login
 });
 
-// app.post("/resetpasswordverify", (req, res) => {
-
-// });
+app.post("/resetpasswordverify", (req, res) => {
+    const { email, code, password } = req.body;
+    db.findSecretCode(email, code)
+        .then(() => {
+            hash(password)
+                .then((hashedPassword) => {
+                    db.updatePassword(password, email, hashedPassword)
+                        .then(() => {
+                            res.json({ success: true });
+                        })
+                        .catch((err) => {
+                            console.log("error in db.updatePassword", err);
+                            res.json({ success: false });
+                        });
+                })
+                .catch((err) => {
+                    console.log(
+                        "error in hash password resetpasswordverify",
+                        err
+                    );
+                    res.json({ success: false });
+                });
+        })
+        .catch((err) => {
+            console.log("error in resetpasswordverify 🧁", err);
+            res.json({ success: false });
+        });
+});
 
 ////// routes //////
 

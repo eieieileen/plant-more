@@ -13,8 +13,8 @@ const ses = new aws.SES({
     region: "eu-central-1",
 });
 
-exports.sendEmail = (to, body, subj) =>
-    ses
+exports.sendEmail = function (to, body, subj) {
+    return ses
         .sendEmail({
             Source: "Eileen Lassche <eileenlassche@gmail.com>",
             Destination: {
@@ -31,4 +31,7 @@ exports.sendEmail = (to, body, subj) =>
                 },
             },
         })
-        .promise();
+        .promise()
+        .then(() => console.log("it worked!"))
+        .catch((err) => console.log(err));
+};

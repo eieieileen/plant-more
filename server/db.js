@@ -29,18 +29,19 @@ module.exports.insertSecretCode = (email, code) => {
     return db.query(q, params);
 };
 
-module.exports.findSecretCode = (email) => {
+module.exports.findSecretCode = (email, code) => {
     const q = `SELECT * FROM reset_codes
   WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
-  AND email = ($1)`;
-    const params = [email];
+  AND email = ($1)
+  AND code = ($2)`;
+    const params = [email, code];
     return db.query(q, params);
 };
 
-module.exports.updatePassword = (password, id) => {
+module.exports.updatePassword = (password, email) => {
     const q = `UPDATE users 
     SET password_hash = ($1)
-    WHERE id = ($2)`;
-    const params = [password, id];
+    WHERE email = ($2)`;
+    const params = [password, email];
     return db.query(q, params);
 };
