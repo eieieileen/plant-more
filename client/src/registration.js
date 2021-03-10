@@ -17,7 +17,7 @@ export default class Registration extends React.Component {
             .post("/registration", this.state)
             .then(({ data }) => {
                 // console.log("/registration data", data);
-                if (data.success) {
+                if (data.success == true) {
                     //redirect
                     location.replace("/");
                 } else {

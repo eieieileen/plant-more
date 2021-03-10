@@ -15,7 +15,7 @@ export default class Login extends React.Component {
     handleClick() {
         console.log("clicked!!!!!!");
         axios.post("/login", this.state).then(({data}) => {
-            if (data.success) {
+            if (data.success == true) {
                 location.replace("/");
             } else {
                 this.setState({
@@ -38,6 +38,7 @@ export default class Login extends React.Component {
         return (
             <div id="loginDiv">
                 <h1> LOG IN </h1>
+                {this.state.error && <p>something went wront </p>}
                 <input
                     name="email"
                     placeholder="email"
@@ -50,7 +51,6 @@ export default class Login extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <button onClick={() => this.handleClick()}>SUBMIT</button>
-
                 <Link to={"/"}>CLICK HERE TO REGISTER</Link> <br></br>
                 <Link to={"/resetpassword"}>FORGOT PASSWORD?</Link>
             </div>

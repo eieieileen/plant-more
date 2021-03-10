@@ -60,45 +60,60 @@ app.post("/registration", (req, res) => {
     //first, last, email, password uit registration.js input name
     const { first, last, email, password } = req.body;
 
-    hash(password).then((hashedPassword) => {
-        db.addUser(first, last, email, hashedPassword)
-            .then(({ rows }) => {
-                console.log("response van db.addUser", rows[0]);
-                req.session.userId = rows[0].id; // user_id in een cookie zetten
-                res.json({ success: true });
-                res.redirect("/");
-            })
-            .catch((err) => {
-                console.log("error in db.addUser 💔", err);
-                res.json({ success: false });
-            });
-    });
+    hash(password)
+        .then((hashedPassword) => {
+            db.addUser(first, last, email, hashedPassword)
+                .then(({ rows }) => {
+                    console.log("response van db.addUser", rows[0]);
+                    req.session.userId = rows[0].id; // user_id in een cookie zetten
+                    res.json({ success: true });
+                    res.redirect("/");
+                })
+                .catch((err) => {
+                    console.log("error in db.addUser 💔", err);
+                    res.json({ success: false });
+                });
+        })
+        .catch((err) => {
+            console.log("error in hash(password)🏰", err);
+            res.json({ success: false });
+        });
 });
 
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
-    db.checkPassword(email).then(({rows}) => {
-        // console.log("response van db loginUser", response);
-        const id = rows[0].id;
-        compare(password, rows[0].password_hash).then((match) => {
-            if (match == true) {
-                req.session.loggedIn = id;
-                res.json({success: true});
-                res.redirect("/");
+    db.checkPassword(email)
+        .then(({ rows }) => {
+            console.log("response van db loginUser", rows);
+            if (rows[0].id) {
+                const id = rows[0].id;
+                compare(password, rows[0].password_hash).then((match) => {
+                    if (match == true) {
+                        req.session.loggedIn = id;
+                        res.json({ success: true });
+                        res.redirect("/");
+                    } else {
+                        res.json({ success: false });
+                    }
+                });
             } else {
                 res.json({success: false});
-            }    
+            }
+        })
+        .catch((err) => {
+            console.log("error in app.post /login :((((", err);
+            res.json({ success: false });
         });
-    }).catch((err) => console.log("error in app.post /login :((((", err));
 });
 
 app.post("/resetpassword", (req, res) => {
     const { email } = req.body;
-    db.checkPassword(email).then(({rows}) => {
-        console.log("response van /resetpassword", rows);
-    }).catch((err) => console.log("error in app post /resetpassword", err));
+    db.checkPassword(email)
+        .then(() => {
+            console.log("response van /resetpassword", rows);
+        })
+        .catch((err) => console.log("error in app post /resetpassword", err));
     //db query to check if email exists. same query you use in login
-
 });
 
 // app.post("/resetpasswordverify", (req, res) => {

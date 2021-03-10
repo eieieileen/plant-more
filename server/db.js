@@ -20,19 +20,21 @@ module.exports.checkPassword = (email) => {
     return db.query(q, params);
 };
 
-module.exports.insertSecretCode = (id, email, code, created_at) => {
-    const q = `INSERT INTO reset_codes (id, email, code, created_at)
-    VALUES ($1, $2, $3, $4)
+module.exports.insertSecretCode = (email, code) => {
+    const q = `INSERT INTO reset_codes (email, code)
+    VALUES ($1, $2)
     RETURNING id
     `;
-    const params = [id, email, code, created_at];
+    const params = [email, code];
     return db.query(q, params);
 };
 
-module.exports.findSecretCode = () => {
+module.exports.findSecretCode = (email) => {
     const q = `SELECT * FROM reset_codes
-  WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'`;
-    return db.query(q);
+  WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+  AND email = ($1)`;
+    const params = [email];
+    return db.query(q, params);
 };
 
 module.exports.updatePassword = (password, id) => {
