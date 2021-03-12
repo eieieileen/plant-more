@@ -30,11 +30,16 @@ export default class Uploader extends Component {
         const formData = new FormData();
         formData.append("file", this.state.image);
         console.log("clickieclick!!!");
-        axios.post("/picUpload", formData).then(({data}) => {
-            console.log("response van axios post picca uploadda", data);
-            this.methodInUploader(data.url);
-
-        }).catch((err) => console.log("error in axios post picUpload 🐙", err));
+        axios
+            .post("/picUpload", formData)
+            .then(({ data }) => {
+                console.log("response van axios post picca uploadda", data);
+                this.methodInUploader(data.url);
+                this.props.toggleUploader();
+            })
+            .catch((err) =>
+                console.log("error in axios post picUpload 🐙", err)
+            );
     }
 
     render() {
@@ -53,7 +58,6 @@ export default class Uploader extends Component {
                     SUBMIT
                 </button>
                 <h2>HI EILEEN THIS IS UPLOADER COMPONENT</h2>
-               
             </div>
         );
     }

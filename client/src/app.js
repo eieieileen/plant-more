@@ -83,7 +83,10 @@ export default class App extends Component {
                     /> whenever working with dynamic route and render we can not forget match!!!! */}
 
                 {this.state.uploaderIsVisible && (
-                    <Uploader methodInApp={(arg)=> this.methodInApp(arg)} />
+                    <Uploader
+                        methodInApp={(arg) => this.methodInApp(arg)}
+                        toggleUploader={() => this.toggleUploader()}
+                    />
                 )}
             </div>
             // </BrowserRouter>
