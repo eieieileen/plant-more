@@ -50,7 +50,12 @@ export default class Login extends React.Component {
                     type="password"
                     onChange={(e) => this.handleChange(e)}
                 />
-                <button onClick={() => this.handleClick()}>SUBMIT</button>
+                <button
+                    className="submitButton"
+                    onClick={() => this.handleClick()}
+                >
+                    SUBMIT
+                </button>
                 <Link to={"/"}>CLICK HERE TO REGISTER</Link> <br></br>
                 <Link to={"/resetpassword"}>FORGOT PASSWORD?</Link>
             </div>

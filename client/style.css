@@ -1,3 +1,4 @@
+/* Welcome/registration/login */
 .logo {
     position: absolute;
     width: 200px;
@@ -59,3 +60,23 @@
     background-image: url("taco.jpg");
     background-size: 100px;
 }
+/* end welcome/registration */
+
+/* uploader/profilepic */
+
+#uploader {
+    border: 3px solid yellow;
+}
+
+#profilePicca {
+    border: 3px solid pink;
+    display: flex;
+    justify-content: flex-end;  
+}
+
+.profile-pic {
+    width: 100px;
+    
+}
+
+/* end uploader/profilePic */

@@ -55,15 +55,18 @@ export default class App extends Component {
 
     render() {
         return (
+
             // <BrowserRouter>
             <div>
-                <h1> HI {this.state.first_name} THIS IS APP</h1>
+                {/* <h1> HI {this.state.first_name} THIS IS APP</h1> */}
+
                 <ProfilePic
                     first_name={this.state.first_name}
                     last_name={this.state.last_name}
                     imageUrl={this.state.imageurl}
                     toggleUploader={() => this.toggleUploader()}
                 />
+
                 {/* 6, if not giving props. if giving props: render={() => (render profile in here)} */}
                 {/* <Route exact path="/" component={Profile} /> */}
                 <Logo />
@@ -89,6 +92,7 @@ export default class App extends Component {
                     />
                 )}
             </div>
+            //{" "}
             // </BrowserRouter>
         );
     }

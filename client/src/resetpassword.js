@@ -75,7 +75,7 @@ export default class ResetPassword extends React.Component {
                         placeholder="password"
                         onChange={(e) => this.handleChange(e)}
                     />
-                    <button onClick={() => this.handleClick()}>SUBMIT</button>
+                    <button className="submitButton" onClick={() => this.handleClick()}>SUBMIT</button>
                 </div>
             );
         }

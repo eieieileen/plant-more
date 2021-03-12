@@ -44,7 +44,7 @@ export default class Uploader extends Component {
 
     render() {
         return (
-            <div>
+            <div id="uploader">
                 <input
                     onChange={(e) => this.handleChange(e)}
                     type="file"
@@ -57,7 +57,7 @@ export default class Uploader extends Component {
                 >
                     SUBMIT
                 </button>
-                <h2>HI EILEEN THIS IS UPLOADER COMPONENT</h2>
+                {/* <h2>HI EILEEN THIS IS UPLOADER COMPONENT</h2> */}
             </div>
         );
     }
