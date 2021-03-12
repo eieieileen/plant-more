@@ -3,6 +3,7 @@ import ProfilePic from "./profilePic";
 import Uploader from "./uploader";
 import Logo from "./logo";
 import axios from "./axios";
+import Profile from "./profile";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -56,9 +57,9 @@ export default class App extends Component {
     render() {
         return (
 
-            // <BrowserRouter>
+           
             <div>
-                {/* <h1> HI {this.state.first_name} THIS IS APP</h1> */}
+               
 
                 <ProfilePic
                     first_name={this.state.first_name}
@@ -67,23 +68,9 @@ export default class App extends Component {
                     toggleUploader={() => this.toggleUploader()}
                 />
 
-                {/* 6, if not giving props. if giving props: render={() => (render profile in here)} */}
-                {/* <Route exact path="/" component={Profile} /> */}
+              
                 <Logo />
-
-                {/* <Route path="/user/:id" component={OtherProfile} /> */}
-
-                {/* <Route
-                        path="/user/:id"
-                        render={(props) => (
-                            <OtherProfile
-                            // react is able to update the component because of this.
-                                key={props.match.url}
-                                match={props.match}
-                                history={props.history}
-                            />
-                        )}
-                    /> whenever working with dynamic route and render we can not forget match!!!! */}
+                <Profile />
 
                 {this.state.uploaderIsVisible && (
                     <Uploader
@@ -92,8 +79,7 @@ export default class App extends Component {
                     />
                 )}
             </div>
-            //{" "}
-            // </BrowserRouter>
+          
         );
     }
 }

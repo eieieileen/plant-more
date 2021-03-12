@@ -69,14 +69,14 @@
 }
 
 #profilePicca {
-    border: 3px solid pink;
     display: flex;
     justify-content: flex-end;  
 }
 
 .profile-pic {
-    width: 100px;
-    
+    width: 125px;
+    border: 3px solid black;
+    border-radius: 25%;
 }
 
 /* end uploader/profilePic */

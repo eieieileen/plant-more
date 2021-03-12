@@ -8,7 +8,8 @@ CREATE TABLE users (
     email         VARCHAR NOT NULL UNIQUE CHECK (email <> ''),
     password_hash VARCHAR NOT NULL CHECK (password_hash <> ''),
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    imageUrl      VARCHAR
+    imageUrl      VARCHAR,
+    bio VARCHAR(500)
 
 );
 
