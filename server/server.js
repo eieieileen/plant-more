@@ -195,16 +195,18 @@ app.get("/user", (req, res) => {
 });
 
 app.post("/picUpload", uploader.single("file"), s3.upload, (req, res) => {
-    const { filename } = req.file.filename;
+    const { filename } = req.file;
+    console.log("req.file", req.file);
 
     const imgToAws = {
         url: "https://s3.amazonaws.com/eileensimageboard/" + filename,
     };
 
     if (req.file) {
-        db.addPic("https://s3.amazonaws.com/eileensimageboard/" + filename)
+        db.addPic(imgToAws.url, req.session.loggedIn)
             .then((response) => {
                 console.log("response van addPic", response);
+                res.json(imgToAws);
             })
             .catch((err) => console.log("error in db.addPic 🐫", err));
     }
@@ -212,7 +214,7 @@ app.post("/picUpload", uploader.single("file"), s3.upload, (req, res) => {
 
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
-    //runs if the user goes to leterally any route except /welcome
+    //runs if the user goes to literally any route except /welcome
     if (!req.session.loggedIn) {
         res.redirect("/welcome");
     } else {
