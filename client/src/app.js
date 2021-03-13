@@ -9,11 +9,9 @@ import Profile from "./profile";
 // import OtherProfile from "./otherProfile";
 
 export default class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            // first: "",
-            // last: "",
             uploaderIsVisible: false,
         };
     }
@@ -56,21 +54,23 @@ export default class App extends Component {
 
     render() {
         return (
-
-           
             <div>
-               
-
                 <ProfilePic
                     first_name={this.state.first_name}
                     last_name={this.state.last_name}
                     imageUrl={this.state.imageurl}
                     toggleUploader={() => this.toggleUploader()}
+                    classN='profile-pic'
                 />
 
-              
                 <Logo />
-                <Profile />
+                <Profile
+                    first_name={this.state.first_name}
+                    last_name={this.state.last_name}
+                    imageUrl={this.state.imageurl}
+                    bio={this.state.bio}
+                    toggleUploader={() => this.toggleUploader()}
+                />
 
                 {this.state.uploaderIsVisible && (
                     <Uploader
@@ -79,7 +79,6 @@ export default class App extends Component {
                     />
                 )}
             </div>
-          
         );
     }
 }

@@ -14,6 +14,8 @@ const uidSafe = require("uid-safe");
 
 ////// links //////
 
+//loggedIn is userId
+
 ////// multer  //////
 const diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -188,7 +190,7 @@ app.get("/user", (req, res) => {
     //console.log("hey hij werkt nie");
     db.getProfileInfo(req.session.loggedIn)
         .then(({ rows }) => {
-            console.log("response from getProfilePic", rows);
+            //console.log("response from getProfilePic", rows);
             res.json(rows[0]);
         })
         .catch((err) => console.log("error in app.get /users 🧤", err));
@@ -209,6 +211,17 @@ app.post("/picUpload", uploader.single("file"), s3.upload, (req, res) => {
                 res.json(imgToAws);
             })
             .catch((err) => console.log("error in db.addPic 🐫", err));
+    }
+});
+
+app.post("/bioUpload", (req, res) => {
+    const { bio } = req.body;
+    if (req.session.loggedIn) {
+        db.addBio(bio)
+            .then((response) => {
+                console.log("response van bio upload", response);
+            })
+            .catch((err) => console.log("error in db.addBio🦍", err));
     }
 });
 

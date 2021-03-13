@@ -16,20 +16,18 @@
 #welcomePage input {
     display: block;
     margin: 10px;
-    
 }
 
 #h1Welcome {
-    font-family: 'Libre Barcode 39 Text', cursive;
+    font-family: "Libre Barcode 39 Text", cursive;
     font-size: 100px;
     margin: 25px;
     margin-bottom: 50px;
 }
 
 #registerHere {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
     padding: 10px;
-
 }
 
 #registerDiv {
@@ -39,11 +37,11 @@
 
 .submitButton {
     margin: 10px;
-   margin-top: 30px;
-   font-size: 20px;
+    margin-top: 30px;
+    font-size: 20px;
 }
 
-.footer p{
+.footer p {
     position: fixed;
     bottom: 0;
     left: 10px;
@@ -70,7 +68,7 @@
 
 #profilePicca {
     display: flex;
-    justify-content: flex-end;  
+    justify-content: flex-end;
 }
 
 .profile-pic {
@@ -79,4 +77,7 @@
     border-radius: 25%;
 }
 
+.bioPic {
+    border: 3px solid gold;
+}
 /* end uploader/profilePic */
