@@ -2,12 +2,13 @@ import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
 
 export default function Profile({
-    first_name,
-    last_name,
+    // first_name,
+    // last_name,
     imageUrl,
     bio,
     toggleUploader,
-    classN,
+    // classN,
+    editBio,
 }) {
     return (
         <div>
@@ -16,7 +17,7 @@ export default function Profile({
                 toggleUploader={toggleUploader}
                 classN="bioPic"
             />
-            <BioEditor bio={bio} />
+            <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
         </div>
     );
 }

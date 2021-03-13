@@ -215,14 +215,17 @@ app.post("/picUpload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.post("/bioUpload", (req, res) => {
-    const { bio } = req.body;
-    if (req.session.loggedIn) {
-        db.addBio(bio)
-            .then((response) => {
-                console.log("response van bio upload", response);
-            })
-            .catch((err) => console.log("error in db.addBio🦍", err));
-    }
+    const { bioDraft } = req.body;
+
+    db.addBio(bioDraft, req.session.loggedIn)
+        .then(() => {
+            //console.log("response van bio upload", response);
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("error in db.addBio🦍", err);
+            res.json({ success: false });
+        });
 });
 
 //moet altijd onderaan staan
