@@ -19,21 +19,18 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        console.log("App mounted!🥑");
+        // console.log("App mounted!🥑");
         axios
             .get("/user")
             .then(({ data }) => {
-                console.log("response van component did mount", data);
+                //console.log("response van component did mount", data);
                 this.setState(data);
                 console.log("App mounted after data!🥑");
             })
             .catch((err) =>
                 console.log("error in componentDidMount /user", err)
             );
-        //here is where we want to make an axios request to "get"  info about the logged in user (first name, last name, profile picture)
-        // a good route for our axios would be /user
-        //once you have the info from the server, add this information to the state of the component
-        //you can do this by using a method called setState
+    
     }
 
     methodInApp(arg) {
@@ -82,14 +79,22 @@ export default class App extends Component {
                         )}
                     />
 
-                    <OtherProfile />
-
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             methodInApp={(arg) => this.methodInApp(arg)}
                             toggleUploader={() => this.toggleUploader()}
                         />
                     )}
+                    <Route
+                        path="/user/:id"
+                        render={(props) => (
+                            <OtherProfile
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                            />
+                        )}
+                    />
                 </div>
             </BrowserRouter>
         );

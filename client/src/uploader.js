@@ -29,7 +29,7 @@ export default class Uploader extends Component {
     handleClick() {
         const formData = new FormData();
         formData.append("file", this.state.image);
-        console.log("clickieclick!!!");
+        //console.log("clickieclick!!!");
         axios
             .post("/picUpload", formData)
             .then(({ data }) => {

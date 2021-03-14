@@ -65,3 +65,9 @@ module.exports.addBio = (bio, id) => {
     const params = [bio, id];
     return db.query(q, params);
 };
+
+module.exports.getInfoOtherUser = (id) => {
+    const q = `SELECT first_name, last_name, bio, imageUrl FROM users WHERE id = ($1)`;
+    const params = [id];
+    return db.query(q, params);
+};

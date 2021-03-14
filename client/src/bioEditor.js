@@ -28,7 +28,7 @@ export default class BioEditor extends React.Component {
         console.log("i clicked the button 🧈");
         //console.log("this.state van handleClick", this.state);
         axios.post("/bioUpload", this.state).then(({data}) => {
-            console.log("response van BioUpload!!!! I am amazing 🍰", data);
+            //console.log("response van BioUpload!!!! I am amazing 🍰", data);
             if (data.success == true) {
                 this.props.editBio(this.state.bioDraft);
                 this.setState({

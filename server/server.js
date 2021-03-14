@@ -228,6 +228,25 @@ app.post("/bioUpload", (req, res) => {
         });
 });
 
+app.post("/getOtherProfileInfo", (req, res) => {
+    if (req.body.id == req.session.loggedIn) {
+        res.json({ success: false });
+        //res.redirect("/");
+    } else {
+        //console.log("req params or body", req.body);
+        db.getInfoOtherUser(req.body.id)
+            .then(({ rows }) => {
+                if (rows[0]) {
+                    console.log("response van getInfoOtherUsers", rows);
+                    res.json(rows[0]);
+                } else {
+                    res.json({success: false});
+                }
+            })
+            .catch((err) => console.log("error in dbgetInfoOtherUser", err));
+    }
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome

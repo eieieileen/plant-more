@@ -8,7 +8,7 @@ export default function profilePic({
 }) {
     //console.log("props being passes down from App: ", props)
 
-    imageUrl = imageUrl || "taco.jpg"; //default .png is in the public folder van andrea
+    imageUrl = imageUrl || "/taco.jpg"; //default .png is in the public folder van andrea
 
     return (
         <div id="profilePicca">
