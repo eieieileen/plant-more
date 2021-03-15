@@ -31,7 +31,6 @@ export default class App extends Component {
             .catch((err) =>
                 console.log("error in componentDidMount /user", err)
             );
-    
     }
 
     methodInApp(arg) {
@@ -97,9 +96,8 @@ export default class App extends Component {
                         )}
                     />
                     <Route
-                        path="/users/search" render={() =>(
-                            <FindPeople />
-                        )}
+                        path="/users/search"
+                        render={() => <FindPeople />}
                     />
                 </div>
             </BrowserRouter>

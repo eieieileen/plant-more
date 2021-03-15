@@ -2,27 +2,39 @@ import { useState, useEffect } from "react";
 import axios from "./axios";
 
 export default function findPeople() {
-    const [searchTerm, setSearchTerm] = useState();
+    const [searchTerm, setSearchTerm] = useState("");
     const [resultUsers, setResultUsers] = useState();
 
     useEffect(() => {
-        axios.get("/users/most-recent").then(({ data }) => {
-            console.log("data van de notes", data);
-            setResultUsers(data);
-        });
-    }, []);
-    
+        if (searchTerm) {
+            axios.get("/search/users/" + searchTerm).then(({ data }) => {
+                console.log("response van console.log", data);
+                setResultUsers(data);
+            });
+        } else {
+            axios.get("/users/most-recent").then(({ data }) => {
+                console.log("data van de notes", data);
+                setResultUsers(data);
+            });
+        }
+    }, [searchTerm]);
+
     return (
         <>
-            {resultUsers && resultUsers.map((user) => {
-                return (
-                    <div key={user.id}>
-                        <p> {user.first_name} </p>
-                    </div>
-                );
-            })}
-            <input></input>
-
+            {resultUsers &&
+                resultUsers.map((user) => {
+                    return (
+                        <div key={user.id}>
+                            <p> {user.first_name} {user.last_name} </p>
+                        </div>
+                    );
+                })}
+            <input
+                //defaultValue={searchTerm}
+                onChange={({ target }) => {
+                    setSearchTerm(target.value);
+                }}
+            ></input>
         </>
     );
 }

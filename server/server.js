@@ -249,9 +249,18 @@ app.post("/getOtherProfileInfo", (req, res) => {
 
 app.get("/users/most-recent", (req, res) => {
     db.mostRecent().then(({rows}) => {
-        console.log("response van mostRecent😳", rows);
+        //console.log("response van mostRecent😳", rows);
         res.json(rows);
     }).catch((err) => console.log("console.log van most recent🧏‍♀️", err));
+});
+
+app.get("/search/users/:search", (req, res) => {
+    //console.log("req.params", req.params);
+    db.findUsers(req.params.search).then(({rows}) => {
+        console.log("response van db.findUsers", rows);
+        res.json(rows);
+    }).catch((err) => console.log("error in db.findUsers💅", err));
+    
 });
 
 //moet altijd onderaan staan

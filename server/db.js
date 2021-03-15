@@ -78,7 +78,7 @@ module.exports.mostRecent = () => {
 };
 
 module.exports.findUsers = (val) => {
-    const q = `SELECT first_name, last_name FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1`;
+    const q = `SELECT first_name, last_name FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1 LIMIT 5`;
     const params = [val + "%"];
     return db.query(q, params);
 };
