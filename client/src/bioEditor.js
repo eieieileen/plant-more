@@ -11,6 +11,7 @@ export default class BioEditor extends React.Component {
         };
     }
     componentDidMount() {
+        console.log("this . skeflb", this.props);
         //console.log("grandchild just mounted");
         //console.log("props in grandchild", this.props);
         if (this.props.bio) {
@@ -27,17 +28,21 @@ export default class BioEditor extends React.Component {
     handleClick() {
         console.log("i clicked the button 🧈");
         //console.log("this.state van handleClick", this.state);
-        axios.post("/bioUpload", this.state).then(({data}) => {
-            //console.log("response van BioUpload!!!! I am amazing 🍰", data);
-            if (data.success == true) {
-                this.props.editBio(this.state.bioDraft);
-                this.setState({
-                    txtArea: false,
-
-                });
-                
-            }
-        }).catch((err) => console.log("error in bioUpload i hope NOT 🤓", err));
+        axios
+            .post("/bioUpload", this.state)
+            .then(({ data }) => {
+                //console.log("response van BioUpload!!!! I am amazing 🍰", data);
+                if (data.success == true) {
+                    this.props.editBio(this.state.bioDraft);
+                    this.setState({
+                        txtArea: false,
+                        btnTxt: "EDIT",
+                    });
+                }
+            })
+            .catch((err) =>
+                console.log("error in bioUpload i hope NOT 🤓", err)
+            );
     }
 
     handleChange(e) {
@@ -68,7 +73,8 @@ export default class BioEditor extends React.Component {
                             this.setState({ txtArea: !this.state.txtArea });
                         }}
                     >
-                        {this.state.btnTxt}
+                        {/* {this.state.btnTxt} */}
+                        {this.props.bio ? "EDIT" : "ADD"}
                     </button>
                 )}
 
