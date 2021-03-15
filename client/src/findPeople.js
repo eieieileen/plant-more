@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "./axios";
+import {Link} from "react-router-dom";
 
 export default function findPeople() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -25,10 +26,19 @@ export default function findPeople() {
                 resultUsers.map((user) => {
                     return (
                         <div key={user.id}>
-                            <p> {user.first_name} {user.last_name} </p>
+                            <p>
+                                <Link to={`/user/${user.id}`}>
+                                    {" "}
+                                    {user.first_name} {user.last_name}{" "}
+                                </Link>
+                            </p>
                         </div>
                     );
                 })}
+
+            
+           
+
             <input
                 //defaultValue={searchTerm}
                 onChange={({ target }) => {
