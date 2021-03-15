@@ -6,6 +6,7 @@ import axios from "./axios";
 import Profile from "./profile";
 import { BrowserRouter, Route } from "react-router-dom";
 import OtherProfile from "./otherProfile";
+import FindPeople from "./findPeople";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -93,6 +94,11 @@ export default class App extends Component {
                                 match={props.match}
                                 history={props.history}
                             />
+                        )}
+                    />
+                    <Route
+                        path="/users/search" render={() =>(
+                            <FindPeople />
                         )}
                     />
                 </div>

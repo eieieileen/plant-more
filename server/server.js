@@ -247,6 +247,13 @@ app.post("/getOtherProfileInfo", (req, res) => {
     }
 });
 
+app.get("/users/most-recent", (req, res) => {
+    db.mostRecent().then(({rows}) => {
+        console.log("response van mostRecent😳", rows);
+        res.json(rows);
+    }).catch((err) => console.log("console.log van most recent🧏‍♀️", err));
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome
