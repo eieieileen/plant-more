@@ -58,6 +58,12 @@
     background-image: url("taco.jpg");
     background-size: 100px;
 }
+
+#logButton {
+    top: 25px;
+    right: 25px;
+    position: absolute;
+}
 /* end welcome/registration */
 
 /* uploader/profilepic */
@@ -78,6 +84,10 @@
 }
 
 .bioPic {
-    border: 3px solid gold;
+    border: 3px solid purple;
+    display: flex;
+    justify-content: center;
+    
 }
 /* end uploader/profilePic */
+

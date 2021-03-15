@@ -55,13 +55,15 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <ProfilePic
-                        first_name={this.state.first_name}
-                        last_name={this.state.last_name}
-                        imageUrl={this.state.imageurl}
-                        toggleUploader={() => this.toggleUploader()}
-                        classN="profile-pic"
-                    />
+                    <div  id="profilePicca">
+                        <ProfilePic
+                            first_name={this.state.first_name}
+                            last_name={this.state.last_name}
+                            imageUrl={this.state.imageurl}
+                            toggleUploader={() => this.toggleUploader()}
+                            classN="profile-pic"
+                        />
+                    </div>
 
                     <Logo />
                     <Route
@@ -95,10 +97,7 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route
-                        path="/users/search"
-                        render={() => <FindPeople />}
-                    />
+                    <Route path="/users/search" render={() => <FindPeople />} />
                 </div>
             </BrowserRouter>
         );

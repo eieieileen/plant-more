@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-import { Link }  from "react-router-dom";
+// import { Link }  from "react-router-dom";
 
 export default class Registration extends React.Component {
     //React.Component should always be written like this with capital R and C
@@ -53,38 +53,42 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div id="registerDiv">
+            <div>
                 <h1 id="registerHere"> REGISTER HERE </h1>
                 {this.state.error && <p>something went wront </p>}
-                <input
-                    name="first"
-                    placeholder="first name"
-                    onChange={(e) => this.handleChange(e)}
-                />
-                <input
-                    name="last"
-                    placeholder="last name"
-                    onChange={(e) => this.handleChange(e)}
-                />
-                <input
-                    name="email"
-                    placeholder="email"
-                    onChange={(e) => this.handleChange(e)}
-                />
-                <input
-                    name="password"
-                    placeholder="password"
-                    type="password"
-                    onChange={(e) => this.handleChange(e)}
-                />
-                <button
-                    className="submitButton"
-                    onClick={() => this.handleClick()}
-                >
-                    SUBMIT
+                <div id="registerDiv">
+                    <input
+                        name="first"
+                        placeholder="first name"
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <input
+                        name="last"
+                        placeholder="last name"
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <input
+                        name="email"
+                        placeholder="email"
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <input
+                        name="password"
+                        placeholder="password"
+                        type="password"
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <button
+                        className="submitButton"
+                        onClick={() => this.handleClick()}
+                    >
+                        SUBMIT
+                    </button>
+                </div>
+                {/* <Link id="logIn" to={"/login"}>CLICK HERE TO LOG IN</Link>  */}
+                <button id="logButton" to={"/login"}>
+                    LOG IN
                 </button>
-
-                <Link to={"/login"}>CLICK HERE TO LOG IN</Link> 
             </div>
         );
     }

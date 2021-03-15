@@ -11,7 +11,7 @@ export default function profilePic({
     imageUrl = imageUrl || "/taco.jpg"; //default .png is in the public folder van andrea
 
     return (
-        <div id="profilePicca">
+        <div>
             <img
                 className={classN}
                 onClick={toggleUploader}
