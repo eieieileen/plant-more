@@ -11,14 +11,14 @@ export default function FriendshipButton({ id }) {
         if (check.rows) {
             const { sender_id, accepted } = check.rows;
             const loggedIn = check.loggedIn;
-            if (accepted === false) {
-                text = "ACCEPT TACO'S";
-                return text;
-            } else if (accepted === true) {
+            if (accepted) {
                 text = "UNFRIEND FRIENDLY TACO";
                 return text;
             } else if (loggedIn == sender_id) {
                 text = "CANCEL TACO FRIEND";
+                return text;
+            } else if (accepted === true) {
+                text = "ACCEPT TACO'S";
                 return text;
             } else {
                 return text;
@@ -48,6 +48,7 @@ export default function FriendshipButton({ id }) {
             .post("/requestFriend", { action: buttonText, otherUser: id })
             .then(({data}) => {
                 console.log("response van axios.post requestFriend", data);
+                setButtonText(whatButtonSays(data));
             })
             .catch((err) =>
                 console.log("error van axios.post requestfriend 🐧", err)
@@ -57,7 +58,6 @@ export default function FriendshipButton({ id }) {
     return (
         <div>
             <h1>HI EILEEN THIS IS FRIENDSHIPBUTTON</h1>
-
             <button onClick={() => handleClick()}>{buttonText}</button>
         </div>
     );

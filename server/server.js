@@ -240,7 +240,7 @@ app.post("/getOtherProfileInfo", (req, res) => {
                     //console.log("response van getInfoOtherUsers", rows);
                     res.json(rows[0]);
                 } else {
-                    res.json({success: false});
+                    res.json({ success: false });
                 }
             })
             .catch((err) => console.log("error in dbgetInfoOtherUser", err));
@@ -248,42 +248,60 @@ app.post("/getOtherProfileInfo", (req, res) => {
 });
 
 app.get("/users/most-recent", (req, res) => {
-    db.mostRecent().then(({rows}) => {
-        //console.log("response van mostRecent😳", rows);
-        res.json(rows);
-    }).catch((err) => console.log("console.log van most recent🧏‍♀️", err));
+    db.mostRecent()
+        .then(({ rows }) => {
+            //console.log("response van mostRecent😳", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("console.log van most recent🧏‍♀️", err));
 });
 
 app.get("/search/users/:search", (req, res) => {
     //console.log("req.params", req.params);
-    db.findUsers(req.params.search).then(({rows}) => {
-        console.log("response van db.findUsers", rows);
-        res.json(rows);
-    }).catch((err) => console.log("error in db.findUsers💅", err));
-    
+    db.findUsers(req.params.search)
+        .then(({ rows }) => {
+            console.log("response van db.findUsers", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("error in db.findUsers💅", err));
 });
 
 app.get("/addFriends/:id", (req, res) => {
     const loggedIn = req.session.loggedIn;
     const otherUser = req.params.id;
-    db.checkFriends(loggedIn, otherUser).then(({rows}) => {
-        console.log("response van db.addFriends", rows);
-        res.json({rows: rows[0], loggedIn: req.session.loggedIn});
-        
-    }).catch((err) => console.log("error in db.addFriends 🌂", err));
+    db.checkFriends(loggedIn, otherUser)
+        .then(({ rows }) => {
+            console.log("response van db.addFriends", rows);
+            res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+        })
+        .catch((err) => console.log("error in db.addFriends 🌂", err));
 });
 
 app.post("/requestFriend", (req, res) => {
-    const {action, otherUser} = req.body;
+    const { action, otherUser } = req.body;
     if (action === "ADD TACO FRIEND") {
-        db.friendRequest(req.session.loggedIn, otherUser).then(({rows}) => {
-            console.log("response van db.friendRequest", rows[0]);
-            res.json(rows[0])
-        }).catch((err) => console.log("error in db.friendRequest", err));
-    } else if (action ===  "CANCEL TACO FRIEND" || "UNFRIEND FRIENDLY TACO") {
-        dbquery to delete remove
+        db.friendRequest(req.session.loggedIn, otherUser)
+            .then(({ rows }) => {
+                console.log("response van db.friendRequest", rows[0]);
+                res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+            })
+            .catch((err) => console.log("error in db.friendRequest", err));
+    } else if (
+        action == "CANCEL TACO FRIEND" ||
+        action == "UNFRIEND FRIENDLY TACO"
+    ) {
+        db.deleteFriend(req.session.loggedIn, otherUser)
+            .then(({rows}) => {
+                console.log("response van db.deleteFriend", rows[0]);
+                res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+            })
+            .catch((err) => console.log("error in db.deletefriend", err));
     } else {
-        db query to accept update
+        db.acceptFriend(req.session.loggedIn, otherUser).then(({rows}) => {
+            console.log("console.log van db.acceptFriend 🦔", rows[0]);
+            res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+        }).catch((err) => console.log("error in db.acceptFRIEND JE MOEDER 🌺", err));
+
     }
 });
 

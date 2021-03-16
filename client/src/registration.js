@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-// import { Link }  from "react-router-dom";
+import { Link }  from "react-router-dom";
 
 export default class Registration extends React.Component {
     //React.Component should always be written like this with capital R and C
@@ -85,10 +85,10 @@ export default class Registration extends React.Component {
                         SUBMIT
                     </button>
                 </div>
-                {/* <Link id="logIn" to={"/login"}>CLICK HERE TO LOG IN</Link>  */}
-                <button id="logButton" to={"/login"}>
+                <Link id="logIn" to={"/login"}>CLICK HERE TO LOG IN</Link> 
+                {/* <button id="logButton" to={"/login"}>
                     LOG IN
-                </button>
+                </button> */}
             </div>
         );
     }

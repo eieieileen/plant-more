@@ -100,5 +100,17 @@ module.exports.friendRequest = (sender_id, recipient_id) => {
 };
 
 module.exports.deleteFriend = (sender_id, recipient_id) => {
-    
-}
+    const q = `DELETE FROM friendships 
+    WHERE (recipient_id = $1 AND sender_id = $2) 
+    OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
+
+module.exports.acceptFriend = (sender_id, recipient_id) => {
+    const q = `UPDATE friendships SET accepted = TRUE
+    WHERE (recipient_id = $1 AND sender_id = $2) 
+    OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
