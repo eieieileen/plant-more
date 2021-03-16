@@ -237,7 +237,7 @@ app.post("/getOtherProfileInfo", (req, res) => {
         db.getInfoOtherUser(req.body.id)
             .then(({ rows }) => {
                 if (rows[0]) {
-                    console.log("response van getInfoOtherUsers", rows);
+                    //console.log("response van getInfoOtherUsers", rows);
                     res.json(rows[0]);
                 } else {
                     res.json({success: false});
@@ -261,6 +261,30 @@ app.get("/search/users/:search", (req, res) => {
         res.json(rows);
     }).catch((err) => console.log("error in db.findUsers💅", err));
     
+});
+
+app.get("/addFriends/:id", (req, res) => {
+    const loggedIn = req.session.loggedIn;
+    const otherUser = req.params.id;
+    db.checkFriends(loggedIn, otherUser).then(({rows}) => {
+        console.log("response van db.addFriends", rows);
+        res.json({rows: rows[0], loggedIn: req.session.loggedIn});
+        
+    }).catch((err) => console.log("error in db.addFriends 🌂", err));
+});
+
+app.post("/requestFriend", (req, res) => {
+    const {action, otherUser} = req.body;
+    if (action === "ADD TACO FRIEND") {
+        db.friendRequest(req.session.loggedIn, otherUser).then(({rows}) => {
+            console.log("response van db.friendRequest", rows[0]);
+            res.json(rows[0])
+        }).catch((err) => console.log("error in db.friendRequest", err));
+    } else if (action ===  "CANCEL TACO FRIEND" || "UNFRIEND FRIENDLY TACO") {
+        dbquery to delete remove
+    } else {
+        db query to accept update
+    }
 });
 
 //moet altijd onderaan staan

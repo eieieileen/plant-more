@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "./axios";
+import FriendshipButton from "./friendshipButton";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export default class OtherProfile extends Component {
                 if (data.success == false) {
                     this.props.history.push("/");
                 } else {
-                    console.log("response van getOtherProfileInfo", data);
+                    //console.log("response van getOtherProfileInfo", data);
                     this.setState(data);
                 }
             })
@@ -35,6 +36,9 @@ export default class OtherProfile extends Component {
                     {this.state.first_name} {this.state.last_name}
                     {this.state.bio}
                 </h2>
+                <FriendshipButton 
+                    id={this.props.match.params.id}
+                />
             </div>
         );
     }

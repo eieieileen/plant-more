@@ -2,6 +2,7 @@ import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
 import Footer from "./footer";
 
+
 export default function Profile({
     // first_name,
     // last_name,
