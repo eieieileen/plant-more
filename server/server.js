@@ -271,7 +271,7 @@ app.get("/addFriends/:id", (req, res) => {
     const otherUser = req.params.id;
     db.checkFriends(loggedIn, otherUser)
         .then(({ rows }) => {
-            console.log("response van db.addFriends", rows);
+            console.log("response van check db.addFriends", rows);
             res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
         })
         .catch((err) => console.log("error in db.addFriends 🌂", err));
