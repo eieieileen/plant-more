@@ -44,8 +44,10 @@ export default class Uploader extends Component {
 
     render() {
         return (
-            <div id="uploader">
+            <div>
+                <h1> HI EILEEN THIS IS UPLOADER JWZ</h1>
                 <input
+                    id="uploader"
                     onChange={(e) => this.handleChange(e)}
                     type="file"
                     name="uploadImg"
@@ -57,7 +59,9 @@ export default class Uploader extends Component {
                 >
                     SUBMIT
                 </button>
-                {/* <h2>HI EILEEN THIS IS UPLOADER COMPONENT</h2> */}
+                {/* <Link id="logIn" to={"/login"}>
+                    CLICK HERE TO LOG IN
+                </Link> */}
             </div>
         );
     }

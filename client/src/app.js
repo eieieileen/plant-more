@@ -97,7 +97,8 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route path="/users/search" render={() => <FindPeople />} />
+                    <Route path="/users/search" render={() => <FindPeople />}
+                    />
                 </div>
             </BrowserRouter>
         );

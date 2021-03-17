@@ -15,7 +15,7 @@ export default function Profile({
     return (
         <div>
             <div>
-                <ProfilePic
+                <ProfilePic 
                     imageUrl={imageUrl}
                     toggleUploader={toggleUploader}
                     classN="bioPic"

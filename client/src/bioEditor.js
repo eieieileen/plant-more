@@ -58,32 +58,31 @@ export default class BioEditor extends React.Component {
         return (
             <>
                 {/* {this.state.error && <p>something went wront </p>} */}
-                <h1>
-                    BIO <br></br>
+                <div id="bio">
+                    ADD YOUR BIO HERE
+                    <br></br>
                     {this.props.bio}
-                </h1>
-                {this.state.txtArea && (
-                    <button onClick={() => this.handleClick()}>
-                        SAFE TO SERVER
-                    </button>
-                )}
-                {!this.state.txtArea && (
-                    <button
-                        onClick={() => {
-                            this.setState({ txtArea: !this.state.txtArea });
-                        }}
-                    >
-                        {/* {this.state.btnTxt} */}
-                        {this.props.bio ? "EDIT" : "ADD"}
-                    </button>
-                )}
-
-                {this.state.txtArea && (
-                    <textarea
-                        onChange={(e) => this.handleChange(e)}
-                        defaultValue={this.props.bio}
-                    />
-                )}
+                   
+                    {this.state.txtArea && (
+                        <button onClick={() => this.handleClick()}>SAFE</button>
+                    )}
+                    {!this.state.txtArea && (
+                        <button id="addOrEdit"
+                            onClick={() => {
+                                this.setState({ txtArea: !this.state.txtArea });
+                            }}
+                        >
+                            {/* {this.state.btnTxt} */}
+                            {this.props.bio ? "EDIT" : "ADD"}
+                        </button>
+                    )}
+                    {this.state.txtArea && (
+                        <textarea
+                            onChange={(e) => this.handleChange(e)}
+                            defaultValue={this.props.bio}
+                        />
+                    )}
+                </div>
             </>
         );
     }

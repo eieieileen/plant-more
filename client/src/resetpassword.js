@@ -51,13 +51,19 @@ export default class ResetPassword extends React.Component {
     render() {
         if (this.state.step == 1) {
             return (
-                <div>
+                <div id="resetP1">
                     <input
                         name="email"
                         placeholder="email"
                         onChange={(e) => this.handleChange(e)}
                     />
-                    <button onClick={() => this.handleClick()}>SUBMIT</button>
+
+                    <button
+                        className="submitButton"
+                        onClick={() => this.handleClick()}
+                    >
+                        SUBMIT
+                    </button>
                 </div>
             );
         }

@@ -85,7 +85,11 @@ export default class Registration extends React.Component {
                         SUBMIT
                     </button>
                 </div>
-                <Link id="logIn" to={"/login"}>CLICK HERE TO LOG IN</Link> 
+                <div id="registerA">
+                    <Link id="logIn" to={"/login"}>
+                        CLICK HERE TO LOG IN
+                    </Link>
+                </div>
                 {/* <button id="logButton" to={"/login"}>
                     LOG IN
                 </button> */}
