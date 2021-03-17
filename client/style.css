@@ -72,11 +72,11 @@
 /* end welcome/registration */
 
 /* uploader/profilepic */
-
-#uploader {
-    border: 3px solid orange;
-   
-}
+/* 
+#profilePic.js {
+    width: 100px;
+    height: 100px;
+} */
 
 #profilePicca {
     display: flex;
@@ -85,22 +85,34 @@
 
 .profile-pic {
     width: 125px;
+    height: 125px;
     border: 3px solid black;
     border-radius: 50%;
-    object-fit:cover;
+    object-fit: cover;
 }
 
-.bioPic {
-    border: 3px solid purple;
+.bioPicClass {
     display: flex;
     justify-content: center;
-    align-self: center;
+    border: 3px dotted black;
+    flex-direction: column; 
+   align-items: center;
+   width: 500px;
+   align-self: center;
+}
 
+.profilePage {
+    display: flex;
+    justify-content: center;
     
 }
 
+/* .bioPic {
+    border: 3px solid purple;
+} */
+
 #bio {
-    border: 2px red solid;
+    /* border: 2px red solid; */
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -109,6 +121,7 @@
     flex-direction: column;
     font-family: "Roboto Slab", serif;
     padding: 10px;
+    text-decoration: underline;
 }
 
 #bio button {
@@ -131,16 +144,25 @@
 #loginDiv h1 {
      font-family: "Roboto Slab", serif;
     padding: 10px;
+    text-align: center;
 }
 
 #loginDiv Link {
        font-family: "Roboto Slab", serif;
     padding: 10px;
+    
 }
 
 #loginA {
        font-family: "Roboto Slab", serif;
     padding: 10px;
+}
+
+#loginDiv {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
    
 

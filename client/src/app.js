@@ -4,9 +4,10 @@ import Uploader from "./uploader";
 import Logo from "./logo";
 import axios from "./axios";
 import Profile from "./profile";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
+
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -51,11 +52,22 @@ export default class App extends Component {
         });
     }
 
+    
+    
     render() {
+        function logout() {
+            axios.get("logout").then((response) => {
+                console.log("response van /logout", response);
+                location.replace("/welcome");
+            }).catch((err) => console.log("error in axios.get/logout", err));
+        }
         return (
             <BrowserRouter>
                 <div>
-                    <div  id="profilePicca">
+                    <Link to={"/"}>PROFILE</Link>
+                    <Link to={"/users/search"}>FIND PEOPLE</Link>
+                    <Link onClick={() => logout()}>LOGOUT</Link>
+                    <div id="profilePicca">
                         <ProfilePic
                             first_name={this.state.first_name}
                             last_name={this.state.last_name}
@@ -97,8 +109,7 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route path="/users/search" render={() => <FindPeople />}
-                    />
+                    <Route path="/users/search" render={() => <FindPeople />} />
                 </div>
             </BrowserRouter>
         );

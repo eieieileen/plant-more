@@ -305,6 +305,11 @@ app.post("/requestFriend", (req, res) => {
     }
 });
 
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/login");
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome
