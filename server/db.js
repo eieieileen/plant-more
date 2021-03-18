@@ -78,7 +78,7 @@ module.exports.mostRecent = () => {
 };
 
 module.exports.findUsers = (val) => {
-    const q = `SELECT first_name, last_name FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1 LIMIT 5`;
+    const q = `SELECT first_name, last_name, imageUrl,id FROM users WHERE first_name ILIKE $1 OR last_name ILIKE $1 LIMIT 5`;
     const params = [val + "%"];
     return db.query(q, params);
 };
@@ -102,7 +102,8 @@ module.exports.friendRequest = (sender_id, recipient_id) => {
 module.exports.deleteFriend = (sender_id, recipient_id) => {
     const q = `DELETE FROM friendships 
     WHERE (recipient_id = $1 AND sender_id = $2) 
-    OR (recipient_id = $2 AND sender_id = $1)`;
+    OR (recipient_id = $2 AND sender_id = $1)
+    RETURNING *`;
     const params = [sender_id, recipient_id];
     return db.query(q, params);
 };
@@ -110,7 +111,9 @@ module.exports.deleteFriend = (sender_id, recipient_id) => {
 module.exports.acceptFriend = (sender_id, recipient_id) => {
     const q = `UPDATE friendships SET accepted = TRUE
     WHERE (recipient_id = $1 AND sender_id = $2) 
-    OR (recipient_id = $2 AND sender_id = $1)`;
+    OR (recipient_id = $2 AND sender_id = $1)
+    RETURNING *
+    `;
     const params = [sender_id, recipient_id];
     return db.query(q, params);
 };

@@ -3,8 +3,8 @@ import BioEditor from "./bioEditor";
 import Footer from "./footer";
 
 export default function Profile({
-    // first_name,
-    // last_name,
+    first_name,
+    last_name,
     imageUrl,
     bio,
     toggleUploader,
@@ -13,6 +13,7 @@ export default function Profile({
 }) {
     return (
         <div className="profilePage">
+            <h1> {first_name}, {last_name}</h1>
             <div className="bioPicClass">
                 <ProfilePic
                     imageUrl={imageUrl}
@@ -20,7 +21,7 @@ export default function Profile({
                     classN="bioPic"
                 />
 
-                <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
+                <BioEditor bio={bio} editBio={(arg) => editBio(arg)}   />
             </div>
             <Footer />
         </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "./axios";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import ProfilePic from "./profilePic";
 
 export default function findPeople() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -27,17 +28,15 @@ export default function findPeople() {
                     return (
                         <div key={user.id}>
                             <p>
+                                <ProfilePic imageUrl={user.imageurl} />
                                 <Link to={`/user/${user.id}`}>
                                     {" "}
-                                    {user.first_name} {user.last_name}{" "}
+                                    {user.first_name} {user.last_name} {user.id}{" "}
                                 </Link>
                             </p>
                         </div>
                     );
                 })}
-
-            
-           
 
             <input
                 //defaultValue={searchTerm}

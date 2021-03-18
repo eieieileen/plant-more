@@ -17,10 +17,11 @@ export default function FriendshipButton({ id }) {
             } else if (loggedIn == sender_id) {
                 text = "CANCEL TACO FRIEND";
                 return text;
-            } else if (accepted === true) {
+            } else if (accepted === false) {
                 text = "ACCEPT TACO'S";
                 return text;
             } else {
+                text = "ADD TACO FRIEND";
                 return text;
             }
         } else {
