@@ -7,6 +7,7 @@ import Profile from "./profile";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
+import Friends from "./friends";
 
 
 // import { BrowserRouter, Route } from "react-router-dom";
@@ -66,7 +67,7 @@ export default class App extends Component {
                 <div>
                     <Link to={"/"}>PROFILE</Link>
                     <Link to={"/users/search"}>FIND PEOPLE</Link>
-                    <Link onClick={() => logout()}>LOGOUT</Link>
+                    <button onClick={() => logout()}>LOGOUT</button>
                     <div id="profilePicca">
                         <ProfilePic
                             first_name={this.state.first_name}
@@ -110,6 +111,7 @@ export default class App extends Component {
                         )}
                     />
                     <Route path="/users/search" render={() => <FindPeople />} />
+                    <Route path="/Friends/" render={() => <Friends />} />
                 </div>
             </BrowserRouter>
         );

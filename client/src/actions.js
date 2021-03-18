@@ -1,15 +1,10 @@
-//here we export all our action creator functions.
+import axios from "./axios";
 
-//action creator is just a function that returns an object.
-
-//the object that gets returned is the action!
-
-//example
-export function fn() {
+export async function receiveUsers() {
+    const { data } = await axios.get("/get-friends");
     return {
-        type: "UPDATE_STATE_SOMEHOW",
-        data: 1,
+        type: "GET_LIST",
+        friendsList: data, //aka data instead of friendsList
     };
 }
 
-//for part 9 we will need 3 action creator functions.

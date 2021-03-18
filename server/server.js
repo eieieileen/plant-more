@@ -310,6 +310,29 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
+app.get("/get-friends", (req, res) => {
+    db.getFriendsList(req.session.loggedIn).then(({rows}) => {
+        console.log("response van db.getFriendsList", rows);
+        res.json(rows);
+    }).catch((err) => console.log("error in /get-friends", err));
+});
+
+app.post("/accept-friend", (req, res) => {
+    const {otherUser} = req.body;
+    db.acceptFriend(req.session.loggedIn, otherUser).then(({rows}) => {
+        console.log("response van accept-friend", rows[0]);
+        res.json({ rows: rows[0], loggedIn: req.session.loggedIn});
+    }).catch((err) => console.log("err in post .acceptFriend", err));
+});
+
+app.post("/unfriend-friend", (req, res) => {
+    const {otherUser} = req.body;
+    db.deleteFriend(req.session.loggedIn, otherUser).then(({rows}) => {
+        console.log("rows van app.post /unfriend-friend", rows[0]);
+        res.json({ rows: rows[0], loggedIn: req.session.loggedIn});
+    }).catch((err) => console.log("error in /unfriend-friend", err));
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome

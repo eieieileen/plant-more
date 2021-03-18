@@ -1,8 +1,11 @@
 export function reducer(state = {}, action) {
 
     //series of if statements:
-    if (action.type === "UPDATE_STATE_SOMEHOW") {
-        //update state somehow
+    if (action.type === "GET_LIST") {
+        state = {
+            ...state,
+            friendsWannabes: action.friendsList,
+        };
     }
 
     if (action.type === "UNFRIEND") {
