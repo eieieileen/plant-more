@@ -11,6 +11,12 @@ const { sendEmail } = require("./ses");
 const s3 = require("./s3");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
+//socket.io boiletplate
+const server = require("http").Server(app); //app because of first handshake handshake
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
 
 ////// links //////
 
@@ -291,17 +297,20 @@ app.post("/requestFriend", (req, res) => {
         action == "UNFRIEND FRIENDLY TACO"
     ) {
         db.deleteFriend(req.session.loggedIn, otherUser)
-            .then(({rows}) => {
+            .then(({ rows }) => {
                 console.log("response van db.deleteFriend", rows[0]);
                 res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
             })
             .catch((err) => console.log("error in db.deletefriend", err));
     } else {
-        db.acceptFriend(req.session.loggedIn, otherUser).then(({rows}) => {
-            console.log("console.log van db.acceptFriend 🦔", rows[0]);
-            res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
-        }).catch((err) => console.log("error in db.acceptFRIEND JE MOEDER 🌺", err));
-
+        db.acceptFriend(req.session.loggedIn, otherUser)
+            .then(({ rows }) => {
+                console.log("console.log van db.acceptFriend 🦔", rows[0]);
+                res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+            })
+            .catch((err) =>
+                console.log("error in db.acceptFRIEND JE MOEDER 🌺", err)
+            );
     }
 });
 
@@ -311,26 +320,32 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/get-friends", (req, res) => {
-    db.getFriendsList(req.session.loggedIn).then(({rows}) => {
-        console.log("response van db.getFriendsList", rows);
-        res.json(rows);
-    }).catch((err) => console.log("error in /get-friends", err));
+    db.getFriendsList(req.session.loggedIn)
+        .then(({ rows }) => {
+            console.log("response van db.getFriendsList", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("error in /get-friends", err));
 });
 
 app.post("/accept-friend", (req, res) => {
-    const {otherUser} = req.body;
-    db.acceptFriend(req.session.loggedIn, otherUser).then(({rows}) => {
-        console.log("response van accept-friend", rows[0]);
-        res.json({ rows: rows[0], loggedIn: req.session.loggedIn});
-    }).catch((err) => console.log("err in post .acceptFriend", err));
+    const { otherUser } = req.body;
+    db.acceptFriend(req.session.loggedIn, otherUser)
+        .then(({ rows }) => {
+            console.log("response van accept-friend", rows[0]);
+            res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+        })
+        .catch((err) => console.log("err in post .acceptFriend", err));
 });
 
 app.post("/unfriend-friend", (req, res) => {
-    const {otherUser} = req.body;
-    db.deleteFriend(req.session.loggedIn, otherUser).then(({rows}) => {
-        console.log("rows van app.post /unfriend-friend", rows[0]);
-        res.json({ rows: rows[0], loggedIn: req.session.loggedIn});
-    }).catch((err) => console.log("error in /unfriend-friend", err));
+    const { otherUser } = req.body;
+    db.deleteFriend(req.session.loggedIn, otherUser)
+        .then(({ rows }) => {
+            console.log("rows van app.post /unfriend-friend", rows[0]);
+            res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
+        })
+        .catch((err) => console.log("error in /unfriend-friend", err));
 });
 
 //moet altijd onderaan staan
@@ -346,7 +361,16 @@ app.get("*", function (req, res) {
 ////// routes //////
 
 ////// listening //////
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("✨ my queen, don't worry, you're doing great ✨");
 });
 ////// llistening //////
+
+//For social network io.on is under the server.listen
+io.on("connection", (socket) => {
+    console.log(`socket with id: ${socket.id} has connected`);
+
+    socket.on("disconnect", () => {
+        console.log(`socket with id: ${socket.id} just disconnected!`);
+    });
+});
