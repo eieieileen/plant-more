@@ -11,27 +11,34 @@ export function reducer(state = {}, action) {
     if (action.type === "ACCEPT_FRIEND") {
         state = {
             ...state,
-            accept_friend_request: state.friendsWannabes.map(friend => {
+            accepted: true,
+            friendsWannabes: state.friendsWannabes.map(friend => {
                 if (friend.id == action.id) {
                     return {
                         ...friend,
-                        accept_friend_request: action.type == "ACCEPT_FRIEND"
+                        friendsWannabes: action.type == "ACCEPT_FRIEND"
                     };
                 }  else {
                     return friend;
                 }
             })
         };
+    } else if (action.type === "UNFRIEND_FRIEND") {
+        state = {
+            ...state,
+            accepted: false,
+            friendsWannabes: state.friendsWannabes.filter(friend => {
+                if (friend.id == action.id) {
+                    return {
+                        ...friend,
+                        friendsWannabes: action.type =="DECLINE_FRIEND"
+                    };
+                } else {
+                    return friend;
+                }
+            })
+        };
     }
-
-    // if (action.type === "UNFRIEND_FRIEND") {
-    //     state = {
-    //         ...state,
-    //         unfriend_friend: 
-    //     };
-    // }
-
-    //last thing we want to do is return the new state
     return state;
 }
 

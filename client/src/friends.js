@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { receiveUsers, acceptFriend } from "./actions";
+import { receiveUsers, acceptFriend, unfriend } from "./actions";
 
 export default function Friends() {
     const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export default function Friends() {
                         {friend.first_name} {friend.last_name}
                         <img src={friend.imageurl}></img>
                     </p>
+                    <button onClick={() => dispatch(unfriend(friend.id))}>UNFRIEND</button>
                 </div>
             ))}
             {wannabe.map((friend, index) => (
@@ -45,7 +46,9 @@ export default function Friends() {
                         ACCEPT
                     </button>
                 </div>
+                
             ))}
+
         </div>
     );
 }
