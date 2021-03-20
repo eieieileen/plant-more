@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveUsers, acceptFriend, unfriend } from "./actions";
 

@@ -8,8 +8,9 @@ export async function receiveUsers() {
     };
 }
 
+// await axios.post(`/accept-friend/`, {otherUser: id}); = sending a body mee op deze manier
 export async function acceptFriend(id) {
-    await axios.post(`/accept-friend/${id}`);
+    await axios.post(`/accept-friend`, {otherUser: id});
     return {
         type: "ACCEPT_FRIEND",
         id: id
@@ -17,9 +18,9 @@ export async function acceptFriend(id) {
 }
 
 export async function unfriend(id) {
-    await axios.post(`unfriend-friend/${id}`);
+    await axios.post(`/unfriend-friend`, {otherUser:id});
     return {
-        TYPE: "UNFRIEND_FRIEND",
+        type: "UNFRIEND_FRIEND",
         id: id,
     };
 }

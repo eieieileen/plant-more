@@ -16,7 +16,7 @@ export function reducer(state = {}, action) {
                 if (friend.id == action.id) {
                     return {
                         ...friend,
-                        friendsWannabes: action.type == "ACCEPT_FRIEND"
+                        accepted: true, 
                     };
                 }  else {
                     return friend;
@@ -27,11 +27,11 @@ export function reducer(state = {}, action) {
         state = {
             ...state,
             accepted: false,
-            friendsWannabes: state.friendsWannabes.filter(friend => {
+            friendsWannabes: state.friendsWannabes.map(friend => {
                 if (friend.id == action.id) {
                     return {
                         ...friend,
-                        friendsWannabes: action.type =="DECLINE_FRIEND"
+                        accepted: false,
                     };
                 } else {
                     return friend;
