@@ -97,7 +97,7 @@
 .profile-pic {
     width: 125px;
     height: 125px;
-    border: 3px solid black;
+    border: 3px solid #E0C1FD;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -127,9 +127,9 @@
 }
 
 .bioPic {
-    border: 3px solid purple;
+    
     width: 500px;
-    border: 2px dotted black;
+    border: 3px dotted #E0C1FD;
 }
 
 #bio {
@@ -152,6 +152,19 @@
 #bio textarea {
     width: 400px;
     height: 100px;
+    
+}
+
+.uploader {
+    z-index: 4;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FDE966;
+       margin: 10px;
+    font-family: "Roboto Slab", serif;
+    padding: 15px;
 }
 
 /* end uploader/profilePic/bioEditor */
@@ -194,11 +207,16 @@
 /* end resetPassword */
 
 /* findpeople  */
+.findPeopleFlex {
+    display: flex;
+}
+
 .findPeoplePic {
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 100px;
     border: 3px solid green;
     object-fit: contain;
+    flex-direction: row; 
 }
 
 /* end findPeople */

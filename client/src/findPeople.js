@@ -23,29 +23,31 @@ export default function findPeople() {
 
     return (
         <div>
-            {resultUsers &&
-                resultUsers.map((user) => {
-                    return (
-                        <div key={user.id}>
-                            <ProfilePic
-                                classN="findPeoplePic"
-                                imageUrl={user.imageurl}
-                            />
-                            <p>
-                                <Link to={`/user/${user.id}`}>
-                                    {" "}
-                                    {user.first_name} {user.last_name} {user.id}{" "}
-                                </Link>
-                            </p>
-                        </div>
-                    );
-                })}
-
             <input
                 onChange={({ target }) => {
                     setSearchTerm(target.value);
                 }}
             ></input>
+            <div className="findPeopleFlex">
+                {resultUsers &&
+                    resultUsers.map((user) => {
+                        return (
+                            <div key={user.id}>
+                                <ProfilePic
+                                    classN="findPeoplePic"
+                                    imageUrl={user.imageurl}
+                                />
+                                <p>
+                                    <Link to={`/user/${user.id}`}>
+                                        {" "}
+                                        {user.first_name} {user.last_name}{" "}
+                                        {user.id}{" "}
+                                    </Link>
+                                </p>
+                            </div>
+                        );
+                    })}
+            </div>
         </div>
     );
 }
