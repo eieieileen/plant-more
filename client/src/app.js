@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
+import Footer from "./footer";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -71,7 +72,8 @@ export default class App extends Component {
                             path="/users/search"
                             render={() => <FindPeople />}
                         />
-                        <Route path="/Friends/" render={() => <Friends />} /> <br></br>
+                        <Route path="/Friends/" render={() => <Friends />} />{" "}
+                        <br></br>
                         <Link to={"/"}>PROFILE </Link>
                         <Link to={"/users/search"}>FIND PEOPLE</Link>
                     </div>
@@ -117,6 +119,7 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <Footer />
                 </div>
             </BrowserRouter>
         );
