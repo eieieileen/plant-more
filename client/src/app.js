@@ -9,7 +9,6 @@ import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
 
-
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
 
@@ -53,21 +52,29 @@ export default class App extends Component {
         });
     }
 
-    
-    
     render() {
         function logout() {
-            axios.get("logout").then((response) => {
-                console.log("response van /logout", response);
-                location.replace("/welcome");
-            }).catch((err) => console.log("error in axios.get/logout", err));
+            axios
+                .get("logout")
+                .then((response) => {
+                    console.log("response van /logout", response);
+                    location.replace("/welcome");
+                })
+                .catch((err) => console.log("error in axios.get/logout", err));
         }
         return (
             <BrowserRouter>
                 <div>
-                    <Link to={"/"}>PROFILE</Link>
-                    <Link to={"/users/search"}>FIND PEOPLE</Link>
-                    <button onClick={() => logout()}>LOGOUT</button>
+                    <div id="linksTo">
+                        <button onClick={() => logout()}>LOGOUT</button>
+                        <Route
+                            path="/users/search"
+                            render={() => <FindPeople />}
+                        />
+                        <Route path="/Friends/" render={() => <Friends />} /> <br></br>
+                        <Link to={"/"}>PROFILE </Link>
+                        <Link to={"/users/search"}>FIND PEOPLE</Link>
+                    </div>
                     <div id="profilePicca">
                         <ProfilePic
                             first_name={this.state.first_name}
@@ -110,8 +117,6 @@ export default class App extends Component {
                             />
                         )}
                     />
-                    <Route path="/users/search" render={() => <FindPeople />} />
-                    <Route path="/Friends/" render={() => <Friends />} />
                 </div>
             </BrowserRouter>
         );

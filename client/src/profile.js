@@ -13,15 +13,17 @@ export default function Profile({
 }) {
     return (
         <div className="profilePage">
-            <h1> {first_name}, {last_name}</h1>
             <div className="bioPicClass">
                 <ProfilePic
                     imageUrl={imageUrl}
                     toggleUploader={toggleUploader}
                     classN="bioPic"
                 />
-
-                <BioEditor bio={bio} editBio={(arg) => editBio(arg)}   />
+                <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
+                <h5>
+                    {" "}
+                    {first_name} {last_name}
+                </h5>
             </div>
             <Footer />
         </div>

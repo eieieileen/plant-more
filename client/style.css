@@ -1,6 +1,6 @@
 /* Welcome/registration/login */
 .logo {
-    /* position: absolute; */
+    position: absolute;
     width: 200px;
     top: 0;
     left: 0;
@@ -46,6 +46,7 @@
     bottom: 0;
     left: 10px;
     z-index: 1;
+    color: black;
 }
 
 .footer div.image {
@@ -69,6 +70,17 @@
         font-family: "Roboto Slab", serif;
     padding: 10px;
 }
+
+#linksTo {
+    font-family: "Roboto Slab", serif;
+    padding: 10px; 
+    display: flex;
+    align-items: flex-start; 
+    justify-content: center;
+    
+}
+
+
 /* end welcome/registration */
 
 /* uploader/profilepic */
@@ -89,27 +101,35 @@
     border: 3px solid black;
     border-radius: 50%;
     object-fit: cover;
+    
 }
 
 .bioPicClass {
     display: flex;
     justify-content: center;
-    border: 3px dotted black;
+    /* border: 3px dotted black; */
     flex-direction: column; 
-   align-items: center;
+   /* align-items: center; */
    width: 500px;
-   align-self: center;
+   /* align-self: center; */
+   align-items: flex-start;
 }
 
 .profilePage {
     display: flex;
     justify-content: center;
-    
 }
 
-/* .bioPic {
+.profilePage h5 {
+
+}
+
+.bioPic {
     border: 3px solid purple;
-} */
+    width: 500px;
+     border: 2px dotted black;
+     
+}
 
 #bio {
     /* border: 2px red solid; */
@@ -179,5 +199,11 @@
 
 /* end resetPassword */
 
-/* bioEditor  */
+/* findpeople  */
+#findPeoplePic {
+    width: 250px;
+    
+}
+
+/* end findPeople */
 

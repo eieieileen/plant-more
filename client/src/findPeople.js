@@ -22,13 +22,16 @@ export default function findPeople() {
     }, [searchTerm]);
 
     return (
-        <>
+        <div>
             {resultUsers &&
                 resultUsers.map((user) => {
                     return (
                         <div key={user.id}>
                             <p>
-                                <ProfilePic imageUrl={user.imageurl} />
+                                <ProfilePic id="findPeoplePic"
+                                    imageUrl={user.imageurl}
+                                    
+                                />
                                 <Link to={`/user/${user.id}`}>
                                     {" "}
                                     {user.first_name} {user.last_name} {user.id}{" "}
@@ -39,11 +42,11 @@ export default function findPeople() {
                 })}
 
             <input
-                //defaultValue={searchTerm}
+                
                 onChange={({ target }) => {
                     setSearchTerm(target.value);
                 }}
             ></input>
-        </>
+        </div>
     );
 }

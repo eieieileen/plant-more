@@ -60,6 +60,7 @@ export default class BioEditor extends React.Component {
                 {/* {this.state.error && <p>something went wront </p>} */}
                 <div id="bio">
                     ADD YOUR BIO HERE
+                    
                     <br></br>
                     {this.props.bio}
                    
