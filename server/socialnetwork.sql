@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS reset_codes;
 DROP TABLE IF EXISTS friendships;
+DROP TABLE IF EXISTS chatroom;
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -31,8 +32,15 @@ CREATE TABLE friendships(
     accepted BOOLEAN DEFAULT false 
 );
 
-INSERT INTO friendships (sender_id, recipient_id, accepted) VALUES (1,42,TRUE);
-INSERT INTO friendships (sender_id, recipient_id, accepted) VALUES (124,1,false);
-INSERT INTO friendships (sender_id, recipient_id, accepted) VALUES (1,26,TRUE);
-INSERT INTO friendships (sender_id, recipient_id, accepted) VALUES (1,25,TRUE);
-INSERT INTO friendships (sender_id, recipient_id, accepted) VALUES (1,23,TRUE);
+CREATE TABLE chatroom(
+    id SERIAL PRIMARY KEY,
+    sender_id INT REFERENCES users(id) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    message VARCHAR(500)
+);
+
+-- MUST BE WITH SINGLE FUCKING QUOTESSSS
+INSERT INTO chatroom (sender_id, message) VALUES (2, 'Hi how are yaaaaaa');
+INSERT INTO chatroom (sender_id, message) VALUES (4, 'Fine and you??');
+INSERT INTO chatroom (sender_id, message) VALUES (7, 'Good! I havent had corona yet');
+INSERT INTO chatroom (sender_id, message) VALUES (27, 'Yea me neither');

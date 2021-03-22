@@ -123,8 +123,8 @@
     justify-content: center;
 }
 
-.profilePage h5 {
-}
+/* .profilePage h5 {
+} */
 
 .bioPic {
     
@@ -220,3 +220,12 @@
 }
 
 /* end findPeople */
+
+/* Chat  */
+.chat-container {
+    height: 300px;
+    background-color: greenyellow;
+    overflow-y: auto;
+}
+
+/* end chat */

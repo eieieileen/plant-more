@@ -9,6 +9,7 @@ import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
 import Footer from "./footer";
+import Chat from "./chat";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -119,7 +120,10 @@ export default class App extends Component {
                             />
                         )}
                     />
+
+                    <Route path="/chat" component={Chat} />
                     <Footer />
+
                 </div>
             </BrowserRouter>
         );

@@ -1,4 +1,3 @@
-
 export function reducer(state = {}, action) {
     //series of if statements:
     if (action.type === "GET_LIST") {
@@ -12,22 +11,22 @@ export function reducer(state = {}, action) {
         state = {
             ...state,
             accepted: true,
-            friendsWannabes: state.friendsWannabes.map(friend => {
+            friendsWannabes: state.friendsWannabes.map((friend) => {
                 if (friend.id == action.id) {
                     return {
                         ...friend,
-                        accepted: true, 
+                        accepted: true,
                     };
-                }  else {
+                } else {
                     return friend;
                 }
-            })
+            }),
         };
     } else if (action.type === "UNFRIEND_FRIEND") {
         state = {
             ...state,
             accepted: false,
-            friendsWannabes: state.friendsWannabes.map(friend => {
+            friendsWannabes: state.friendsWannabes.map((friend) => {
                 if (friend.id == action.id) {
                     return {
                         ...friend,
@@ -36,9 +35,14 @@ export function reducer(state = {}, action) {
                 } else {
                     return friend;
                 }
-            })
+            }),
+        };
+    } else if (action.type === "MOST_RECENT_MESSAGES") {
+        state = {
+            ...state,
+            messages: action.data,
         };
     }
+
     return state;
 }
-

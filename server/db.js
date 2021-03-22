@@ -129,3 +129,28 @@ module.exports.getFriendsList = (id) => {
     const params = [id];
     return db.query(q, params);
 };
+
+module.exports.tenMostRecentMessages = () => {
+    const q = `SELECT chatroom.id, chatroom.sender_id, chatroom.created_at, chatroom.message, users.first_name, users.last_name, users.imageUrl
+    FROM chatroom
+    JOIN users 
+    ON users.id = chatroom.sender_id
+    ORDER BY created_at DESC limit 10`;
+    return db.query(q);
+};
+
+
+module.exports.newMessage = (sender_id, created_at, message) => {
+    const q = `INSERT INTO chatroom (sender_id, created_at, message)
+    VALUES ($1, $2, $3)
+    RETURNING id `;
+    const params = [sender_id, created_at, message];
+    return db.query(q, params);
+};
+//   const q = `INSERT INTO reset_codes (email, code)
+//     VALUES ($1, $2)
+//     RETURNING id
+//     `;
+//   const params = [email, code];
+//   return db.query(q, params);
+// INSERT - to add new message when one is received from a client

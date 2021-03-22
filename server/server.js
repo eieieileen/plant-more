@@ -43,13 +43,16 @@ const uploader = multer({
 ////// multer //////
 
 ////// middleware //////
-app.use(express.urlencoded({ extended: false }));
-app.use(
-    cookieSession({
-        secret: `I'm always angry.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-    })
-);
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90,
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function (socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+
 app.use(compression());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 app.use((req, res, next) => {
@@ -369,6 +372,43 @@ server.listen(process.env.PORT || 3001, function () {
 //For social network io.on is under the server.listen
 io.on("connection", (socket) => {
     console.log(`socket with id: ${socket.id} has connected`);
+
+    if (!socket.request.session.loggedIn) {
+        return socket.disconnect(true);
+    }
+
+    const userId = socket.request.session.loggedIn;
+
+    console.log("userId in sockets:", userId);
+
+    //when the user first connects we need to make a db query to get the last 10 chat messages.
+    // Once we have them, we need to emit them to everyone.
+
+    db.tenMostRecentMessages()
+        .then(({ rows }) => {
+            console.log("response.rows!!", rows);
+            socket.emit("chatMessages", rows.reverse());
+           
+        })
+        .catch((err) =>
+            console.log("error in db.tenMostRecentMessages 👻", err)
+        );
+    // db.tenMostRecentMessages().then((result) => {
+    //     console.log("results.rows: , results.rows");
+    //     io.socket.emit("chatMessages", result.rows.reverse());
+    // });
+
+    //this was demo purposes
+    socket.emit("userConnected", { msg: "hello user!" });
+
+    socket.on("my amazing chat message", (msg) => {
+        console.log("msg inside my amazing chat message: ", msg);
+        //send the message to all the connected clients
+        //need to do 2 things before sending message to everyone:
+        //1 add to the DB
+        //2 is find out information (i.e name and image) of user who sent the message- with another db query (userId in sockets: 1)
+        io.sockets.emit("sending back to client", msg);
+    });
 
     socket.on("disconnect", () => {
         console.log(`socket with id: ${socket.id} just disconnected!`);

@@ -25,3 +25,10 @@ export async function unfriend(id) {
     };
 }
 
+export async function chatMessages(msgs) {
+    return {
+        type: "MOST_RECENT_MESSAGES",
+        data: msgs,
+    };
+}
+
