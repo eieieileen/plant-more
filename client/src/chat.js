@@ -4,10 +4,9 @@ import { useSelector } from "react-redux";
 
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
-    const chatMessages = useSelector((state) => state.chatMessages && state.chatMessages);
-    console.log("chatMessages: ", chatMessages);
-
     const elemRef = useRef();
+    const chatMessages = useSelector((state) => state.messages);
+    console.log("chatMessages ivana: ", chatMessages);
 
     useEffect(() => {
         console.log("chat mounted..");
@@ -26,7 +25,7 @@ export default function Chat() {
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
         //elemRef.current.scrollTop = elemRef.current.scrollHeight - elemRef.current.clientHeight;
         elemRef.current.scrollTop = newScrollTop;
-    }, []);
+    }, [chatMessages]);
 
     const keyCheck = (e) => {
         //only really care about the value, when i press enter
@@ -43,24 +42,14 @@ export default function Chat() {
         <>
             <h1>Chat room</h1>
             <div className="chat-container" ref={elemRef}>
-                {/* {chatMessages.map((chatMessages, index) => (
-                    <div key={index}>
-                        <p>
-                            {chatMessages.first_name} 
-                        </p>
-                    </div>    
-                ))} */}
-
-                {/* <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p>
-                <p>Chat messages will go here!</p> */}
+                {chatMessages &&
+                    chatMessages.map((chatMessages, index) => (
+                        <div key={index}>
+                            <p>{chatMessages.first_name} {chatMessages.last_name}: {chatMessages.message} - {chatMessages.created_at} </p>
+                            <img src={chatMessages.imageurl}></img>
+                            
+                        </div>
+                    ))}
             </div>
             <textarea
                 placeholder="add your message here!"

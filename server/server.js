@@ -386,28 +386,41 @@ io.on("connection", (socket) => {
 
     db.tenMostRecentMessages()
         .then(({ rows }) => {
-            console.log("response.rows!!", rows);
+            //console.log("response.rows!!", rows);
             socket.emit("chatMessages", rows.reverse());
-           
         })
         .catch((err) =>
             console.log("error in db.tenMostRecentMessages 👻", err)
         );
-    // db.tenMostRecentMessages().then((result) => {
-    //     console.log("results.rows: , results.rows");
-    //     io.socket.emit("chatMessages", result.rows.reverse());
-    // });
+  
 
     //this was demo purposes
-    socket.emit("userConnected", { msg: "hello user!" });
+    //socket.emit("userConnected", { msg: "hello user!" });
 
     socket.on("my amazing chat message", (msg) => {
         console.log("msg inside my amazing chat message: ", msg);
+        db.newMessage(userId, msg).then(({rows}) => {
+            const created_at = rows[0].created_at;
+            db.infoNewMessage(userId).then(({rows}) => {
+                console.log("response van db.infoNewMessage 🤓", rows[0]);
+                io.sockets.emit("This is the new Message", {
+                    userId: userId,
+                    message: msg,
+                    fist_name: rows[0].first_name,
+                    last_name: rows[0].last_name,
+                    imageUrl: rows[0].imageUrl,
+                    created_at: created_at,
+                });
+            }).catch((err) => console.log("error in db.infoNewMessage", err));
+        }).catch((err) => console.log("error in db.newMessage,", err));
         //send the message to all the connected clients
         //need to do 2 things before sending message to everyone:
         //1 add to the DB
         //2 is find out information (i.e name and image) of user who sent the message- with another db query (userId in sockets: 1)
         io.sockets.emit("sending back to client", msg);
+
+
+
     });
 
     socket.on("disconnect", () => {

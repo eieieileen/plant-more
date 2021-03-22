@@ -1,6 +1,5 @@
-import { chatMessages, chatMessage } from "./actions";
+import { chatMessages, chatBericht } from "./actions";
 import { io } from "socket.io-client";
-
 
 export let socket;
 
@@ -21,6 +20,8 @@ export const init = (store) => {
             store.dispatch(chatMessages(msgs));
         });
 
-        // socket.on("chatMessage", (msg) => store.dispatch(chatMessage(msg)));
+        socket.on("This is the new Message", (msg) => {
+            store.dispatch(chatBericht(msg));
+        });
     }
 };

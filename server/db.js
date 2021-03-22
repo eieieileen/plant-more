@@ -140,17 +140,16 @@ module.exports.tenMostRecentMessages = () => {
 };
 
 
-module.exports.newMessage = (sender_id, created_at, message) => {
-    const q = `INSERT INTO chatroom (sender_id, created_at, message)
-    VALUES ($1, $2, $3)
-    RETURNING id `;
-    const params = [sender_id, created_at, message];
+module.exports.newMessage = (sender_id, message) => {
+    const q = `INSERT INTO chatroom (sender_id, message)
+    VALUES ($1, $2)
+    RETURNING id, created_at`;
+    const params = [sender_id, message];
     return db.query(q, params);
 };
-//   const q = `INSERT INTO reset_codes (email, code)
-//     VALUES ($1, $2)
-//     RETURNING id
-//     `;
-//   const params = [email, code];
-//   return db.query(q, params);
-// INSERT - to add new message when one is received from a client
+
+module.exports.infoNewMessage = (id) => {
+    const q = `SELECT first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
+    const params = [id];
+    return db.query(q, params);
+};
