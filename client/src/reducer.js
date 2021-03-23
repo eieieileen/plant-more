@@ -45,9 +45,7 @@ export function reducer(state = {}, action) {
     } else if (action.type === "CHAT_MESSAGE") {
         state = {
             ...state,
-            messages: [...state.messages, action.data]
+            messages: [...state.messages, action.data],
         };
-    }
-
-    return state;
+    } else if (action.type === "ONLINE_USERS") return state;
 }

@@ -39,3 +39,23 @@ export async function chatBericht (msg) {
     }   ;
 }
 
+export async function onlineUser (onlineUsers) {
+    return {
+        type: "ONLINE_USERS",
+        data: onlineUsers,
+    };
+}
+
+export async function userJoined (newUser) {
+    return {
+        type: "NEW_USER",
+        data: newUser,
+    };
+}
+
+export async function userLeft (userLeft) {
+    return {
+        type: "USER_LEFT",
+        data: userLeft,
+    };
+}
