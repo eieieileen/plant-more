@@ -1,25 +1,26 @@
 import { useEffect, useRef } from "react";
 import { socket } from "./sockets";
 import { useSelector } from "react-redux";
+import OnlineUsers, { onlineUsers } from "./onlineUsers";
 
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
     const elemRef = useRef();
     const chatMessages = useSelector((state) => state.messages);
-    console.log("chatMessages ivana: ", chatMessages);
+    //console.log("chatMessages ivana: ", chatMessages);
 
     useEffect(() => {
-        console.log("chat mounted..");
-        console.log("elemRef.current: ", elemRef.current);
-        console.log("elemRef.current scrollTop: ", elemRef.current.scrollTop);
-        console.log(
-            "elemRef.current scrollHeight: ",
-            elemRef.current.scrollHeight
-        );
-        console.log(
-            "elemRef.current clientHeight ",
-            elemRef.current.clientHeight
-        );
+        // console.log("chat mounted..");
+        // console.log("elemRef.current: ", elemRef.current);
+        // console.log("elemRef.current scrollTop: ", elemRef.current.scrollTop);
+        // console.log(
+        //     "elemRef.current scrollHeight: ",
+        //     elemRef.current.scrollHeight
+        // );
+        // console.log(
+        //     "elemRef.current clientHeight ",
+        //     elemRef.current.clientHeight
+        // );
 
         const newScrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
@@ -41,6 +42,7 @@ export default function Chat() {
     return (
         <>
             <h1>Chat room</h1>
+            <OnlineUsers />
             <div className="chat-container" ref={elemRef}>
                 {chatMessages &&
                     chatMessages.map((chatMessages, index) => (

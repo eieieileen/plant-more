@@ -369,6 +369,7 @@ server.listen(process.env.PORT || 3001, function () {
 });
 ////// llistening //////
 
+let onlineUsers = {};
 //For social network io.on is under the server.listen
 io.on("connection", (socket) => {
     console.log(`socket with id: ${socket.id} has connected`);
@@ -378,11 +379,30 @@ io.on("connection", (socket) => {
     }
 
     const userId = socket.request.session.loggedIn;
-
     console.log("userId in sockets:", userId);
 
-    //when the user first connects we need to make a db query to get the last 10 chat messages.
-    // Once we have them, we need to emit them to everyone.
+    onlineUsers[socket.id] = userId;
+
+    const onlineUserIds = Object.values(onlineUsers);
+
+    if (Object.values(onlineUsers).includes(userId)) {
+        // if (Object.values(onlineUsers).indexOf(userId) > -1) {
+        db.getUsersByIds(onlineUserIds)
+            .then(({ rows }) => {
+                //console.log("response van onlineUserIds", rows);
+                socket.emit("online users", rows);
+            })
+            .catch((err) => console.log("error in db.getUsersByIds", err));
+    }
+
+    db.infoNewMessage(userId)
+        .then(({ rows }) => {
+            console.log("response van db.infoNewMessage", rows);
+            socket.broadcast.emit("new user just joined", rows);
+        })
+        .catch((err) =>
+            console.log("error in db.infoNewMessage in socket", err)
+        );
 
     db.tenMostRecentMessages()
         .then(({ rows }) => {
@@ -392,38 +412,47 @@ io.on("connection", (socket) => {
         .catch((err) =>
             console.log("error in db.tenMostRecentMessages 👻", err)
         );
-  
 
     //this was demo purposes
     //socket.emit("userConnected", { msg: "hello user!" });
 
     socket.on("my amazing chat message", (msg) => {
         console.log("msg inside my amazing chat message: ", msg);
-        db.newMessage(userId, msg).then(({rows}) => {
-            const created_at = rows[0].created_at;
-            db.infoNewMessage(userId).then(({rows}) => {
-                console.log("response van db.infoNewMessage 🤓", rows[0]);
-                io.sockets.emit("This is the new Message", {
-                    userId: userId,
-                    message: msg,
-                    first_name: rows[0].first_name,
-                    last_name: rows[0].last_name,
-                    imageurl: rows[0].imageurl,
-                    created_at: created_at,
-                });
-            }).catch((err) => console.log("error in db.infoNewMessage", err));
-        }).catch((err) => console.log("error in db.newMessage,", err));
+        db.newMessage(userId, msg)
+            .then(({ rows }) => {
+                const created_at = rows[0].created_at;
+                db.infoNewMessage(userId)
+                    .then(({ rows }) => {
+                        console.log(
+                            "response van db.infoNewMessage 🤓",
+                            rows[0]
+                        );
+                        io.sockets.emit("This is the new Message", {
+                            userId: userId,
+                            message: msg,
+                            first_name: rows[0].first_name,
+                            last_name: rows[0].last_name,
+                            imageurl: rows[0].imageurl,
+                            created_at: created_at,
+                        });
+                    })
+                    .catch((err) =>
+                        console.log("error in db.infoNewMessage", err)
+                    );
+            })
+            .catch((err) => console.log("error in db.newMessage,", err));
         //send the message to all the connected clients
         //need to do 2 things before sending message to everyone:
         //1 add to the DB
         //2 is find out information (i.e name and image) of user who sent the message- with another db query (userId in sockets: 1)
         io.sockets.emit("sending back to client", msg);
-
-
-
     });
 
-    socket.on("disconnect", () => {
+    socket.on("disconnect", function () {
         console.log(`socket with id: ${socket.id} just disconnected!`);
+        delete onlineUsers[socket.id];
+        if (Object.values(onlineUsers).indexOf(userId) < 1) {
+            socket.broadcast.emit("user left", { user: userId });
+        }
     });
 });

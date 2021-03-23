@@ -149,7 +149,20 @@ module.exports.newMessage = (sender_id, message) => {
 };
 
 module.exports.infoNewMessage = (id) => {
-    const q = `SELECT first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
+    const q = `SELECT id,first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
     const params = [id];
     return db.query(q, params);
 };
+
+// function getUsersByIds(arrayOfIds) {
+//     const query = "SELECT id, first, last, pic FROM users WHERE id = ANY($1)";
+//     const params = [arrayOfIds];
+//     return db.query(query, params);
+// }
+
+module.exports.getUsersByIds = (arrayOfIds) => {
+    const q = `SELECT id, first_name, last_name, imageUrl FROM users WHERE id = ANY($1)`;
+    const params = [arrayOfIds];
+    return db.query(q, params);
+};
+
