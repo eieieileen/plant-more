@@ -385,24 +385,25 @@ io.on("connection", (socket) => {
 
     const onlineUserIds = Object.values(onlineUsers);
 
-    if (Object.values(onlineUsers).includes(userId)) {
-        // if (Object.values(onlineUsers).indexOf(userId) > -1) {
-        db.getUsersByIds(onlineUserIds)
-            .then(({ rows }) => {
-                //console.log("response van onlineUserIds", rows);
-                socket.emit("online users", rows);
-            })
-            .catch((err) => console.log("error in db.getUsersByIds", err));
-    }
+    //if (Object.values(onlineUsers).includes(userId) > 1) {
 
-    db.infoNewMessage(userId)
+    db.getUsersByIds(onlineUserIds)
         .then(({ rows }) => {
-            console.log("response van db.infoNewMessage", rows);
-            socket.broadcast.emit("new user just joined", rows);
+            //console.log("response van onlineUserIds", rows);
+            socket.emit("online users", rows);
         })
-        .catch((err) =>
-            console.log("error in db.infoNewMessage in socket", err)
-        );
+        .catch((err) => console.log("error in db.getUsersByIds", err));
+
+    if (onlineUserIds.filter((id) => id == userId).length == 1) {
+        db.infoNewMessage(userId)
+            .then(({ rows }) => {
+                console.log("response van db.infoNewMessage", rows);
+                socket.broadcast.emit("new user just joined", rows);
+            })
+            .catch((err) =>
+                console.log("error in db.infoNewMessage in socket", err)
+            );
+    }
 
     db.tenMostRecentMessages()
         .then(({ rows }) => {
@@ -441,10 +442,6 @@ io.on("connection", (socket) => {
                     );
             })
             .catch((err) => console.log("error in db.newMessage,", err));
-        //send the message to all the connected clients
-        //need to do 2 things before sending message to everyone:
-        //1 add to the DB
-        //2 is find out information (i.e name and image) of user who sent the message- with another db query (userId in sockets: 1)
         io.sockets.emit("sending back to client", msg);
     });
 

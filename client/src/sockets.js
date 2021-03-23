@@ -1,7 +1,6 @@
 import { chatMessages, chatBericht } from "./actions";
 import { io } from "socket.io-client";
 
-
 export let socket;
 
 export const init = (store) => {
@@ -17,7 +16,7 @@ export const init = (store) => {
         });
 
         socket.on("chatMessages", (msgs) => {
-            console.log("chat maesae", msgs);
+            // console.log("chat maesae", msgs);
             store.dispatch(chatMessages(msgs));
         });
 
@@ -26,15 +25,15 @@ export const init = (store) => {
         });
 
         socket.on("online users", (onlineUsers) => {
-            console.log("online users moet not worden afgemaakt", onlineUsers);
+            console.log("online users", onlineUsers);
         });
 
         socket.on("new user just joined", (newUser) => {
-            console.log("new user must be finished", newUser);
+            console.log("new user just joined", newUser);
         });
 
         socket.on("user left", (userLeft) => {
             console.log("user just left: ", userLeft);
-        }); 
+        });
     }
 };
