@@ -32,7 +32,7 @@ export async function chatMessages(msgs) {
     };
 }
 
-export async function charBericht (msg) {
+export async function chatBericht (msg) {
     return {
         type: "CHAT_MESSAGE",
         data: msg,

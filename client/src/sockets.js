@@ -23,5 +23,7 @@ export const init = (store) => {
         socket.on("This is the new Message", (msg) => {
             store.dispatch(chatBericht(msg));
         });
+
+       
     }
 };

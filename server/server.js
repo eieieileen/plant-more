@@ -406,9 +406,9 @@ io.on("connection", (socket) => {
                 io.sockets.emit("This is the new Message", {
                     userId: userId,
                     message: msg,
-                    fist_name: rows[0].first_name,
+                    first_name: rows[0].first_name,
                     last_name: rows[0].last_name,
-                    imageUrl: rows[0].imageUrl,
+                    imageurl: rows[0].imageurl,
                     created_at: created_at,
                 });
             }).catch((err) => console.log("error in db.infoNewMessage", err));

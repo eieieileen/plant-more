@@ -29,7 +29,6 @@ export default function Chat() {
 
     const keyCheck = (e) => {
         //only really care about the value, when i press enter
-
         if (e.key === "Enter") {
             e.preventDefault(); //this will stop the new line :D
             console.log("e.target.value: ", e.target.value);
@@ -38,6 +37,7 @@ export default function Chat() {
         }
     };
 
+
     return (
         <>
             <h1>Chat room</h1>
@@ -45,16 +45,22 @@ export default function Chat() {
                 {chatMessages &&
                     chatMessages.map((chatMessages, index) => (
                         <div key={index}>
-                            <p>{chatMessages.first_name} {chatMessages.last_name}: {chatMessages.message} - {chatMessages.created_at} </p>
-                            <img src={chatMessages.imageurl}></img>
-                            
+                            <p>
+                                {chatMessages.first_name}{" "}
+                                {chatMessages.last_name}: {chatMessages.message}{" "}
+                                - {chatMessages.created_at}{" "}
+                            </p>
+                            <img
+                                className="chatImg"
+                                src={chatMessages.imageurl}
+                            ></img>
                         </div>
                     ))}
+                <textarea id="chatArea"
+                    placeholder="TELL YOUR LOVE ABOUT TACO'S HERE"
+                    onKeyDown={keyCheck}
+                ></textarea>
             </div>
-            <textarea
-                placeholder="add your message here!"
-                onKeyDown={keyCheck}
-            ></textarea>
         </>
     );
 }

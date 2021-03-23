@@ -228,4 +228,19 @@
     overflow-y: auto;
 }
 
+.chat-container textarea {
+    width: 300px;
+}
+
+.chatImg{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#chatArea {
+    width: 500px;
+    height: 100px;
+}
 /* end chat */
