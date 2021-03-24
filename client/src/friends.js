@@ -25,30 +25,36 @@ export default function Friends() {
     }
 
     return (
-        <div>
-            <h1>HI EILEEN THIS IS FRIENDS</h1>
+        <div className="friendsFlex">
+            {/* <h1>HI EILEEN THIS IS FRIENDS</h1> */}
             {friend.map((friend, index) => (
-                <div key={index}>
-                    <p>
+                <div className="requestDiv" key={index}>
+                    <img className="requestImg" src={friend.imageurl}></img>
+                    <p className="requestName">
                         {friend.first_name} {friend.last_name}
-                        <img src={friend.imageurl}></img>
                     </p>
-                    <button onClick={() => dispatch(unfriend(friend.id))}>UNFRIEND</button>
+                    <button
+                        className="friendsButton"
+                        onClick={() => dispatch(unfriend(friend.id))}
+                    >
+                        UNFRIEND
+                    </button>
                 </div>
             ))}
             {wannabe.map((friend, index) => (
-                <div key={index}>
-                    <p>
+                <div className="requestDiv" key={index}>
+                    <img className="requestImg" src={friend.imageurl}></img>
+                    <p className="requestName">
                         {friend.first_name} {friend.last_name}
-                        <img src={friend.imageurl}></img>
                     </p>
-                    <button onClick={() => dispatch(acceptFriend(friend.id))}>
+                    <button
+                        className="friendsButton"
+                        onClick={() => dispatch(acceptFriend(friend.id))}
+                    >
                         ACCEPT
                     </button>
                 </div>
-                
             ))}
-
         </div>
     );
 }

@@ -71,7 +71,9 @@ export default class App extends Component {
                         <Link id="profileLink" to={"/chat"}>
                             CHATROOM
                         </Link>
-                        <Route path="/Friends/" render={() => <Friends />} />{" "}
+                        <Link id="profileLink" to={"/friends/"}>
+                            FRIENDS
+                        </Link>
                         <br></br>
                         <Link id="profileLink" to={"/"}>
                             PROFILE{" "}
@@ -126,6 +128,7 @@ export default class App extends Component {
                         )}
                     />
                     <Route path="/users/search" render={() => <FindPeople />} />
+                    <Route path="/Friends" render={() => <Friends />} />
 
                     <Route path="/chat" component={Chat} />
                     <Footer />

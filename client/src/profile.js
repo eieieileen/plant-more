@@ -1,6 +1,6 @@
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
-//import Footer from "./footer";
+
 
 export default function Profile({
     first_name,
@@ -24,6 +24,7 @@ export default function Profile({
                 />
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
+            {/* <Friends /> */}
             
         </div>
     );
