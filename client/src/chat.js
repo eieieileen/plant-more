@@ -38,31 +38,32 @@ export default function Chat() {
         }
     };
 
-
     return (
-        <>
-            <h1>Chat room</h1>
-            <OnlineUsers />
-            <div className="chat-container" ref={elemRef}>
-                {chatMessages &&
-                    chatMessages.map((chatMessages, index) => (
-                        <div key={index}>
-                            <p>
-                                {chatMessages.first_name}{" "}
-                                {chatMessages.last_name} - {chatMessages.message}{" "}
-                                
-                            </p>
-                            <img
-                                className="chatImg"
-                                src={chatMessages.imageurl}
-                            ></img>
-                        </div>
-                    ))}
-                <textarea id="chatArea"
-                    placeholder="TELL YOUR LOVE ABOUT TACO'S HERE"
-                    onKeyDown={keyCheck}
-                ></textarea>
+        <div className="chatFlex">
+            <div className="classChat">
+                <div className="chat-container" ref={elemRef}>
+                    {chatMessages &&
+                        chatMessages.map((chatMessages, index) => (
+                            <div key={index}>
+                                <p className="infoMessage">
+                                    <img
+                                        className="chatImg"
+                                        src={chatMessages.imageurl}
+                                    ></img>
+                                    {chatMessages.first_name}{" "}
+                                    {chatMessages.last_name} -{" "}
+                                    {chatMessages.message}{" "}
+                                </p>
+                            </div>
+                        ))}
+                </div>
             </div>
-        </>
+            <textarea
+                id="chatArea"
+                placeholder="TELL YOUR LOVE ABOUT TACO'S HERE"
+                onKeyDown={keyCheck}
+            ></textarea>
+            <OnlineUsers />
+        </div>
     );
 }

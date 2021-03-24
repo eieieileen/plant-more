@@ -1,4 +1,3 @@
-
 /* Welcome/registration/login */
 .logo {
     position: absolute;
@@ -42,7 +41,6 @@
     font-size: 20px;
 }
 
-
 .footer p {
     position: fixed;
     bottom: 0;
@@ -79,7 +77,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin: 5px;    
+    margin: 5px;
     /* position: fixed; */
 }
 
@@ -103,7 +101,7 @@
 .profile-pic {
     width: 125px;
     height: 125px;
-    border: 3px solid #E0C1FD;
+    border: 3px solid #e0c1fd;
     border-radius: 50%;
     object-fit: cover;
     position: fixed;
@@ -114,20 +112,16 @@
 .bioPicClass {
     display: flex;
     justify-content: center;
-    /* border: 3px dotted black; */
     flex-direction: column;
-    /* align-items: center; */
     width: 500px;
-    /* align-self: center; */
     align-items: flex-start;
-   
 }
 
 .bioPicClass h2 {
     text-align: center;
     width: 100%;
-     z-index: 100;
-    color: #FD7B95;
+    z-index: 100;
+    color: #fd7b95;
 }
 
 .profilePage {
@@ -139,9 +133,12 @@
 } */
 
 .bioPic {
-   
     width: 500px;
-    border: 3px solid #E0C1FD;
+    border: 3px solid #e0c1fd;
+    height: 400px;
+    object-fit: cover;
+    /* justify-content: center;
+    display:flex; */
 }
 
 #bio {
@@ -153,7 +150,7 @@
     padding: 10px;
     /* margin: 10px; */
     text-decoration: underline;
-    
+    color: #fd7b95;
 }
 
 #bio button {
@@ -165,7 +162,6 @@
 #bio textarea {
     width: 400px;
     height: 100px;
-    
 }
 
 .uploader {
@@ -174,15 +170,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #FDE966;
-       margin: 10px;
+    background-color: #fde966;
+    margin: 10px;
     font-family: "Roboto Slab", serif;
     padding: 15px;
     padding-bottom: 63px;
--webkit-box-shadow: 18px 18px 0px 0px rgba(0, 0, 0, 1);
--moz-box-shadow:    18px 18px 0px 0px rgba(0, 0, 0, 1);
-box-shadow:         18px 18px 0px 0px rgba(0, 0, 0, 1);
-
+    -webkit-box-shadow: 18px 18px 0px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 18px 18px 0px 0px rgba(0, 0, 0, 1);
+    box-shadow: 18px 18px 0px 0px rgba(0, 0, 0, 1);
 }
 
 /* end uploader/profilePic/bioEditor */
@@ -237,42 +232,59 @@ box-shadow:         18px 18px 0px 0px rgba(0, 0, 0, 1);
     flex-direction: column;
     width: 250px;
     height: 25px;
-    border: #FD7B95 1px solid;
+    border: #fd7b95 1px solid;
 }
 
 #findPeopleDiv {
     justify-content: center;
     align-self: center;
     align-items: center;
-     width: 100%;
-     display: flex;
-    flex-direction: row; 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     margin-top: 12%;
+    font-family: "Roboto Slab", serif;
+    padding: 10px;
+    text-align: center;
 }
 
 .findPeoplePic {
     width: 200px;
     height: 200px;
-    border: 3px solid #FD7B95;
+    border: 3px solid #fd7b95;
     object-fit: contain;
-    flex-direction: row; 
+    flex-direction: row;
     margin: 10px;
 }
 
 /* end findPeople */
 
 /* Chat  */
+
+.chatFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+.classChat {
+    display: flex;
+    font-family: "Roboto Slab", serif;
+    padding: 10px;
+    align-items: center;
+    margin-top: 40px;
+    justify-content: center;
+}
+
 .chat-container {
-    height: 300px;
-    background-color: greenyellow;
+    height: 400px;
+    background-color: #fbedc0;
     overflow-y: auto;
+    width: 500px;
+    border: 3px solid #bafdb9;
+    text-align: center;
 }
 
-.chat-container textarea {
-    width: 300px;
-}
-
-.chatImg{
+.chatImg {
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -281,10 +293,49 @@ box-shadow:         18px 18px 0px 0px rgba(0, 0, 0, 1);
 
 #chatArea {
     width: 500px;
-    height: 100px;
+    height: 75px;
+    align-self: center;
 }
+
+.infoMessage {
+    display: flex;
+}
+
 /* end chat */
 
+/* onlineUsers */
+/* end onlineUsers */
 /* otherProfile */
+.OUdiv {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    /* border: 3px solid cornflowerblue; */
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 25%;
+    left: 5px;
+    text-align: center;
+    font-family: "Roboto Slab", serif;
+    padding: 10px;
+}
 
+.chatImgOU {
+    margin-bottom: -18px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 /* end otherProfile */
+/* friendship */
+.friendship {
+    position: absolute;
+    bottom: 150px;
+    left: 45%;
+      font-family: "Roboto Slab", serif;
+    padding: 10px;
+}
+/* endFriendship */

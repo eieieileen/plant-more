@@ -58,8 +58,7 @@ export default function FriendshipButton({ id }) {
 
     return (
         <div>
-            <h1>HI EILEEN THIS IS FRIENDSHIPBUTTON</h1>
-            <button onClick={() => handleClick()}>{buttonText}</button>
+            <button className="friendship" onClick={() => handleClick()}>{buttonText}</button>
         </div>
     );
 }

@@ -29,15 +29,16 @@ export default class OtherProfile extends Component {
 
     render() {
         return (
-            <div>
-                <h2>
-                    <img src={this.state.imageurl}></img>
-                    {this.state.first_name} {this.state.last_name}
-                    {this.state.bio}
-                </h2>
-                <FriendshipButton 
-                    id={this.props.match.params.id}
-                />
+            <div className="profilePage">
+                <div className="bioPicClass">
+                    <h2>
+                        {this.state.first_name} {this.state.last_name}
+                        <img className="bioPic" src={this.state.imageurl}></img>
+                        <br></br>
+                        {this.state.bio}
+                    </h2>
+                    <FriendshipButton id={this.props.match.params.id} />
+                </div>
             </div>
         );
     }
