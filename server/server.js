@@ -448,7 +448,7 @@ io.on("connection", (socket) => {
     socket.on("disconnect", function () {
         console.log(`socket with id: ${socket.id} just disconnected!`);
         delete onlineUsers[socket.id];
-        if (Object.values(onlineUsers).indexOf(userId) < 1) {
+        if (Object.values(onlineUsers).indexOf(userId) < 0) {
             socket.broadcast.emit("user left", { user: userId });
         }
     });

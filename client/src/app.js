@@ -68,14 +68,14 @@ export default class App extends Component {
             <BrowserRouter>
                 <div>
                     <div id="linksTo">
-                        <button onClick={() => logout()}>LOGOUT</button>
+                        <button id="profileButton" onClick={() => logout()}>LOGOUT</button>
                         <Route
                             path="/users/search"
                             render={() => <FindPeople />}
                         />
                         <Route path="/Friends/" render={() => <Friends />} />{" "}
                         <br></br>
-                        <Link to={"/"}>PROFILE </Link>
+                        <Link id="profileLink" to={"/"}>PROFILE </Link>
                         <Link to={"/users/search"}>FIND PEOPLE</Link>
                     </div>
                     <div id="profilePicca">

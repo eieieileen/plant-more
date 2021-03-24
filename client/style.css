@@ -78,6 +78,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    margin: 5px;    
+}
+
+#profileLink {
+    margin-right: 10px;
+}
+
+#profileButton {
+    margin-right: 10px;
 }
 
 /* end welcome/registration */

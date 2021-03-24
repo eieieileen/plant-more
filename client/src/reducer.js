@@ -62,7 +62,7 @@ export function reducer(state = {}, action) {
             //met filter
             ...state,
             online: state.online.filter((left) => {
-                left.userId != action.data.user;
+                return left.id != action.data.user;
             }),
         };
     }
