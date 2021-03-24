@@ -68,15 +68,20 @@ export default class App extends Component {
             <BrowserRouter>
                 <div>
                     <div id="linksTo">
-                        <button id="profileButton" onClick={() => logout()}>LOGOUT</button>
-                        <Route
-                            path="/users/search"
-                            render={() => <FindPeople />}
-                        />
+                        <Link id="profileLink" to={"/chat"}>
+                            CHATROOM
+                        </Link>
                         <Route path="/Friends/" render={() => <Friends />} />{" "}
                         <br></br>
-                        <Link id="profileLink" to={"/"}>PROFILE </Link>
-                        <Link to={"/users/search"}>FIND PEOPLE</Link>
+                        <Link id="profileLink" to={"/"}>
+                            PROFILE{" "}
+                        </Link>
+                        <Link id="profileLink" to={"/users/search"}>
+                            FIND PEOPLE OR TACO&apos;S
+                        </Link>
+                        <button id="profileButton" onClick={() => logout()}>
+                            LOGOUT
+                        </button>
                     </div>
                     <div id="profilePicca">
                         <ProfilePic
@@ -120,10 +125,10 @@ export default class App extends Component {
                             />
                         )}
                     />
+                    <Route path="/users/search" render={() => <FindPeople />} />
 
                     <Route path="/chat" component={Chat} />
                     <Footer />
-
                 </div>
             </BrowserRouter>
         );

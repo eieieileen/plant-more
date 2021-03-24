@@ -1,6 +1,6 @@
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
-import Footer from "./footer";
+//import Footer from "./footer";
 
 export default function Profile({
     first_name,
@@ -14,9 +14,9 @@ export default function Profile({
     return (
         <div className="profilePage">
             <div className="bioPicClass">
-                <h5>
+                <h2>
                     {first_name} {last_name}
-                </h5>
+                </h2>
                 <ProfilePic
                     imageUrl={imageUrl}
                     toggleUploader={toggleUploader}

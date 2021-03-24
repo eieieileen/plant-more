@@ -1,3 +1,4 @@
+
 /* Welcome/registration/login */
 .logo {
     position: absolute;
@@ -79,6 +80,7 @@
     align-items: flex-start;
     justify-content: center;
     margin: 5px;    
+    /* position: fixed; */
 }
 
 #profileLink {
@@ -92,15 +94,10 @@
 /* end welcome/registration */
 
 /* uploader/profilepic */
-/* 
-#profilePic.js {
-    width: 100px;
-    height: 100px;
-} */
 
 #profilePicca {
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
 .profile-pic {
@@ -109,6 +106,9 @@
     border: 3px solid #E0C1FD;
     border-radius: 50%;
     object-fit: cover;
+    position: fixed;
+    top: 10px;
+    right: 10px;
 }
 
 .bioPicClass {
@@ -120,11 +120,14 @@
     width: 500px;
     /* align-self: center; */
     align-items: flex-start;
+   
 }
 
-.bioPicClass h5 {
+.bioPicClass h2 {
     text-align: center;
     width: 100%;
+     z-index: 100;
+    color: #FD7B95;
 }
 
 .profilePage {
@@ -136,9 +139,9 @@
 } */
 
 .bioPic {
-    
+   
     width: 500px;
-    border: 3px dotted #E0C1FD;
+    border: 3px solid #E0C1FD;
 }
 
 #bio {
@@ -150,6 +153,7 @@
     padding: 10px;
     /* margin: 10px; */
     text-decoration: underline;
+    
 }
 
 #bio button {
@@ -174,6 +178,11 @@
        margin: 10px;
     font-family: "Roboto Slab", serif;
     padding: 15px;
+    padding-bottom: 63px;
+-webkit-box-shadow: 18px 18px 0px 0px rgba(0, 0, 0, 1);
+-moz-box-shadow:    18px 18px 0px 0px rgba(0, 0, 0, 1);
+box-shadow:         18px 18px 0px 0px rgba(0, 0, 0, 1);
+
 }
 
 /* end uploader/profilePic/bioEditor */
@@ -218,14 +227,36 @@
 /* findpeople  */
 .findPeopleFlex {
     display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.findPeopleFlex input {
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    width: 250px;
+    height: 25px;
+    border: #FD7B95 1px solid;
+}
+
+#findPeopleDiv {
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+     width: 100%;
+     display: flex;
+    flex-direction: row; 
+    margin-top: 12%;
 }
 
 .findPeoplePic {
-    width: 100px;
-    height: 100px;
-    border: 3px solid green;
+    width: 200px;
+    height: 200px;
+    border: 3px solid #FD7B95;
     object-fit: contain;
     flex-direction: row; 
+    margin: 10px;
 }
 
 /* end findPeople */
@@ -253,3 +284,7 @@
     height: 100px;
 }
 /* end chat */
+
+/* otherProfile */
+
+/* end otherProfile */

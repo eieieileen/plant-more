@@ -22,13 +22,8 @@ export default function findPeople() {
     }, [searchTerm]);
 
     return (
-        <div>
-            <input
-                onChange={({ target }) => {
-                    setSearchTerm(target.value);
-                }}
-            ></input>
-            <div className="findPeopleFlex">
+        <div className="findPeopleFlex">
+            <div id="findPeopleDiv">
                 {resultUsers &&
                     resultUsers.map((user) => {
                         return (
@@ -41,13 +36,17 @@ export default function findPeople() {
                                     <Link to={`/user/${user.id}`}>
                                         {" "}
                                         {user.first_name} {user.last_name}{" "}
-                                        {user.id}{" "}
                                     </Link>
                                 </p>
                             </div>
                         );
                     })}
             </div>
+            <input
+                onChange={({ target }) => {
+                    setSearchTerm(target.value);
+                }}
+            ></input>
         </div>
     );
 }

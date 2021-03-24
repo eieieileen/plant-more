@@ -30,7 +30,6 @@ export default class OtherProfile extends Component {
     render() {
         return (
             <div>
-                <h1>I am the other profile!</h1>
                 <h2>
                     <img src={this.state.imageurl}></img>
                     {this.state.first_name} {this.state.last_name}
