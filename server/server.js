@@ -398,7 +398,7 @@ io.on("connection", (socket) => {
         db.infoNewMessage(userId)
             .then(({ rows }) => {
                 console.log("response van db.infoNewMessage", rows);
-                socket.broadcast.emit("new user just joined", rows);
+                socket.broadcast.emit("new user just joined", rows[0]);
             })
             .catch((err) =>
                 console.log("error in db.infoNewMessage in socket", err)

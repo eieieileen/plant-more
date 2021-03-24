@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { socket } from "./sockets";
 import { useSelector } from "react-redux";
-import OnlineUsers, { onlineUsers } from "./onlineUsers";
+import OnlineUsers from "./onlineUsers";
 
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
@@ -49,8 +49,8 @@ export default function Chat() {
                         <div key={index}>
                             <p>
                                 {chatMessages.first_name}{" "}
-                                {chatMessages.last_name}: {chatMessages.message}{" "}
-                                - {chatMessages.created_at}{" "}
+                                {chatMessages.last_name} - {chatMessages.message}{" "}
+                                
                             </p>
                             <img
                                 className="chatImg"

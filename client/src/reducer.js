@@ -47,5 +47,24 @@ export function reducer(state = {}, action) {
             ...state,
             messages: [...state.messages, action.data],
         };
-    } else if (action.type === "ONLINE_USERS") return state;
+    } else if (action.type === "ONLINE_USERS") {
+        state = {
+            ...state,
+            online: action.data,
+        };
+    } else if (action.type === "NEW_USER") {
+        state = {
+            ...state,
+            online: [...state.online, action.data],
+        };
+    } else if (action.type === "USER_LEFT") {
+        state = {
+            //met filter
+            ...state,
+            online: state.online.filter((left) => {
+                left.userId != action.data.user;
+            }),
+        };
+    }
+    return state;
 }

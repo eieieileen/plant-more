@@ -10,15 +10,15 @@ export async function receiveUsers() {
 
 // await axios.post(`/accept-friend/`, {otherUser: id}); = sending a body mee op deze manier
 export async function acceptFriend(id) {
-    await axios.post(`/accept-friend`, {otherUser: id});
+    await axios.post(`/accept-friend`, { otherUser: id });
     return {
         type: "ACCEPT_FRIEND",
-        id: id
+        id: id,
     };
 }
 
 export async function unfriend(id) {
-    await axios.post(`/unfriend-friend`, {otherUser:id});
+    await axios.post(`/unfriend-friend`, { otherUser: id });
     return {
         type: "UNFRIEND_FRIEND",
         id: id,
@@ -32,28 +32,28 @@ export async function chatMessages(msgs) {
     };
 }
 
-export async function chatBericht (msg) {
+export async function chatBericht(msg) {
     return {
         type: "CHAT_MESSAGE",
         data: msg,
-    }   ;
+    };
 }
 
-export async function onlineUser (onlineUsers) {
+export async function onlineUser(onlineUsers) {
     return {
         type: "ONLINE_USERS",
         data: onlineUsers,
     };
 }
 
-export async function userJoined (newUser) {
+export async function userJoined(newUser) {
     return {
         type: "NEW_USER",
         data: newUser,
     };
 }
 
-export async function userLeft (userLeft) {
+export async function userLeft(userLeft) {
     return {
         type: "USER_LEFT",
         data: userLeft,
