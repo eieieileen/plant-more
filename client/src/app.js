@@ -57,7 +57,7 @@ export default class App extends Component {
     render() {
         function logout() {
             axios
-                .get("logout")
+                .get("/logout")
                 .then((response) => {
                     console.log("response van /logout", response);
                     location.replace("/welcome");
