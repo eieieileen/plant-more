@@ -11,6 +11,8 @@ const { sendEmail } = require("./ses");
 const s3 = require("./s3");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
+const fetch = require("node-fetch");
+const secrets = require("./secrets.json");
 //socket.io boiletplate
 const server = require("http").Server(app); //app because of first handshake handshake
 const io = require("socket.io")(server, {
@@ -69,6 +71,19 @@ app.use(function (req, res, next) {
 ////// middleware //////
 
 ////// routes //////
+
+////// API //////
+app.get("/trefleApi", (req, res) => {
+    (async () => {
+        const response = await fetch(
+            `https://trefle.io/api/v1/plants?token=${secrets.TREFLE_TOKEN}`
+        );
+        const json = await response.json();
+        // console.log(json);
+        res.json(json);
+    })();
+});
+////// API //////
 
 app.get("/welcome", (req, res) => {
     //is going to run if the user puts /welcome in the url bar

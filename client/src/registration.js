@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios";
 import { Link }  from "react-router-dom";
+import "./registration.css";
 
 export default class Registration extends React.Component {
     //React.Component should always be written like this with capital R and C

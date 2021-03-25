@@ -59,3 +59,11 @@ export async function userLeft(userLeft) {
         data: userLeft,
     };
 }
+
+export async function getApi() {
+    const { data } = await axios.get("/trefleApi");
+    return {
+        type: "GET_PLANTS",
+        data: data,
+    };
+}

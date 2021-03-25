@@ -65,6 +65,11 @@ export function reducer(state = {}, action) {
                 return left.id != action.data.user;
             }),
         };
+    } else if (action.type === "GET_PLANTS") {
+        state = {
+            ...state,
+            plants: action.data,
+        };
     }
     return state;
 }
