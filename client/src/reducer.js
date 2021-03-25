@@ -68,7 +68,7 @@ export function reducer(state = {}, action) {
     } else if (action.type === "GET_PLANTS") {
         state = {
             ...state,
-            plants: action.data,
+            plants: action.dataFromPlants,
         };
     }
     return state;

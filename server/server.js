@@ -70,21 +70,22 @@ app.use(function (req, res, next) {
 });
 ////// middleware //////
 
-////// routes //////
-
 ////// API //////
-app.get("/trefleApi", (req, res) => {
+app.get("/trefleApi/:search", (req, res) => {
+    const searching = req.params.search;
+
     (async () => {
         const response = await fetch(
-            `https://trefle.io/api/v1/plants?token=${secrets.TREFLE_TOKEN}`
+            `https://trefle.io/api/v1/plants/search?token=${secrets.TREFLE_TOKEN}&q=${searching}`
         );
         const json = await response.json();
-        // console.log(json);
+        //console.log(json);
         res.json(json);
     })();
 });
 ////// API //////
 
+////// routes //////
 app.get("/welcome", (req, res) => {
     //is going to run if the user puts /welcome in the url bar
     if (req.session.loggedIn) {
@@ -412,7 +413,7 @@ io.on("connection", (socket) => {
     if (onlineUserIds.filter((id) => id == userId).length == 1) {
         db.infoNewMessage(userId)
             .then(({ rows }) => {
-                console.log("response van db.infoNewMessage", rows);
+                //console.log("response van db.infoNewMessage", rows);
                 socket.broadcast.emit("new user just joined", rows[0]);
             })
             .catch((err) =>

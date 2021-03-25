@@ -60,10 +60,11 @@ export async function userLeft(userLeft) {
     };
 }
 
-export async function getApi() {
-    const { data } = await axios.get("/trefleApi");
+export async function getApi(search) {
+    const { data } = await axios.get(`/trefleApi/${search}`);
+    console.log("data van getApi", data.data);
     return {
         type: "GET_PLANTS",
-        data: data,
+        dataFromPlants: data.data,
     };
 }
