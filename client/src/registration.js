@@ -54,7 +54,7 @@ export default class Registration extends React.Component {
                     src="./plant-registration.jpeg"
                 ></img>
                 <div id="registerDiv">
-                    <h1 className="registerHere">plantmore</h1>
+                    <h1 className="plantmore">plantmore</h1>
                     {this.state.error && <p>something went wrong </p>}
                     <input
                         name="first"
