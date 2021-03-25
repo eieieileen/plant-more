@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+}
+
+.registerContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.registrationImg {
+    width: 50vw;
+   grid-area: 1 / 1 / 2 / 2; 
+    object-fit: cover;
+    height: 100vh;
+}
+
+#welcomePage input {
+    display: block;
+    margin: 10px;
+    width: 200px;
+}
+
+.registerHere {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+#registerDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    grid-area: 1 / 2 / 2 / 3;
+    font-family: 'Lora', serif;
+    font-style: italic;
+   text-align: center;
+   align-items: center;
+}
+
+.submitButton {
+    margin: 10px;
+    margin-top: 30px;
+    font-size: 20px;
+}

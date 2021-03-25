@@ -96,7 +96,7 @@ export default class App extends Component {
                         />
                     </div>
 
-                    <Logo />
+                    {/* <Logo /> */}
                     <Route
                         exact
                         path="/"

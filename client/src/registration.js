@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-import { Link }  from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./registration.css";
 
 export default class Registration extends React.Component {
@@ -37,13 +37,6 @@ export default class Registration extends React.Component {
     }
 
     handleChange(e) {
-        // console.log("change is running!");
-        //get acces/ see what the user is typing
-        // console.log("e.target.value: ", e.target.value);
-        //this tells the user the name of the input field the user is typing in.
-        // console.log("e.target.name", e.target.name);
-        //store that input in state
-
         this.setState(
             {
                 [e.target.name]: e.target.value,
@@ -54,10 +47,15 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1 id="registerHere"> REGISTER HERE </h1>
-                {this.state.error && <p>something went wront </p>}
+            <div className="registerContainer">
+                <img
+                    className="registrationImg"
+                    alt="Beautiful Calathea plant"
+                    src="./plant-registration.jpeg"
+                ></img>
                 <div id="registerDiv">
+                    <h1 className="registerHere">plantmore</h1>
+                    {this.state.error && <p>something went wrong </p>}
                     <input
                         name="first"
                         placeholder="first name"
@@ -85,15 +83,12 @@ export default class Registration extends React.Component {
                     >
                         SUBMIT
                     </button>
+                    <div id="registerA">
+                        <Link id="logIn" to={"/login"}>
+                            CLICK HERE TO LOG IN
+                        </Link>
+                    </div>
                 </div>
-                <div id="registerA">
-                    <Link id="logIn" to={"/login"}>
-                        CLICK HERE TO LOG IN
-                    </Link>
-                </div>
-                {/* <button id="logButton" to={"/login"}>
-                    LOG IN
-                </button> */}
             </div>
         );
     }
