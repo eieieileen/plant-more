@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS reset_codes;
 DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS chatroom;
+DROP TABLE IF EXISTS plants;
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -12,7 +13,6 @@ CREATE TABLE users (
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     imageUrl      VARCHAR,
     bio VARCHAR(500)
-
 );
 
 CREATE TABLE reset_codes(
@@ -21,9 +21,6 @@ CREATE TABLE reset_codes(
     code VARCHAR NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-
 
 CREATE TABLE friendships( 
     id SERIAL PRIMARY KEY, 
@@ -39,8 +36,10 @@ CREATE TABLE chatroom(
     message VARCHAR(500)
 );
 
--- MUST BE WITH SINGLE FUCKING QUOTESSSS
-INSERT INTO chatroom (sender_id, message) VALUES (2, 'Hi how are yaaaaaa');
-INSERT INTO chatroom (sender_id, message) VALUES (4, 'Fine and you??');
-INSERT INTO chatroom (sender_id, message) VALUES (7, 'Good! I havent had corona yet');
-INSERT INTO chatroom (sender_id, message) VALUES (27, 'Yea me neither');
+CREATE TABLE plants(
+    id SERIAL PRIMARY KEY,
+    apiId VARCHAR NOT NULL,
+    userId INT REFERENCES users(id) NOT NULL,
+    imageUrl VARCHAR,
+    common_name VARCHAR
+);

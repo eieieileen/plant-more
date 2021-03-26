@@ -10,7 +10,7 @@ import Friends from "./friends";
 import Footer from "./footer";
 import Chat from "./chat";
 import PlantSearch from "./plantSearch";
-import plantInfo from "./plantInfo";
+import PlantInfo from "./plantInfo";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -135,8 +135,8 @@ export default class App extends Component {
                     <Route path="/Friends" render={() => <Friends />} />
 
                     <Route path="/chat" component={Chat} />
-                    <Route path="/plantSearch" component={PlantSearch} />
-                    <Route path="/plantInfo" component={plantInfo} />
+                    <Route path="/plantSearch" render={() => <PlantSearch />} />
+                    <Route path="/plantInfo" render={() => <PlantInfo />} />
                     <Footer />
                 </div>
             </BrowserRouter>

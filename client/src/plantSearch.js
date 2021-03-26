@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 export default function plantSearch() {
     const dispatch = useDispatch();
     const plants = useSelector((state) => state.plants && state.plants);
+    
 
     const keyCheck = (e) => {
-        //only really care about the value, when i press enter
         if (e.key === "Enter") {
-            e.preventDefault(); //this will stop the new line :D
-            //console.log("e.target.value: ", e.target.value);
+            e.preventDefault();
             dispatch(getApi(e.target.value));
         }
     };

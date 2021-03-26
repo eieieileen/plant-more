@@ -77,3 +77,12 @@ export async function getPlantInfo(plantid) {
         dataFromPlantsInfo: data.data,
     };
 }
+
+export async function getFavoritePlants() {
+    const { data } = await axios.get(`/getFavoritePlants`);
+    console.log("data", data);
+    return {
+        type: "FAVORITE_PLANTS",
+        dataFromFavoritePlants: data
+    };
+}

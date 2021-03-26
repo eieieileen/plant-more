@@ -75,6 +75,11 @@ export function reducer(state = {}, action) {
             ...state,
             plantInfo: action.dataFromPlantsInfo
         };
+    } else if (action.type === "FAVORITE_PLANTS") {
+        state = {
+            ...state,
+            favPlants: action.dataFromFavoritePlants
+        };
     }
 
 

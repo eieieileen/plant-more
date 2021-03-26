@@ -2,7 +2,7 @@ const spicedPg = require("spiced-pg");
 
 const db = spicedPg(
     process.env.DATABASE_URL ||
-        "postgres:postgres:postgres@localhost:5432/socialnetwork"
+        "postgres:postgres:postgres@localhost:5432/plantmore"
 );
 
 module.exports.addUser = (first_name, last_name, email, password_hash) => {
@@ -139,7 +139,6 @@ module.exports.tenMostRecentMessages = () => {
     return db.query(q);
 };
 
-
 module.exports.newMessage = (sender_id, message) => {
     const q = `INSERT INTO chatroom (sender_id, message)
     VALUES ($1, $2)
@@ -154,15 +153,22 @@ module.exports.infoNewMessage = (id) => {
     return db.query(q, params);
 };
 
-// function getUsersByIds(arrayOfIds) {
-//     const query = "SELECT id, first, last, pic FROM users WHERE id = ANY($1)";
-//     const params = [arrayOfIds];
-//     return db.query(query, params);
-// }
-
 module.exports.getUsersByIds = (arrayOfIds) => {
     const q = `SELECT id, first_name, last_name, imageUrl FROM users WHERE id = ANY($1)`;
     const params = [arrayOfIds];
     return db.query(q, params);
 };
 
+module.exports.favoritePlant = (userId, apiId, imageUrl, common_name) => {
+    const q = `INSERT INTO plants (userId, apiId, imageUrl, common_name)
+    VALUES ($1, $2, $3, $4)
+    RETURNING id`;
+    const params = [userId, apiId, imageUrl, common_name];
+    return db.query(q, params);
+};
+
+module.exports.checkFavoritePlants = (userId) => {
+    const q = `SELECT * FROM plants WHERE userId = ($1)`;
+    const params = [userId];
+    return db.query(q, params);
+};

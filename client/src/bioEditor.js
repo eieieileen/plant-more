@@ -11,9 +11,6 @@ export default class BioEditor extends React.Component {
         };
     }
     componentDidMount() {
-        console.log("this . skeflb", this.props);
-        //console.log("grandchild just mounted");
-        //console.log("props in grandchild", this.props);
         if (this.props.bio) {
             this.setState({
                 btnTxt: "EDIT",

@@ -94,7 +94,7 @@ app.get("/api/plantInfo/:plantInfo", (req, res) => {
             `https://trefle.io/api/v1/plants/${plantInfo}?token=${secrets.TREFLE_TOKEN}`
         );
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         // console.log("response", response);
         res.json(json);
     })();
@@ -114,8 +114,6 @@ app.get("/welcome", (req, res) => {
 });
 
 app.post("/registration", (req, res) => {
-    // console.log("req.params van /registration", req.body);
-    //first, last, email, password uit registration.js input name
     const { first, last, email, password } = req.body;
 
     hash(password)
@@ -381,6 +379,23 @@ app.post("/unfriend-friend", (req, res) => {
             res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
         })
         .catch((err) => console.log("error in /unfriend-friend", err));
+});
+
+app.post("/plantInfo", (req, res) => {
+    const { apiId, imageUrl, common_name } = req.body;
+    db.favoritePlant(req.session.loggedIn, apiId, imageUrl, common_name)
+        .then((response) => {
+            //console.log("response van db.favoritePlant", response);
+            res.json({ success: true });
+        })
+        .catch((err) => console.log("error in db.favoritePlant", err));
+});
+
+app.get(`/getFavoritePlants`, (req, res) => {
+    db.checkFavoritePlants(req.session.loggedIn).then(({rows}) => {
+        console.log("response van db.checkFavoritePlants", rows);
+        res.json(rows);
+    }).catch((err) => console.log("error in db.checkFavoritePlants", err));
 });
 
 //moet altijd onderaan staan

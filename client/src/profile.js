@@ -1,5 +1,6 @@
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
+import FavoritePlants from "./favoritePlants";
 
 
 export default function Profile({
@@ -8,7 +9,6 @@ export default function Profile({
     imageUrl,
     bio,
     toggleUploader,
-    // classN,
     editBio,
 }) {
     return (
@@ -23,8 +23,9 @@ export default function Profile({
                     classN="bioPic"
                 />
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
+                <FavoritePlants />
             </div>
-            {/* <Friends /> */}
+            
             
         </div>
     );
