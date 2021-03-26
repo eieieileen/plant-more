@@ -68,3 +68,12 @@ export async function getApi(search) {
         dataFromPlants: data.data,
     };
 }
+
+export async function getPlantInfo(plantid) {
+    const { data } = await axios.get(`/api/plantInfo/${plantid}`);
+    console.log("data van getPlantInfo", data.data);
+    return {
+        type: "GET_PLANT_INFO",
+        dataFromPlantsInfo: data.data,
+    };
+}

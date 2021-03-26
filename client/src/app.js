@@ -1,7 +1,6 @@
 import { Component } from "react";
 import ProfilePic from "./profilePic";
 import Uploader from "./uploader";
-import Logo from "./logo";
 import axios from "./axios";
 import Profile from "./profile";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -11,6 +10,7 @@ import Friends from "./friends";
 import Footer from "./footer";
 import Chat from "./chat";
 import PlantSearch from "./plantSearch";
+import plantInfo from "./plantInfo";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -82,6 +82,9 @@ export default class App extends Component {
                         <Link id="profileLink" to={"/users/search"}>
                             FIND PEOPLE OR TACO&apos;S
                         </Link>
+                        <Link id="profileLink" to={"/plantsearch"}>
+                            PLANTSEARCH
+                        </Link>
                         <button id="profileButton" onClick={() => logout()}>
                             LOGOUT
                         </button>
@@ -133,6 +136,7 @@ export default class App extends Component {
 
                     <Route path="/chat" component={Chat} />
                     <Route path="/plantSearch" component={PlantSearch} />
+                    <Route path="/plantInfo" component={plantInfo} />
                     <Footer />
                 </div>
             </BrowserRouter>

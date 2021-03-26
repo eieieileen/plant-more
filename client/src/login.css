@@ -15,8 +15,17 @@
 .loginImg {
     width: 50vw;
    grid-area: 1 / 1 / 2 / 2; 
-    object-fit: cover;
-    height: 100vh;
+   object-fit: cover;
+   height: 100vh;
+}
+.loginDiv input {
+    display: block;
+    margin: 10px;
+    width: 200px;
+}
+.plantmore {
+    font-size: 50px;
+    margin-bottom: 50px;
 }
 
 #loginDiv {
@@ -27,9 +36,9 @@
     grid-area: 1 / 2 / 2 / 3;
     font-family: 'Lora', serif;
     font-style: italic;
-   text-align: center;
-   align-items: center;
-   
+    text-align: center;
+    align-items: center;
+    
 }
 
 .submitButton {
@@ -38,13 +47,4 @@
     font-size: 20px;
 }
 
-.plantmore {
-    font-size: 50px;
-    margin-bottom: 50px;
-}
 
-.loginDiv input {
-    display: block;
-    margin: 10px;
-    width: 200px;
-}

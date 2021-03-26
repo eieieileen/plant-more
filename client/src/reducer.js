@@ -70,6 +70,13 @@ export function reducer(state = {}, action) {
             ...state,
             plants: action.dataFromPlants,
         };
+    } else if (action.type === "GET_PLANT_INFO") {
+        state = {
+            ...state,
+            plantInfo: action.dataFromPlantsInfo
+        };
     }
+
+
     return state;
 }

@@ -10,18 +10,6 @@ export default function Chat() {
     //console.log("chatMessages ivana: ", chatMessages);
 
     useEffect(() => {
-        // console.log("chat mounted..");
-        // console.log("elemRef.current: ", elemRef.current);
-        // console.log("elemRef.current scrollTop: ", elemRef.current.scrollTop);
-        // console.log(
-        //     "elemRef.current scrollHeight: ",
-        //     elemRef.current.scrollHeight
-        // );
-        // console.log(
-        //     "elemRef.current clientHeight ",
-        //     elemRef.current.clientHeight
-        // );
-
         const newScrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
         //elemRef.current.scrollTop = elemRef.current.scrollHeight - elemRef.current.clientHeight;

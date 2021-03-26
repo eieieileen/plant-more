@@ -43,7 +43,7 @@ export default class Login extends React.Component {
                 ></img>
                 <div id="loginDiv">
                     <h1 className="plantmore">plantmore</h1>
-                    {this.state.error && <p>something went wront </p>}
+                    {this.state.error && <p>something went wrong </p>}
                     <input
                         name="email"
                         placeholder="email"

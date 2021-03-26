@@ -123,31 +123,7 @@
 
 /* end uploader/profilePic/bioEditor */
 
-/* login */
-#loginDiv h1 {
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-    text-align: center;
-}
 
-#loginDiv Link {
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-}
-
-#loginA {
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-}
-
-#loginDiv {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-/* end login */
 
 /* resetPassword */
 #resetP1 {

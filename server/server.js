@@ -83,6 +83,22 @@ app.get("/trefleApi/:search", (req, res) => {
         res.json(json);
     })();
 });
+
+///api/plantInfo/
+
+app.get("/api/plantInfo/:plantInfo", (req, res) => {
+    const plantInfo = req.params.plantInfo;
+    //console.log('req', req);
+    (async () => {
+        const response = await fetch(
+            `https://trefle.io/api/v1/plants/${plantInfo}?token=${secrets.TREFLE_TOKEN}`
+        );
+        const json = await response.json();
+        console.log(json);
+        // console.log("response", response);
+        res.json(json);
+    })();
+});
 ////// API //////
 
 ////// routes //////
