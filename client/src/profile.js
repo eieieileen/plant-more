@@ -24,7 +24,9 @@ export default function Profile({
                 />
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
-            <FavoritePlants />
+            <div className="gridPlants">
+                <FavoritePlants />
+            </div>
         </div>
     );
 }

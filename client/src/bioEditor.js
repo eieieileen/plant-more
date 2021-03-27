@@ -59,7 +59,7 @@ export default class BioEditor extends React.Component {
                     <br></br>
                     {this.props.bio}
                     {this.state.txtArea && (
-                        <button className="save" onClick={() => this.handleClick()}>SAFE</button>
+                        <button className="save" onClick={() => this.handleClick()}>SAVE</button>
                     )}
                     {!this.state.txtArea && (
                         <button

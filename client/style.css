@@ -1,31 +1,9 @@
-/* Welcome/registration/login */
-
-
-/* #logButton {
-    top: 25px;
-    right: 25px;
-    position: absolute;
-}
-
-
-
-/* uploader/profilepic */
 
 #profilePicca {
     display: flex;
     /* justify-content: flex-end; */
 }
 
-.profile-pic {
-    width: 125px;
-    height: 125px;
-    border: 3px solid #e0c1fd;
-    border-radius: 50%;
-    object-fit: cover;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-}
 
 
 

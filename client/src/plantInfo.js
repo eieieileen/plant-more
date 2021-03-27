@@ -61,7 +61,7 @@ export default function PlantInfo() {
                         <button
                             onClick={() =>
                                 handleClick(
-                                    plantInfo.id,
+                                    plantInfo.main_species_id,
                                     plantInfo.image_url,
                                     plantInfo.common_name
                                 )
@@ -71,7 +71,7 @@ export default function PlantInfo() {
                         </button>
                     )}
                     <button onClick={() => availableClick()}>available</button>
-                    {availableButton && <PlantUploader setAvailableButton={setAvailableButton} common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.id} />}
+                    {availableButton && <PlantUploader setAvailableButton={setAvailableButton} common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.main_species_id} />}
                 </div>
             )}
         </div>

@@ -1,4 +1,6 @@
-//should look like profile pic.js
+import "./profilePic.css";
+
+
 export default function profilePic({
     first_name,
     last_name,

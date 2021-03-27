@@ -73,7 +73,6 @@ app.use(function (req, res, next) {
 ////// API //////
 app.get("/trefleApi/:search", (req, res) => {
     const searching = req.params.search;
-
     (async () => {
         const response = await fetch(
             `https://trefle.io/api/v1/plants/search?token=${secrets.TREFLE_TOKEN}&q=${searching}`
