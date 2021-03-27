@@ -405,6 +405,7 @@ app.post(
     uploader.single("file"),
     s3.upload,
     (req, res) => {
+        console.log(req);
         const {
             apiId,
             imageurl,
@@ -412,7 +413,6 @@ app.post(
             name,
             note,
             number,
-            ownImage,
             location,
         } = req.body;
         const { filename } = req.file;
@@ -420,6 +420,7 @@ app.post(
         const ownImageAws = {
             url: "https://s3.amazonaws.com/eileensimageboard/" + filename,
         };
+        console.log("api id", apiId);
 
         db.sendInfoPlant(
             req.session.loggedIn,

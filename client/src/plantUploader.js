@@ -11,11 +11,19 @@ export default function PlantUploader({ apiId, imageurl, common_name }) {
 
     function handleClick() {
         const formData = new FormData();
+        formData.append("apiId", inputFields.apiId);
+        formData.append("imageurl", inputFields.imageurl);
+        formData.append("common_name", inputFields.common_name);
+        formData.append("name", inputFields.name);
+        formData.append("note", inputFields.note);
+        formData.append("number", inputFields.number);
+        formData.append("location", inputFields.location);
         formData.append("file", inputFields.image);
-        console.log("formdata", formData);
-        console.log("i clicked the button");
+        //console.log("formdata", formData);
+        // console.log("inputfields", inputFields);
+        // console.log("i clicked the button");
         axios
-            .post(`/sendPlantUploader`, formData, inputFields)
+            .post(`/sendPlantUploader`, formData)
             .then((response) => {
                 console.log("response van axios.post", response);
             })
