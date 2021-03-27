@@ -172,3 +172,28 @@ module.exports.checkFavoritePlants = (userId) => {
     const params = [userId];
     return db.query(q, params);
 };
+
+module.exports.getInfoPlant = (apiId) => {
+    const q = `SELECT * FROM availablePlants where apiId = ($1)`;
+    const params = [apiId];
+    return db.query(q, params);
+};
+
+module.exports.sendInfoPlant = (
+    userId,
+    apiId,
+    imageUrl,
+    common_name,
+    nick_name,
+    note,
+    age,
+    ownImage, 
+    location
+) => {
+    const q = `INSERT INTO availablePlants (userId, apiId, imageurl, common_name, nick_name, note, age, ownimage, location)
+    VALUES ($1, $2, $3, $4, $5, $6, $7,$8, $9)
+    RETURNING id`;
+    const params = [userId, apiId, imageUrl, common_name, nick_name, note, age, ownImage, location];
+    return db.query(q, params);
+};
+

@@ -384,7 +384,7 @@ app.post("/unfriend-friend", (req, res) => {
 app.post("/plantInfo", (req, res) => {
     const { apiId, imageUrl, common_name } = req.body;
     db.favoritePlant(req.session.loggedIn, apiId, imageUrl, common_name)
-        .then((response) => {
+        .then(() => {
             //console.log("response van db.favoritePlant", response);
             res.json({ success: true });
         })
@@ -396,6 +396,14 @@ app.get(`/getFavoritePlants`, (req, res) => {
         console.log("response van db.checkFavoritePlants", rows);
         res.json(rows);
     }).catch((err) => console.log("error in db.checkFavoritePlants", err));
+});
+
+app.post(`/sendPlantUploader`, (req, res) => {
+    const { apiId, imageurl, common_name, name, note, number, ownImage,location } = req.body;
+    db.sendInfoPlant(req.session.loggedIn, apiId, imageurl, common_name, name, note, number, ownImage, location).then((response) => {
+        console.log("response van db.sendInfoPlant", response);
+        res.json({success: true});
+    }).catch((err) => console.log("error in db.sendInfoPlant 💅", err)); 
 });
 
 //moet altijd onderaan staan

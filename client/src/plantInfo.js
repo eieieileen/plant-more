@@ -1,19 +1,23 @@
 import axios from "./axios";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import PlantUploader from "./plantUploader";
 
 export default function PlantInfo() {
     const [favorite, setFavorite] = useState(true);
+    const [availableButton, setAvailableButton] = useState(false);
+    // usestate gebruiken om visible-setVisible true of false te zettenXX
+    // button set  visible - true
+
     const plantInfo = useSelector(
         (state) => state.plantInfo && state.plantInfo
     );
     const filteredPlants = useSelector(
         (state) => state.favPlants && state.favPlants
     );
-    //useeffect to chck if the id of the plant die ik hier laat zien overeen komt met een plant in mijn favorites
 
     useEffect(() => {
-        console.log("favorite plants", filteredPlants);
+        //console.log("favorite plants", filteredPlants);
         if (filteredPlants && plantInfo) {
             for (let i = 0; i < filteredPlants.length; i++) {
                 if (filteredPlants[i].apiid == plantInfo.id) {
@@ -39,6 +43,13 @@ export default function PlantInfo() {
             );
     }
 
+    function availableClick() {
+        console.log("i clicked the availebutton");
+        setAvailableButton(!availableButton);
+    }
+
+    //plantuploader
+
     return (
         <div>
             <h1>plant info</h1>
@@ -56,9 +67,11 @@ export default function PlantInfo() {
                                 )
                             }
                         >
-                            FAVORITE
+                            wishlist
                         </button>
                     )}
+                    <button onClick={() => availableClick()}>available</button>
+                    {availableButton && <PlantUploader common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.id} />}
                 </div>
             )}
         </div>

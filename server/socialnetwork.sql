@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS reset_codes;
 DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS chatroom;
 DROP TABLE IF EXISTS plants;
+DROP TABLE IF EXISTS availablePlants;
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -42,4 +43,17 @@ CREATE TABLE plants(
     userId INT REFERENCES users(id) NOT NULL,
     imageUrl VARCHAR,
     common_name VARCHAR
+);
+
+CREATE TABLE availablePlants(
+    id SERIAL PRIMARY KEY,
+    apiId VARCHAR NOT NULL,
+    userId INT REFERENCES users(id) NOT NULL,
+    imageUrl VARCHAR,
+    common_name VARCHAR, 
+    nick_name VARCHAR,
+    note VARCHAR,
+    age VARCHAR,
+    ownImage VARCHAR,
+    location VARCHAR
 );
