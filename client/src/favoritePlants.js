@@ -18,10 +18,10 @@ export default function favoritePlants() {
 
     return (
         <div> 
-            {offeredPlants && offeredPlants.map((off, index) => (
+            {/* {offeredPlants && offeredPlants.map((off, index) => (
                 <div key={index}>
                     <h1>is this work</h1>
-                    <img src={off.imageurl}></img>
+                    <img src={off.ownimage}></img>
                     <p>
                         {off.common_name}
                     </p>
@@ -35,7 +35,7 @@ export default function favoritePlants() {
                         {fav.common_name}
                     </p>
                 </div>
-            ))}
+            ))} */}
             <h1>HI EILEEN THIS IS FAVORITE PLANTS</h1>
         </div>
     );
