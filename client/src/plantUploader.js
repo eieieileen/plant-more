@@ -1,12 +1,13 @@
 import axios from "./axios";
 import { useState } from "react";
 
-export default function PlantUploader({ apiId, imageurl, common_name }) {
+export default function PlantUploader({ apiId, imageurl, common_name, setAvailableButton }) {
     //use state gebruiken om object
     const [inputFields, setInputFields] = useState({
         apiId: apiId,
         imageurl: imageurl,
         common_name: common_name,
+
     });
 
     function handleClick() {
@@ -26,6 +27,7 @@ export default function PlantUploader({ apiId, imageurl, common_name }) {
             .post(`/sendPlantUploader`, formData)
             .then((response) => {
                 console.log("response van axios.post", response);
+                setAvailableButton(false);
             })
             .catch((err) =>
                 console.log("error in axios.post sendPlantUploader", err)

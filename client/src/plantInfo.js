@@ -71,7 +71,7 @@ export default function PlantInfo() {
                         </button>
                     )}
                     <button onClick={() => availableClick()}>available</button>
-                    {availableButton && <PlantUploader common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.id} />}
+                    {availableButton && <PlantUploader setAvailableButton={setAvailableButton} common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.id} />}
                 </div>
             )}
         </div>

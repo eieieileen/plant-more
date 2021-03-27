@@ -435,7 +435,7 @@ app.post(
         )
             .then((response) => {
                 console.log("response van db.sendInfoPlant", response);
-                res.json({ success: true });
+                res.json({ success: true, uploadedImg: ownImageAws });
             })
             .catch((err) => console.log("error in db.sendInfoPlant 💅", err));
     }
