@@ -10,9 +10,12 @@ export default function PlantUploader({ apiId, imageurl, common_name }) {
     });
 
     function handleClick() {
+        const formData = new FormData();
+        formData.append("file", inputFields.image);
+        console.log("formdata", formData);
         console.log("i clicked the button");
         axios
-            .post(`/sendPlantUploader`, inputFields)
+            .post(`/sendPlantUploader`, formData, inputFields)
             .then((response) => {
                 console.log("response van axios.post", response);
             })
@@ -24,7 +27,7 @@ export default function PlantUploader({ apiId, imageurl, common_name }) {
     function handleChange(e) {
         setInputFields({ ...inputFields, [e.target.name]: e.target.value });
         //console.log("invoeren van inputfields", e.target.value);
-        console.log("inputfields", inputFields);
+        //console.log("inputfields", inputFields);
     }
 
     function fileChange(e) {

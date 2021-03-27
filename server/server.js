@@ -392,19 +392,53 @@ app.post("/plantInfo", (req, res) => {
 });
 
 app.get(`/getFavoritePlants`, (req, res) => {
-    db.checkFavoritePlants(req.session.loggedIn).then(({rows}) => {
-        console.log("response van db.checkFavoritePlants", rows);
-        res.json(rows);
-    }).catch((err) => console.log("error in db.checkFavoritePlants", err));
+    db.checkFavoritePlants(req.session.loggedIn)
+        .then(({ rows }) => {
+            console.log("response van db.checkFavoritePlants", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("error in db.checkFavoritePlants", err));
 });
 
-app.post(`/sendPlantUploader`, (req, res) => {
-    const { apiId, imageurl, common_name, name, note, number, ownImage,location } = req.body;
-    db.sendInfoPlant(req.session.loggedIn, apiId, imageurl, common_name, name, note, number, ownImage, location).then((response) => {
-        console.log("response van db.sendInfoPlant", response);
-        res.json({success: true});
-    }).catch((err) => console.log("error in db.sendInfoPlant 💅", err)); 
-});
+app.post(
+    `/sendPlantUploader`,
+    uploader.single("file"),
+    s3.upload,
+    (req, res) => {
+        const {
+            apiId,
+            imageurl,
+            common_name,
+            name,
+            note,
+            number,
+            ownImage,
+            location,
+        } = req.body;
+        const { filename } = req.file;
+        console.log("filename", filename);
+        const ownImageAws = {
+            url: "https://s3.amazonaws.com/eileensimageboard/" + filename,
+        };
+
+        db.sendInfoPlant(
+            req.session.loggedIn,
+            apiId,
+            imageurl,
+            common_name,
+            name,
+            note,
+            number,
+            ownImageAws.url,
+            location
+        )
+            .then((response) => {
+                console.log("response van db.sendInfoPlant", response);
+                res.json({ success: true });
+            })
+            .catch((err) => console.log("error in db.sendInfoPlant 💅", err));
+    }
+);
 
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
