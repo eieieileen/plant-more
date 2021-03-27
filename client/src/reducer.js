@@ -80,6 +80,11 @@ export function reducer(state = {}, action) {
             ...state,
             favPlants: action.dataFromFavoritePlants
         };
+    } else if (action.type === "OFFERED_PLANTS") {
+        state= {
+            ...state,
+            offPlants: action.dataFromOfferedPlants
+        };
     }
 
 

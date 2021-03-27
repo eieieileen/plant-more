@@ -62,7 +62,7 @@ export async function userLeft(userLeft) {
 
 export async function getApi(search) {
     const { data } = await axios.get(`/trefleApi/${search}`);
-    console.log("data van getApi", data.data);
+    //console.log("data van getApi", data.data);
     return {
         type: "GET_PLANTS",
         dataFromPlants: data.data,
@@ -71,7 +71,7 @@ export async function getApi(search) {
 
 export async function getPlantInfo(plantid) {
     const { data } = await axios.get(`/api/plantInfo/${plantid}`);
-    console.log("data van getPlantInfo", data.data);
+    //console.log("data van getPlantInfo", data.data);
     return {
         type: "GET_PLANT_INFO",
         dataFromPlantsInfo: data.data,
@@ -80,9 +80,18 @@ export async function getPlantInfo(plantid) {
 
 export async function getFavoritePlants() {
     const { data } = await axios.get(`/getFavoritePlants`);
-    console.log("data", data);
+    //console.log("data", data);
     return {
         type: "FAVORITE_PLANTS",
         dataFromFavoritePlants: data
+    };
+}
+
+export async function getOfferedPlants() {
+    const { data } = await axios.get(`/getOfferedPlants`);
+    console.log("data van getOfferedPlants", data);
+    return {
+        type: "OFFERED_PLANTS",
+        dataFromOfferedPlants: data
     };
 }

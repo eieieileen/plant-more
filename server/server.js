@@ -416,11 +416,11 @@ app.post(
             location,
         } = req.body;
         const { filename } = req.file;
-        console.log("filename", filename);
+        //console.log("filename", filename);
         const ownImageAws = {
             url: "https://s3.amazonaws.com/eileensimageboard/" + filename,
         };
-        console.log("api id", apiId);
+        //console.log("api id", apiId);
 
         db.sendInfoPlant(
             req.session.loggedIn,
@@ -433,13 +433,20 @@ app.post(
             ownImageAws.url,
             location
         )
-            .then((response) => {
-                console.log("response van db.sendInfoPlant", response);
+            .then(() => {
+                //console.log("response van db.sendInfoPlant", response);
                 res.json({ success: true, uploadedImg: ownImageAws });
             })
             .catch((err) => console.log("error in db.sendInfoPlant 💅", err));
     }
 );
+
+app.get(`/getOfferedPlants`, (req, res) => {
+    db.checkOfferedPlants(req.session.loggedIn).then(({rows}) => {
+        console.log("response van db.checkOfferedPlants 👻", rows);
+        res.json(rows);
+    }).catch((err) => console.log("error in db.checkOfferedPlants 🏊‍♀️", err));
+});
 
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
