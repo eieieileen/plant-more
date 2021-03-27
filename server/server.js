@@ -405,7 +405,7 @@ app.post(
     uploader.single("file"),
     s3.upload,
     (req, res) => {
-        console.log(req);
+        // console.log(req);
         const {
             apiId,
             imageurl,

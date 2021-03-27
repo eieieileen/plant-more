@@ -1,0 +1,50 @@
+.topnav {
+    background-color: #113023;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height:50px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+}
+
+.profileLink {
+    margin-right: 5px;
+    color: white;
+    background-color: #113023;
+    text-decoration: none;
+    font-size:20px;
+    margin-top: 11px;
+}
+
+.profileLink:hover {
+    font-size: 21px;
+    transition: all 0.3s ease;
+    color: #ACCAC0;
+}
+
+.profileButton {
+    height: 25px;
+    font-size: 15px;
+    margin-top: 12px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+     font-family: 'Lora', serif;
+    font-style: italic;
+}
+
+.backgroundImg {
+    /* object-fit: fill; */
+    width: 100vw;
+    z-index: -300;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+    opacity: 0.5;
+}
+
+

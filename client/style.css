@@ -1,7 +1,7 @@
 /* Welcome/registration/login */
 
 
-#logButton {
+/* #logButton {
     top: 25px;
     right: 25px;
     position: absolute;
@@ -10,27 +10,9 @@
 #registerA {
     font-family: "Roboto Slab", serif;
     padding: 10px;
-}
+} */
 
-#linksTo {
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin: 5px;
-    /* position: fixed; */
-}
 
-#profileLink {
-    margin-right: 10px;
-}
-
-#profileButton {
-    margin-right: 10px;
-}
-
-/* end welcome/registration */
 
 /* uploader/profilepic */
 
@@ -50,20 +32,7 @@
     right: 10px;
 }
 
-.bioPicClass {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 500px;
-    align-items: flex-start;
-}
 
-.bioPicClass h2 {
-    text-align: center;
-    width: 100%;
-    z-index: 100;
-    color: #fd7b95;
-}
 
 .profilePage {
     display: flex;
@@ -73,37 +42,6 @@
 /* .profilePage h5 {
 } */
 
-.bioPic {
-    width: 500px;
-    border: 3px solid #e0c1fd;
-    height: 400px;
-    object-fit: cover;
-    /* justify-content: center;
-    display:flex; */
-}
-
-#bio {
-    /* border: 2px red solid; */
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-    /* margin: 10px; */
-    text-decoration: underline;
-    color: #fd7b95;
-}
-
-#bio button {
-    margin: 10px;
-    font-family: "Roboto Slab", serif;
-    /* padding: 10px; */
-}
-
-#bio textarea {
-    width: 400px;
-    height: 100px;
-}
 
 .uploader {
     z-index: 4;

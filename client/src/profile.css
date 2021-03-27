@@ -1,0 +1,61 @@
+.profilePage {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+
+}
+
+.bioPic {
+    width: 350px;
+    border: 3px solid #ACCAC0;
+    height: 350px;
+    object-fit: cover;
+}
+
+.bioPicClass {
+    display: flex;
+    justify-content: center;
+    grid-area: 1 / 1 / 2 / 2;
+    align-items: center; 
+    flex-direction: column; 
+    align-self: center;
+}
+
+.bioPicClass h2 {
+    text-align: center;
+    width: 100%;
+    color: #2C6240;
+    
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.bio {
+    width: 100%;
+    text-align: center;
+    font-family: 'Lora';
+    padding: 10px;
+    color: #2C6240;
+    display: flex;
+    justify-content: center;
+}
+
+.textAreaBio {
+    width: 250px;
+    height: 80px;
+}
+
+.addOrEdit {
+    font-family: 'Lora';
+    color: #2C6240;
+    margin-top: 10px;
+    align-items: center; 
+}
+
+.save {
+    font-family: 'Lora';
+    color: #2C6240;
+    height: 20px;
+}

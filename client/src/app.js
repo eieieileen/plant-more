@@ -10,7 +10,7 @@ import Friends from "./friends";
 import Chat from "./chat";
 import PlantSearch from "./plantSearch";
 import PlantInfo from "./plantInfo";
-
+import "./app.css";
 
 // import { BrowserRouter, Route } from "react-router-dom";
 // import OtherProfile from "./otherProfile";
@@ -68,27 +68,31 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <div id="linksTo">
-                        <Link id="profileLink" to={"/chat"}>
-                            CHATROOM
+                    <img
+                        className="backgroundImg"
+                        src="/background2.jpeg"
+                    ></img>
+                    <div className="topnav">
+                        <Link className="profileLink" to={"/plantsearch"}>
+                            PLANTSEARCH |
                         </Link>
-                        <Link id="profileLink" to={"/friends/"}>
+                        <Link className="profileLink" to={"/"}>
+                            PROFILE |{" "}
+                        </Link>
+                        <Link className="profileLink" to={"/chat"}>
+                            CHATROOM |
+                        </Link>
+                        <Link className="profileLink" to={"/friends/"}>
                             FRIENDS
                         </Link>
                         <br></br>
-                        <Link id="profileLink" to={"/"}>
-                            PROFILE{" "}
-                        </Link>
-                        <Link id="profileLink" to={"/users/search"}>
+                        {/* <Link className="profileLink" to={"/users/search"}>
                             FIND PEOPLE OR TACO&apos;S
-                        </Link>
-                        <Link id="profileLink" to={"/plantsearch"}>
-                            PLANTSEARCH
-                        </Link>
-                        <button id="profileButton" onClick={() => logout()}>
-                            LOGOUT
-                        </button>
+                        </Link> */}
                     </div>
+                    <button className="profileButton" onClick={() => logout()}>
+                        LOGOUT
+                    </button>
                     <div id="profilePicca">
                         <ProfilePic
                             first_name={this.state.first_name}
@@ -135,7 +139,6 @@ export default class App extends Component {
                     <Route path="/chat" component={Chat} />
                     <Route path="/plantSearch" render={() => <PlantSearch />} />
                     <Route path="/plantInfo" render={() => <PlantInfo />} />
-                    
                 </div>
             </BrowserRouter>
         );

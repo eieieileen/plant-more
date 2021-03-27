@@ -54,18 +54,16 @@ export default class BioEditor extends React.Component {
     render() {
         return (
             <>
-                {/* {this.state.error && <p>something went wront </p>} */}
-                <div id="bio">
-                    ADD YOUR BIO HERE
-                    
+                <div className="bio">
+                    tell us about yourself
                     <br></br>
                     {this.props.bio}
-                   
                     {this.state.txtArea && (
-                        <button onClick={() => this.handleClick()}>SAFE</button>
+                        <button className="save" onClick={() => this.handleClick()}>SAFE</button>
                     )}
                     {!this.state.txtArea && (
-                        <button id="addOrEdit"
+                        <button
+                            className="addOrEdit"
                             onClick={() => {
                                 this.setState({ txtArea: !this.state.txtArea });
                             }}
@@ -76,6 +74,7 @@ export default class BioEditor extends React.Component {
                     )}
                     {this.state.txtArea && (
                         <textarea
+                            className="textAreaBio"
                             onChange={(e) => this.handleChange(e)}
                             defaultValue={this.props.bio}
                         />
