@@ -9,7 +9,7 @@ export default function OnlineUsers() {
             {onlineUsers &&
                 onlineUsers.map((online, index) => (
                     <div key={index}>
-                        <img className="chatImgOU" src={online.imageurl}></img>
+                        <img className="chatImgOU" src={online.imageurl || "/default.jpg"}></img>
                         <p>
                             {online.first_name} {online.last_name}
                         </p>

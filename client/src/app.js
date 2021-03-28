@@ -83,12 +83,12 @@ export default class App extends Component {
                             CHATROOM |
                         </Link>
                         <Link className="profileLink" to={"/friends/"}>
-                            FRIENDS
+                            FRIENDS |
                         </Link>
                         <br></br>
-                        {/* <Link className="profileLink" to={"/users/search"}>
-                            FIND PEOPLE OR TACO&apos;S
-                        </Link> */}
+                        <Link className="profileLink" to={"/users/search"}>
+                            FIND PEOPLE
+                        </Link>
                     </div>
                     <button className="profileButton" onClick={() => logout()}>
                         LOGOUT

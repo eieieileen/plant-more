@@ -36,7 +36,7 @@ export default function Chat() {
                                 <p className="infoMessage">
                                     <img
                                         className="chatImg"
-                                        src={chatMessages.imageurl}
+                                        src={chatMessages.imageurl || "/default.jpg"}
                                     ></img>
                                     {chatMessages.first_name}{" "}
                                     {chatMessages.last_name} -{" "}
