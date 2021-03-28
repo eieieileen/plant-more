@@ -201,7 +201,7 @@ app.post("/resetpasswordverify", (req, res) => {
         .then(() => {
             hash(password)
                 .then((hashedPassword) => {
-                    db.updatePassword(password, email, hashedPassword)
+                    db.updatePassword(hashedPassword, email)
                         .then(() => {
                             res.json({ success: true });
                         })
