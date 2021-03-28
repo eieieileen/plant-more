@@ -54,4 +54,10 @@
      text-decoration: none;
 }
 
+.common_name {
+    text-align: center;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
 

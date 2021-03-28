@@ -1,0 +1,20 @@
+.outerPlantSearchContainer {
+    display: fleX;
+    flex-direction: column;
+   
+    align-items: center;
+}
+
+.plantSearchContainer {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+     justify-content: center;
+}
+
+.plantSearchDiv {
+    width: 80px;
+    height: 100px;
+    margin: 10px;
+
+}

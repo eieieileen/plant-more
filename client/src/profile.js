@@ -10,6 +10,7 @@ export default function Profile({
     bio,
     toggleUploader,
     editBio,
+    id
 }) {
     return (
         <div className="profilePage">
@@ -25,7 +26,7 @@ export default function Profile({
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
             <div className="gridPlants">
-                <FavoritePlants />
+                <FavoritePlants id={id} />
             </div>
         </div>
     );

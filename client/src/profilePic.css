@@ -4,7 +4,7 @@
     border: 2px solid #6F9F95;
     border-radius: 50%;
     object-fit: cover;
-    position: fixed;
+    position: absolute;
     top: 3px;
     right: 10px;
 }

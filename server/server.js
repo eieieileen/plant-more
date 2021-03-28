@@ -228,7 +228,7 @@ app.get("/user", (req, res) => {
     //console.log("hey hij werkt nie");
     db.getProfileInfo(req.session.loggedIn)
         .then(({ rows }) => {
-            //console.log("response from getProfilePic", rows);
+            console.log("response from getProfilePic", rows);
             res.json(rows[0]);
         })
         .catch((err) => console.log("error in app.get /users 🧤", err));
@@ -390,8 +390,9 @@ app.post("/plantInfo", (req, res) => {
         .catch((err) => console.log("error in db.favoritePlant", err));
 });
 
-app.get(`/getFavoritePlants`, (req, res) => {
-    db.checkFavoritePlants(req.session.loggedIn)
+app.get(`/getFavoritePlants/:id`, (req, res) => {
+    const id = req.params.id;
+    db.checkFavoritePlants(id)
         .then(({ rows }) => {
             console.log("response van db.checkFavoritePlants", rows);
             res.json(rows);
@@ -440,19 +441,25 @@ app.post(
     }
 );
 
-app.get(`/getOfferedPlants`, (req, res) => {
-    db.checkOfferedPlants(req.session.loggedIn).then(({rows}) => {
-        //console.log("response van db.checkOfferedPlants 👻", rows);
-        res.json(rows);
-    }).catch((err) => console.log("error in db.checkOfferedPlants 🏊‍♀️", err));
+//zorg dat je hier je params (id ) kan verwerken.
+app.get(`/getOfferedPlants/:id`, (req, res) => {
+    const id = req.params.id;
+    db.checkOfferedPlants(id)
+        .then(({ rows }) => {
+            //console.log("response van db.checkOfferedPlants 👻", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("error in db.checkOfferedPlants 🏊‍♀️", err));
 });
 
 app.get(`/seeOfferedPlants/:apiid`, (req, res) => {
     const id = req.params.apiid;
-    db.infoOfferedPlants(id).then(({rows}) => {
-        console.log("response van infoOfferedPlants", rows);
-        res.json(rows);
-    }).catch((err) => console.log("error in db.infoOfferedPlants", err));
+    db.infoOfferedPlants(id)
+        .then(({ rows }) => {
+            console.log("response van infoOfferedPlants", rows);
+            res.json(rows);
+        })
+        .catch((err) => console.log("error in db.infoOfferedPlants", err));
 });
 
 //moet altijd onderaan staan

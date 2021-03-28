@@ -4,7 +4,8 @@ import { getFavoritePlants, getOfferedPlants, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./favoritePlants.css";
 
-export default function favoritePlants() {
+
+export default function favoritePlants({id}) {
     const dispatch = useDispatch();
     const [plantsFavorite, setPlantsFavorite] = useState();
     const offeredPlants = useSelector(
@@ -13,50 +14,57 @@ export default function favoritePlants() {
     const favoritePlants = useSelector(
         (state) => state.favPlants && state.favPlants
     );
-    //use effect om alle favoriete planten uit de db te halen
-    //zodat je die dan kan renderen op screen
-    //en in redux te zetten
+ 
 
     useEffect(() => {
-        dispatch(getFavoritePlants());
-        dispatch(getOfferedPlants());
+        dispatch(getFavoritePlants(id));
+        dispatch(getOfferedPlants(id));
     }, []);
 
     return (
         <div>
             <div className="favoritePlants">
-                <h3>your wishlist</h3>
+                <h3>wishlist</h3>
                 {favoritePlants &&
                     favoritePlants.map((fav, index) => (
                         <div key={index}>
                             <div>
-                                <Link 
+                                <Link
                                     onClick={() =>
                                         dispatch(getPlantInfo(fav.apiid))
                                     }
                                     to={`/plantinfo`}
                                 >
-                                    <img
-                                        className="favPlants"
-                                        src={fav.imageurl}
-                                    ></img>
-                                    <p>{fav.common_name}</p>
+                                    <div className="common_name">
+                                        <img
+                                            className="favPlants"
+                                            src={fav.imageurl}
+                                        ></img>
+                                        <p>
+                                            {fav.common_name ||
+                                                fav.scientific_name}
+                                        </p>
+                                    </div>
                                 </Link>
                             </div>
                         </div>
                     ))}
             </div>
             <div className="offeredPlants">
-                <h3>plants that you offer</h3>
+                <h3>offered plants</h3>
                 {offeredPlants &&
                     offeredPlants.map((off, index) => (
                         <div key={index}>
-                            <div>
+                            <div className="common_name">
                                 <img
                                     className="offPlants"
-                                    src={off.ownimage}
+                                    src={off.ownimage || off.imageurl}
                                 ></img>
-                                <p>{off.common_name}</p>
+                                <p>
+                                    {off.nick_name ||
+                                        off.common_name ||
+                                        off.scientific_name}
+                                </p>
                             </div>
                         </div>
                     ))}

@@ -79,8 +79,8 @@ export async function getPlantInfo(plantid) {
     };
 }
 
-export async function getFavoritePlants() {
-    const { data } = await axios.get(`/getFavoritePlants`);
+export async function getFavoritePlants(id) {
+    const { data } = await axios.get(`/getFavoritePlants/${id}`);
     //console.log("data", data);
     return {
         type: "FAVORITE_PLANTS",
@@ -88,8 +88,8 @@ export async function getFavoritePlants() {
     };
 }
 
-export async function getOfferedPlants() {
-    const { data } = await axios.get(`/getOfferedPlants`);
+export async function getOfferedPlants(id) {
+    const { data } = await axios.get(`/getOfferedPlants/${id}`);
     //console.log("data van getOfferedPlants", data);
     return {
         type: "OFFERED_PLANTS",

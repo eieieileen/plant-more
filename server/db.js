@@ -47,7 +47,7 @@ module.exports.updatePassword = (password, email) => {
 };
 
 module.exports.getProfileInfo = (id) => {
-    const q = `SELECT first_name, last_name, imageUrl, bio FROM users WHERE id = ($1)`;
+    const q = `SELECT id,first_name, last_name, imageUrl, bio FROM users WHERE id = ($1)`;
     const params = [id];
     return db.query(q, params);
 };

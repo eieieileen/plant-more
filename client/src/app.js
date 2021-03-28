@@ -113,6 +113,7 @@ export default class App extends Component {
                                 imageUrl={this.state.imageurl}
                                 bio={this.state.bio}
                                 toggleUploader={() => this.toggleUploader()}
+                                id={this.state.id}
                             />
                         )}
                     />
