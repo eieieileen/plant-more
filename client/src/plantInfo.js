@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PlantUploader from "./plantUploader";
 import { findOffers } from "./actions";
+import { Link } from "react-router-dom";
 
 export default function PlantInfo() {
     const [favorite, setFavorite] = useState(true);
@@ -93,9 +94,10 @@ export default function PlantInfo() {
             {offeredPlants &&
                 offeredPlants.map((plant, index) => (
                     <div key={index}>
-                        <h1>{plant.nick_name}</h1>
-                        <img src={plant.ownimage}></img>
-                        <p>{}</p>
+                        <Link to={`/user/${plant.userid}`}>
+                            <h1>{plant.nick_name}</h1>
+                            <img src={plant.ownimage}></img>
+                        </Link>
                     </div>
                 ))}
         </div>
