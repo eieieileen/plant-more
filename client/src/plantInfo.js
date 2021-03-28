@@ -1,11 +1,13 @@
 import axios from "./axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PlantUploader from "./plantUploader";
+import { findOffers } from "./actions";
 
 export default function PlantInfo() {
     const [favorite, setFavorite] = useState(true);
     const [availableButton, setAvailableButton] = useState(false);
+    const dispatch = useDispatch();
     // usestate gebruiken om visible-setVisible true of false te zettenXX
     // button set  visible - true
 
@@ -16,7 +18,14 @@ export default function PlantInfo() {
         (state) => state.favPlants && state.favPlants
     );
 
+    const offeredPlants = useSelector(
+        (state) => state.getOffers && state.getOffers
+    );
+
     useEffect(() => {
+        if (plantInfo) {
+            dispatch(findOffers(plantInfo.main_species_id));
+        }
         //console.log("favorite plants", filteredPlants);
         if (filteredPlants && plantInfo) {
             for (let i = 0; i < filteredPlants.length; i++) {
@@ -25,7 +34,7 @@ export default function PlantInfo() {
                 }
             }
         }
-    }, [filteredPlants, plantInfo]);
+    }, [plantInfo]);
 
     function handleClick(apiId, imageUrl, common_name) {
         axios
@@ -55,7 +64,7 @@ export default function PlantInfo() {
             <h1>plant info</h1>
             {plantInfo && (
                 <div>
-                    <p>{plantInfo.common_name}</p>
+                    <p>{plantInfo.common_name} </p>
                     <img src={plantInfo.image_url}></img>
                     {favorite && (
                         <button
@@ -71,9 +80,24 @@ export default function PlantInfo() {
                         </button>
                     )}
                     <button onClick={() => availableClick()}>available</button>
-                    {availableButton && <PlantUploader setAvailableButton={setAvailableButton} common_name={plantInfo.common_name} imageurl={plantInfo.image_url} apiId={plantInfo.main_species_id} />}
+                    {availableButton && (
+                        <PlantUploader
+                            setAvailableButton={setAvailableButton}
+                            common_name={plantInfo.common_name}
+                            imageurl={plantInfo.image_url}
+                            apiId={plantInfo.main_species_id}
+                        />
+                    )}
                 </div>
             )}
+            {offeredPlants &&
+                offeredPlants.map((plant, index) => (
+                    <div key={index}>
+                        <h1>{plant.nick_name}</h1>
+                        <img src={plant.ownimage}></img>
+                        <p>{}</p>
+                    </div>
+                ))}
         </div>
     );
 }

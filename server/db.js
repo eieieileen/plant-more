@@ -203,3 +203,9 @@ module.exports.checkOfferedPlants = (userId) => {
     return db.query(q, params);
 };
 
+module.exports.infoOfferedPlants = (apiId) => {
+    const q = `SELECT * FROM availablePlants where apiId = ($1)`;
+    const params = [apiId];
+    return db.query(q, params);
+};
+

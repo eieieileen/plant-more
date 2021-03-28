@@ -85,6 +85,11 @@ export function reducer(state = {}, action) {
             ...state,
             offPlants: action.dataFromOfferedPlants
         };
+    } else if (action.type === "SEE_OFFERS") {
+        state = {
+            ...state,
+            getOffers: action.dataFromSeeOffers
+        };
     }
 
 

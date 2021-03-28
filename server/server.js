@@ -442,9 +442,17 @@ app.post(
 
 app.get(`/getOfferedPlants`, (req, res) => {
     db.checkOfferedPlants(req.session.loggedIn).then(({rows}) => {
-        console.log("response van db.checkOfferedPlants 👻", rows);
+        //console.log("response van db.checkOfferedPlants 👻", rows);
         res.json(rows);
     }).catch((err) => console.log("error in db.checkOfferedPlants 🏊‍♀️", err));
+});
+
+app.get(`/seeOfferedPlants/:apiid`, (req, res) => {
+    const id = req.params.apiid;
+    db.infoOfferedPlants(id).then(({rows}) => {
+        console.log("response van infoOfferedPlants", rows);
+        res.json(rows);
+    }).catch((err) => console.log("error in db.infoOfferedPlants", err));
 });
 
 //moet altijd onderaan staan

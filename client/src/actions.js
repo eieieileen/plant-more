@@ -72,7 +72,7 @@ export async function getApi(search) {
 export async function getPlantInfo(plantid) {
     console.log("plantid", plantid);
     const { data } = await axios.get(`/api/plantInfo/${plantid}`);
-    console.log("data van getPlantInfo", data.data);
+    //console.log("data van getPlantInfo", data.data);
     return {
         type: "GET_PLANT_INFO",
         dataFromPlantsInfo: data.data,
@@ -90,9 +90,18 @@ export async function getFavoritePlants() {
 
 export async function getOfferedPlants() {
     const { data } = await axios.get(`/getOfferedPlants`);
-    console.log("data van getOfferedPlants", data);
+    //console.log("data van getOfferedPlants", data);
     return {
         type: "OFFERED_PLANTS",
         dataFromOfferedPlants: data
+    };
+}
+
+export async function findOffers(apiid) {
+    const { data } = await axios.get(`/seeOfferedPlants/${apiid}`);
+    console.log("data uit action seeOfferedPlants", data);
+    return {
+        type: "SEE_OFFERS",
+        dataFromSeeOffers: data,    
     };
 }
