@@ -13,7 +13,6 @@ const multer = require("multer");
 const uidSafe = require("uid-safe");
 const fetch = require("node-fetch");
 const secrets = require("./secrets.json");
-//socket.io boiletplate
 const server = require("http").Server(app); //app because of first handshake handshake
 const io = require("socket.io")(server, {
     allowRequest: (req, callback) =>

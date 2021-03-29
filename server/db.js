@@ -139,6 +139,7 @@ module.exports.tenMostRecentMessages = () => {
     return db.query(q);
 };
 
+//chat
 module.exports.newMessage = (sender_id, message) => {
     const q = `INSERT INTO chatroom (sender_id, message)
     VALUES ($1, $2)
@@ -147,12 +148,14 @@ module.exports.newMessage = (sender_id, message) => {
     return db.query(q, params);
 };
 
+//chat
 module.exports.infoNewMessage = (id) => {
     const q = `SELECT id,first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
     const params = [id];
     return db.query(q, params);
 };
 
+//online
 module.exports.getUsersByIds = (arrayOfIds) => {
     const q = `SELECT id, first_name, last_name, imageUrl FROM users WHERE id = ANY($1)`;
     const params = [arrayOfIds];
@@ -209,3 +212,26 @@ module.exports.infoOfferedPlants = (apiId) => {
     return db.query(q, params);
 };
 
+module.exports.newDM = (sender_id, recipient_id, message) => {
+    const q = `INSERT INTO privateMessaging (sender_id, recipient_id, message)
+    VALUES ($1, $2, $3)
+    RETURNING id, created_at`;
+    const params = [sender_id, recipient_id, message];
+    return db.query(q, params);
+};
+
+
+
+//chat
+// module.exports.infoNewMessage = (id) => {
+//     const q = `SELECT id,first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
+//     const params = [id];
+//     return db.query(q, params);
+// };
+
+//online
+// module.exports.getUsersByIds = (arrayOfIds) => {
+//     const q = `SELECT id, first_name, last_name, imageUrl FROM users WHERE id = ANY($1)`;
+//     const params = [arrayOfIds];
+//     return db.query(q, params);
+// };

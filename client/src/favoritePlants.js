@@ -19,7 +19,7 @@ export default function favoritePlants({id}) {
     useEffect(() => {
         dispatch(getFavoritePlants(id));
         dispatch(getOfferedPlants(id));
-    }, []);
+    }, [id]);
 
     return (
         <div>
