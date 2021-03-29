@@ -554,18 +554,29 @@ io.on("connection", (socket) => {
         io.sockets.emit("sending back to client", msg);
     });
 
-    //3
+    //private messaging
     socket.on("my private message", (message) => {
         console.log("pm inside private message: ", message);
         db.newPM(userId, message.recipient_id, message.message)
             .then(() => {
-                
-                // socket.join(message.recipient_id);
-                //console.log("response van db.newPM", response);
-                io.to(onlineUsers[message.recipient_id]).emit("new pm", {
-                    message: message.message,
-                    from: message.recipient_id,
-                });
+                db.infoNewMessage(userId).then(({rows}) => {
+                    //console.log("rows ban infoNewMessage", rows);
+                    socket.emit("sent message", {
+                        message: message.message,
+                        // id: rows[0].id,
+                        first_name: rows[0].first_name,
+                        last_name: rows[0].last_name,
+                        imageurl: rows[0].imageurl,
+    
+                    });
+                    io.to(onlineUsers[message.recipient_id]).emit("new pm", {
+                        message: message.message,
+                        // id: rows[0].id,
+                        first_name: rows[0].first_name,
+                        last_name: rows[0].last_name,
+                        imageurl: rows[0].imageurl,
+                    });
+                }).catch((err => console.log("error in db. private message", err)));
             })
             .catch((err) => console.log("error in db.newPM", err));
     });

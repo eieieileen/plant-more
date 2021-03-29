@@ -1,4 +1,4 @@
-export function reducer(state = {}, action) {
+export function reducer(state ={ private: [{}] }, action) {
     //series of if statements:
     if (action.type === "GET_LIST") {
         state = {
@@ -93,7 +93,7 @@ export function reducer(state = {}, action) {
     } else if (action.type === "PRIVATE_MESSAGES") {
         state = {
             ...state,
-            pmessages: action.data,
+            private: [...state.private, action.data],
         };
 
     }

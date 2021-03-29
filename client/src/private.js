@@ -1,9 +1,8 @@
-//2
 import { socket } from "./sockets";
+import { useSelector } from "react-redux";
 // import { useEffect, useRef } from "react";
-// import { useSelector } from "react-redux";
 export default function Private({ id }) {
-
+     const privateMessage = useSelector((state) => state.private && state.private);
     // const elemRef = useRef();
     // const pm = useSelector ((state) => state.p)
 
@@ -11,6 +10,11 @@ export default function Private({ id }) {
     //     const newScrollTop = elemRef.current.scrollHeight - elemRef.current.clientHeight;
     //     elemRef.current.scrollTop = newScrollTop;
     // }, []);
+
+
+
+    // met useSelector de private messages overal renderen waar wil
+
 
     const keyCheck = (e) => {
         if (e.key === "Enter") {
@@ -21,6 +25,19 @@ export default function Private({ id }) {
     };
 
     return (
-        <textarea onKeyDown={keyCheck}></textarea>
+        <div>
+            {privateMessage &&
+                privateMessage.map((privateMessage, index) => (
+                    <div key={index}>
+                        <img src={privateMessage.imageurl}></img>
+                        <p>
+                            {privateMessage.first_name}
+                            {privateMessage.last_name}
+                            {privateMessage.message}
+                        </p>
+                    </div>
+                ))}
+            ;<textarea onKeyDown={keyCheck}></textarea>
+        </div>
     );
 }

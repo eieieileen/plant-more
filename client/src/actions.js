@@ -109,7 +109,7 @@ export async function findOffers(apiid) {
 export async function privateMessage(message) {
     return {
         type: "PRIVATE_MESSAGES",
-        data: message.message,
-        // from: message.recipient_id
+        data: message,
     };
 }
+

@@ -5,6 +5,7 @@ import {
     userJoined,
     userLeft,
     privateMessage,
+    sendedMessage
 } from "./actions";
 import { io } from "socket.io-client";
 
@@ -48,6 +49,10 @@ export const init = (store) => {
 
         socket.on("new pm", (message) => {
             console.log("pmpmpmpm", message);
+            store.dispatch(privateMessage(message));
+        });
+
+        socket.on("sent message", (message) => {
             store.dispatch(privateMessage(message));
         });
     }
