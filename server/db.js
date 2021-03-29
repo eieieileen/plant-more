@@ -221,7 +221,7 @@ module.exports.recentPM = (sender_id, recipient_id) => {
     const params = [sender_id, recipient_id];
     return db.query(q, params);
 };
-
+//4
 module.exports.newPM = (sender_id, recipient_id, message) => {
     const q = `INSERT INTO privateMessaging (sender_id, recipient_id, message)
     VALUES ($1, $2, $3)

@@ -93,7 +93,7 @@ export function reducer(state = {}, action) {
     } else if (action.type === "PRIVATE_MESSAGES") {
         state = {
             ...state,
-            pmessages: [...state.pmessages, action.data],
+            pmessages: action.data,
         };
 
     }

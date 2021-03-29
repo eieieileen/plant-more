@@ -46,9 +46,9 @@ export const init = (store) => {
             store.dispatch(userLeft(userGone));
         });
 
-        socket.on("my private message", (pm, recipient_id) => {
-            console.log("pmpmpmpm", pm);
-            store.dispatch(privateMessage(pm, recipient_id));
+        socket.on("new pm", (message) => {
+            console.log("pmpmpmpm", message);
+            store.dispatch(privateMessage(message));
         });
     }
 };

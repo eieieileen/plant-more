@@ -227,7 +227,7 @@ app.get("/user", (req, res) => {
     //console.log("hey hij werkt nie");
     db.getProfileInfo(req.session.loggedIn)
         .then(({ rows }) => {
-            console.log("response from getProfilePic", rows);
+            //console.log("response from getProfilePic", rows);
             res.json(rows[0]);
         })
         .catch((err) => console.log("error in app.get /users 🧤", err));
@@ -393,7 +393,7 @@ app.get(`/getFavoritePlants/:id`, (req, res) => {
     const id = req.params.id;
     db.checkFavoritePlants(id)
         .then(({ rows }) => {
-            console.log("response van db.checkFavoritePlants", rows);
+            //console.log("response van db.checkFavoritePlants", rows);
             res.json(rows);
         })
         .catch((err) => console.log("error in db.checkFavoritePlants", err));
@@ -490,13 +490,14 @@ io.on("connection", (socket) => {
 
     const userId = socket.request.session.loggedIn;
     console.log("userId in sockets:", userId);
+    //my room aka room1
     socket.join(userId);
 
-    onlineUsers[socket.id] = userId;
+    onlineUsers[userId] = socket.id;
 
-    const onlineUserIds = Object.values(onlineUsers);
+    const onlineUserIds = Object.keys(onlineUsers);
 
-    //if (Object.values(onlineUsers).includes(userId) > 1) {
+   
 
     db.getUsersByIds(onlineUserIds)
         .then(({ rows }) => {
@@ -524,9 +525,6 @@ io.on("connection", (socket) => {
         .catch((err) =>
             console.log("error in db.tenMostRecentMessages 👻", err)
         );
-
-    //this was demo purposes
-    //socket.emit("userConnected", { msg: "hello user!" });
 
     socket.on("my amazing chat message", (msg) => {
         console.log("msg inside my amazing chat message: ", msg);
@@ -556,16 +554,20 @@ io.on("connection", (socket) => {
         io.sockets.emit("sending back to client", msg);
     });
 
+    //3
     socket.on("my private message", (message) => {
         console.log("pm inside private message: ", message);
-        db.newPM(userId, message.recipient_id, message.message).then((response) => {
-            //zoeken naar message id aka recipient id in online users
-            // naar al die dingen die er van terug komen naar io.to sturen.
-            console.log("response van db.newPM", response);
-            io.to(message.recipient_id).emit("hey", {message: message.message, from: message.recipient_id });
-        }).catch((err) => console.log("error in db.newPM", err));
-
-        
+        db.newPM(userId, message.recipient_id, message.message)
+            .then(() => {
+                
+                // socket.join(message.recipient_id);
+                //console.log("response van db.newPM", response);
+                io.to(onlineUsers[message.recipient_id]).emit("new pm", {
+                    message: message.message,
+                    from: message.recipient_id,
+                });
+            })
+            .catch((err) => console.log("error in db.newPM", err));
     });
 
     socket.on("disconnect", function () {

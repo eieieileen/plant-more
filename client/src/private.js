@@ -1,7 +1,7 @@
+//2
 import { socket } from "./sockets";
 // import { useEffect, useRef } from "react";
 // import { useSelector } from "react-redux";
-
 export default function Private({ id }) {
 
     // const elemRef = useRef();
