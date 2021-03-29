@@ -4,6 +4,7 @@ import {
     onlineUser,
     userJoined,
     userLeft,
+    privateMessage,
 } from "./actions";
 import { io } from "socket.io-client";
 
@@ -43,6 +44,11 @@ export const init = (store) => {
         socket.on("user left", (userGone) => {
             // console.log("user just left: ", userGone);
             store.dispatch(userLeft(userGone));
+        });
+
+        socket.on("my private message", (pm, recipient_id) => {
+            console.log("pmpmpmpm", pm);
+            store.dispatch(privateMessage(pm, recipient_id));
         });
     }
 };

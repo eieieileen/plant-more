@@ -490,6 +490,7 @@ io.on("connection", (socket) => {
 
     const userId = socket.request.session.loggedIn;
     console.log("userId in sockets:", userId);
+    socket.join(userId);
 
     onlineUsers[socket.id] = userId;
 
@@ -553,6 +554,18 @@ io.on("connection", (socket) => {
             })
             .catch((err) => console.log("error in db.newMessage,", err));
         io.sockets.emit("sending back to client", msg);
+    });
+
+    socket.on("my private message", (message) => {
+        console.log("pm inside private message: ", message);
+        db.newPM(userId, message.recipient_id, message.message).then((response) => {
+            //zoeken naar message id aka recipient id in online users
+            // naar al die dingen die er van terug komen naar io.to sturen.
+            console.log("response van db.newPM", response);
+            io.to(message.recipient_id).emit("hey", {message: message.message, from: message.recipient_id });
+        }).catch((err) => console.log("error in db.newPM", err));
+
+        
     });
 
     socket.on("disconnect", function () {

@@ -24,7 +24,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        // console.log("App mounted!🥑");
+        console.log("App mounted!🥑");
         axios
             .get("/user")
             .then(({ data }) => {

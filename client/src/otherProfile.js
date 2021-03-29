@@ -2,7 +2,7 @@ import { Component } from "react";
 import axios from "./axios";
 import FriendshipButton from "./friendshipButton";
 import FavoritePlants from "./favoritePlants";
-
+import Private from "./private";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -26,25 +26,28 @@ export default class OtherProfile extends Component {
                 }
             })
             .catch((err) => console.log("error in acios getOtherProfile", err));
-
     }
 
-    
     render() {
         return (
             <div className="profilePage">
                 <div className="bioPicClass">
-                    <h2> HI EILEEN I AM OTHER PROFIEL
+                    <h2>
+                        {" "}
+                        HI EILEEN I AM OTHER PROFIEL
                         {this.state.first_name} {this.state.last_name}
-                        <img className="bioPic" src={this.state.imageurl || "/default.jpg"}></img>
+                        <img
+                            className="bioPic"
+                            src={this.state.imageurl || "/default.jpg"}
+                        ></img>
                         <br></br>
                         {this.state.bio}
                     </h2>
                     <FavoritePlants id={this.props.match.params.id} />
-                  
-                 
+
                     <FriendshipButton id={this.props.match.params.id} />
                 </div>
+                <Private id={this.props.match.params.id} />
             </div>
         );
     }

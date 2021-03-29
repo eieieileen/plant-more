@@ -212,7 +212,17 @@ module.exports.infoOfferedPlants = (apiId) => {
     return db.query(q, params);
 };
 
-module.exports.newDM = (sender_id, recipient_id, message) => {
+module.exports.recentPM = (sender_id, recipient_id) => {
+    const q = `SELECT privateMessaging.id, privateMessaging.sender_id, privateMessaging.recipient_id privateMessaging.created_at, privateMessaging.message, users.first_name, users.last_name, users.imageUrl
+    FROM privateMessaging WHERE (users.sender_id = $1 AND users.recipient_id = $2) OR (users.recipient_id = §1 AND users.sender_id = $2)
+    JOIN users 
+    ON users.id = privateMessaging.sender_id
+    ORDER BY created_at DESC limit 10`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
+
+module.exports.newPM = (sender_id, recipient_id, message) => {
     const q = `INSERT INTO privateMessaging (sender_id, recipient_id, message)
     VALUES ($1, $2, $3)
     RETURNING id, created_at`;

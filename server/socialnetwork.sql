@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS chatroom;
 DROP TABLE IF EXISTS plants;
 DROP TABLE IF EXISTS availablePlants;
-DROP TABLE IS EXISTS privateMessaging;
+DROP TABLE IF EXISTS privateMessaging;
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -62,7 +62,7 @@ CREATE TABLE availablePlants(
 CREATE TABLE privateMessaging(
     id SERIAL PRIMARY KEY,
     sender_id INT REFERENCES users(id) NOT NULL,
-    recipient_id INT REFERENCED users
+    recipient_id INT REFERENCES users(id) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     message VARCHAR(500)
 );

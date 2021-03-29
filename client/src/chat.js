@@ -3,6 +3,7 @@ import { socket } from "./sockets";
 import { useSelector } from "react-redux";
 import OnlineUsers from "./onlineUsers";
 
+
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
     const elemRef = useRef();
@@ -52,6 +53,7 @@ export default function Chat() {
                 onKeyDown={keyCheck}
             ></textarea>
             <OnlineUsers />
+           
         </div>
     );
 }

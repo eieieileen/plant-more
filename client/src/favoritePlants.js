@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavoritePlants, getOfferedPlants, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./favoritePlants.css";
 
-
-export default function favoritePlants({id}) {
+export default function favoritePlants({ id }) {
     const dispatch = useDispatch();
-    const [plantsFavorite, setPlantsFavorite] = useState();
     const offeredPlants = useSelector(
         (state) => state.offPlants && state.offPlants
     );
     const favoritePlants = useSelector(
         (state) => state.favPlants && state.favPlants
     );
- 
 
     useEffect(() => {
+        console.log(id);
         dispatch(getFavoritePlants(id));
         dispatch(getOfferedPlants(id));
+        console.log("helllo");
     }, [id]);
 
     return (

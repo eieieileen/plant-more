@@ -73,25 +73,29 @@ export function reducer(state = {}, action) {
     } else if (action.type === "GET_PLANT_INFO") {
         state = {
             ...state,
-            plantInfo: action.dataFromPlantsInfo
+            plantInfo: action.dataFromPlantsInfo,
         };
     } else if (action.type === "FAVORITE_PLANTS") {
         state = {
             ...state,
-            favPlants: action.dataFromFavoritePlants
+            favPlants: action.dataFromFavoritePlants,
         };
     } else if (action.type === "OFFERED_PLANTS") {
-        state= {
+        state = {
             ...state,
-            offPlants: action.dataFromOfferedPlants
+            offPlants: action.dataFromOfferedPlants,
         };
     } else if (action.type === "SEE_OFFERS") {
         state = {
             ...state,
-            getOffers: action.dataFromSeeOffers
+            getOffers: action.dataFromSeeOffers,
         };
+    } else if (action.type === "PRIVATE_MESSAGES") {
+        state = {
+            ...state,
+            pmessages: [...state.pmessages, action.data],
+        };
+
     }
-
-
     return state;
 }
