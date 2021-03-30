@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Avatar } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import { getApi, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./plantSearch.css";
@@ -17,6 +17,7 @@ export default function plantSearch() {
 
     return (
         <div className="outerPlantSearchContainer">
+            <h1>look for your favourite plants</h1>
             <input onKeyDown={keyCheck}></input>
             <div className="plantSearchContainer">
                 {plants &&

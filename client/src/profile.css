@@ -70,3 +70,20 @@ grid-row-gap: 0px;
     flex-direction: column;
     
 }
+
+.wishlist {
+    font-family: 'Lora';
+    font-size: 20px;
+    color: #2C6240;
+    display: flex;
+    justify-content: center;
+}
+
+.offeredPlants {
+     font-family: 'Lora';
+    font-size: 20px;
+    color: #2C6240;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 

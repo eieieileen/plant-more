@@ -1,8 +1,21 @@
 .outerPlantSearchContainer {
     display: fleX;
     flex-direction: column;
-   
     align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.outerPlantSearchContainer h1 {
+    font-family: 'Lora';
+    color: #ACCAC0
+}
+
+.outerPlantSearchContainer input {
+    width: 15%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .plantSearchContainer {

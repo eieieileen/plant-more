@@ -4,7 +4,12 @@ import { getFavoritePlants, getOfferedPlants, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./favoritePlants.css";
 
-export default function favoritePlants({ id, deleteClick, deleteClickNumTwo, location }) {
+export default function favoritePlants({
+    id,
+    deleteClick,
+    deleteClickNumTwo,
+    location,
+}) {
     const dispatch = useDispatch();
     const offeredPlants = useSelector(
         (state) => state.offPlants && state.offPlants
@@ -21,55 +26,76 @@ export default function favoritePlants({ id, deleteClick, deleteClickNumTwo, loc
     }, [id]);
 
     return (
-        <div>
+        <div className="favoritePlantsContainer">
+            <h3 className="wishlist">wishlist</h3>
             <div className="favoritePlants">
-                <h3>wishlist</h3>
                 {favoritePlants &&
                     favoritePlants.map((fav, index) => (
                         <div key={index}>
-                            <div>
-                                <Link
-                                    onClick={() =>
-                                        dispatch(getPlantInfo(fav.apiid))
-                                    }
-                                    to={`/plantinfo`}
-                                >
-                                    <div className="common_name">
-                                        <img
-                                            className="favPlants"
-                                            src={fav.imageurl}
-                                        ></img>
-                                        <p>
-                                            {fav.common_name ||
-                                                fav.scientific_name}
-                                        </p>
-                                    </div>
-                                </Link>
+                            <Link
+                                onClick={() =>
+                                    dispatch(getPlantInfo(fav.apiid))
+                                }
+                                to={`/plantinfo`}
+                            >
+                                <div className="common_name">
+                                    <img
+                                        className="favPlants"
+                                        src={fav.imageurl}
+                                    ></img>
+                                    <p>
+                                        {fav.common_name || fav.scientific_name}
+                                    </p>
+                                </div>
+                            </Link>
+
+                            <div className="buttonWishlist">
+                                {location && (
+                                    <button
+                                        className="button"
+                                        onClick={() => deleteClick(fav.id)}
+                                    >
+                                        delete
+                                    </button>
+                                )}
                             </div>
-                            {location && <button onClick={() => deleteClick(fav.id)}>
-                                delete
-                            </button>}
                         </div>
                     ))}
             </div>
+            <h3 className="offeredPlants">offered plants</h3>
             <div className="offeredPlants">
-                <h3>offered plants</h3>
                 {offeredPlants &&
                     offeredPlants.map((off, index) => (
                         <div key={index}>
-                            <div className="common_name">
-                                <img
-                                    className="offPlants"
-                                    src={off.ownimage || off.imageurl}
-                                ></img>
-                                <p>
-                                    {off.nick_name ||
-                                        off.common_name ||
-                                        off.scientific_name}
-                                </p>
-                                {location && <button onClick={() => deleteClickNumTwo(off.id)}>
-                                    delete
-                                </button>}
+                            <Link
+                                onClick={() =>
+                                    dispatch(getPlantInfo(off.apiid))
+                                }
+                                to={`/plantinfo`}
+                            >
+                                <div className="common_name">
+                                    <img
+                                        className="favPlants"
+                                        src={off.ownImage || off.imageurl}
+                                    ></img>
+                                    <p>
+                                        {off.nick_name ||
+                                            off.common_name ||
+                                            off.scientific_name}
+                                    </p>
+                                </div>
+                            </Link>
+                            <div className="buttonOfferedPlants">
+                                {location && (
+                                    <button
+                                        className="button"
+                                        onClick={() =>
+                                            deleteClickNumTwo(off.id)
+                                        }
+                                    >
+                                        delete
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}

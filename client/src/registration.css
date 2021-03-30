@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    color: #001725;
+    
 }
 
 .registerContainer {
@@ -27,6 +27,7 @@
 .plantmore {
     font-size: 50px;
     margin-bottom: 50px;
+    color: #5E824B
 }
 
 #registerDiv {
@@ -39,7 +40,7 @@
     font-style: italic;
    text-align: center;
    align-items: center;
-   
+  
 }
 
 .submitButton {
