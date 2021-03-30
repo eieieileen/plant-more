@@ -4,12 +4,13 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
+    /* width: 700px; */
 }
 
 .outerPlantSearchContainer h1 {
-    font-family: 'Lora';
-    color: #ACCAC0
+    font-family: "Lora";
+    color: #accac0;
 }
 
 .outerPlantSearchContainer input {
@@ -22,12 +23,17 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-     justify-content: center;
+    justify-content: center;
+    width: 1000px;
 }
 
 .plantSearchDiv {
-    width: 80px;
-    height: 100px;
     margin: 10px;
+    text-align: center;
+}
 
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
 }

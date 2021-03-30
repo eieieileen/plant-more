@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "./axios";
 import { Link } from "react-router-dom";
 import ProfilePic from "./profilePic";
+import "./findPeople.css";
 
 export default function findPeople() {
     const [searchTerm, setSearchTerm] = useState("");

@@ -29,13 +29,13 @@ export default function plantSearch() {
                                 }
                                 to={`/plantinfo`}
                             >
-                                <Avatar
+                                <img className="avatar"
                                     alt={plants.common_name}
                                     src={
                                         plants.image_url ||
-                                        "./plant-registration.jpeg"
+                                        "./default2.png"
                                     }
-                                ></Avatar>
+                                ></img>
                                 <p>
                                     {plants.common_name ||
                                         plants.scientific_name}{" "}

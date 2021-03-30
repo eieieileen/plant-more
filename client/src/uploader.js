@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "./axios";
+import "./uploader.css";
 
 export default class Uploader extends Component {
     constructor(props) {
