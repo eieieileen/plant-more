@@ -4,7 +4,7 @@ import { getFavoritePlants, getOfferedPlants, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./favoritePlants.css";
 
-export default function favoritePlants({ id, deleteClick, deleteClickNumTwo }) {
+export default function favoritePlants({ id, deleteClick, deleteClickNumTwo, location }) {
     const dispatch = useDispatch();
     const offeredPlants = useSelector(
         (state) => state.offPlants && state.offPlants
@@ -46,9 +46,9 @@ export default function favoritePlants({ id, deleteClick, deleteClickNumTwo }) {
                                     </div>
                                 </Link>
                             </div>
-                            <button onClick={() => deleteClick(fav.id)}>
+                            {location && <button onClick={() => deleteClick(fav.id)}>
                                 delete
-                            </button>
+                            </button>}
                         </div>
                     ))}
             </div>
@@ -67,9 +67,9 @@ export default function favoritePlants({ id, deleteClick, deleteClickNumTwo }) {
                                         off.common_name ||
                                         off.scientific_name}
                                 </p>
-                                <button onClick={() => deleteClickNumTwo(off.id)}>
+                                {location && <button onClick={() => deleteClickNumTwo(off.id)}>
                                     delete
-                                </button>
+                                </button>}
                             </div>
                         </div>
                     ))}

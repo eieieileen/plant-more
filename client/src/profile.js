@@ -42,7 +42,7 @@ export default function Profile({
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
             <div className="gridPlants">
-                <FavoritePlants deleteClick={deleteClick} deleteClickNumTwo={deleteClickNumTwo} id={id} />
+                <FavoritePlants location deleteClick={deleteClick} deleteClickNumTwo={deleteClickNumTwo} id={id} />
             </div>
             
         </div>
