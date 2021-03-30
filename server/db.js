@@ -243,3 +243,9 @@ module.exports.deleteWishlist= (id) => {
     return db.query(q, params);
 };
 
+module.exports.deleteAvailable= (id) => {
+    const q = `DELETE FROM availablePlants WHERE id = ($1)`;
+    const params = [id];
+    return db.query(q, params);
+};
+

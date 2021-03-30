@@ -469,6 +469,14 @@ app.post(`/deleteWishlistPlants`, (req, res) => {
     }).catch((err) => console.log("error in db.deleteWishlist", err));
 });
 
+app.post(`/deleteOfferedPlants`, (req, res) => {
+    const { id } = req.body;
+    db.deleteAvailable(id).then((response) => {
+        console.log("response van db.deleteAvailable", response);
+        res.json({ success: true});
+    }).catch((err) => console.log("error in db.deleteAvailable", err));
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome

@@ -84,7 +84,7 @@ export async function getFavoritePlants(id) {
     //console.log("data", data);
     return {
         type: "FAVORITE_PLANTS",
-        dataFromFavoritePlants: data
+        dataFromFavoritePlants: data,
     };
 }
 
@@ -93,7 +93,7 @@ export async function getOfferedPlants(id) {
     //console.log("data van getOfferedPlants", data);
     return {
         type: "OFFERED_PLANTS",
-        dataFromOfferedPlants: data
+        dataFromOfferedPlants: data,
     };
 }
 
@@ -102,7 +102,7 @@ export async function findOffers(apiid) {
     console.log("data uit action seeOfferedPlants", data);
     return {
         type: "SEE_OFFERS",
-        dataFromSeeOffers: data,    
+        dataFromSeeOffers: data,
     };
 }
 
@@ -114,14 +114,19 @@ export async function privateMessage(message) {
 }
 
 export async function deleteWishlist(id) {
-    const { data } = await axios.post(`/deleteWishlistPlants`, {id: id}); 
+    const { data } = await axios.post(`/deleteWishlistPlants`, { id: id });
     console.log("data van axios post deleteOffered", data);
     return {
         type: "DELETE_WISHED_PLANTS",
-        data: id
+        data: id,
     };
 }
 
-
-
-
+export async function deleteOffered(id) {
+    const { data } = await axios.post(`/deleteOfferedPlants`, { id: id });
+    console.log("data van axios post deleteAvailable", data);
+    return {
+        type: "DELETE_AVAILABLE_PLANTS",
+        data: id,
+    };
+}

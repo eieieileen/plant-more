@@ -106,6 +106,19 @@ export function reducer(state ={ private: [{}] }, action) {
         //  online: state.online.filter((left) => {
         //         return left.id != action.data.user;
         //     }),
+    } else if (action.type === "DELETE_AVAILABLE_PLANTS") {
+        state = {
+            ...state,
+            offPlants: state.offPlants.filter((weg) => {
+                return weg.id != action.data;
+            })
+        };
     }
+    // else if (action.type === "OFFERED_PLANTS") {
+    //     state = {
+    //         ...state,
+    //         offPlants: action.dataFromOfferedPlants,
+    //     };
+
     return state;
 }

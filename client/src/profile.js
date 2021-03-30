@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteWishlist } from "./actions";
+import { deleteWishlist, deleteOffered } from "./actions";
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
 import FavoritePlants from "./favoritePlants";
@@ -23,6 +23,11 @@ export default function Profile({
         console.log("i want to delete the offered plant");
     }
 
+    function deleteClickNumTwo(id) {
+        dispatch(deleteOffered(id));
+        console.log("clicked delete button num 2");
+    }
+
     return (
         <div className="profilePage">
             <div className="bioPicClass">
@@ -37,7 +42,7 @@ export default function Profile({
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
             <div className="gridPlants">
-                <FavoritePlants deleteClick={deleteClick} id={id} />
+                <FavoritePlants deleteClick={deleteClick} deleteClickNumTwo={deleteClickNumTwo} id={id} />
             </div>
             
         </div>
