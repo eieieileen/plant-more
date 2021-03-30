@@ -67,7 +67,7 @@ export default function PlantInfo() {
             {plantInfo && (
                 <div>
                     <p>{plantInfo.common_name} </p>
-                    <img src={plantInfo.image_url}></img>
+                    <img src={plantInfo.image_url || "/default.jpg"}></img>
                     {favorite && (
                         <button
                             onClick={() =>

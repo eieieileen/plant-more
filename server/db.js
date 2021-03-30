@@ -237,8 +237,8 @@ module.exports.newPM = (sender_id, recipient_id, message) => {
     return db.query(q, params);
 };
 
-module.exports.deleteOffered = (id) => {
-    const q = `DELETE FROM availablePlants WHERE id = ($1)`;
+module.exports.deleteWishlist= (id) => {
+    const q = `DELETE FROM plants WHERE id = ($1)`;
     const params = [id];
     return db.query(q, params);
 };

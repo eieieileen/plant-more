@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { deleteWishlist } from "./actions";
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
 import FavoritePlants from "./favoritePlants";
@@ -12,8 +14,12 @@ export default function Profile({
     editBio,
     id,
 }) {
-    function deleteClick() {
-        dispatch(deleteOffered());
+    const dispatch = useDispatch();
+
+
+
+    function deleteClick(id) { 
+        dispatch(deleteWishlist(id));
         console.log("i want to delete the offered plant");
     }
 

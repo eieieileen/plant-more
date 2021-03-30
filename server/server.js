@@ -461,6 +461,14 @@ app.get(`/seeOfferedPlants/:apiid`, (req, res) => {
         .catch((err) => console.log("error in db.infoOfferedPlants", err));
 });
 
+app.post(`/deleteWishlistPlants`, (req, res) => {
+    const { id } = req.body;
+    db.deleteWishlist(id).then((response) => {
+        console.log("response van db.deleteWishlist", response);
+        res.json({ success: true});
+    }).catch((err) => console.log("error in db.deleteWishlist", err));
+});
+
 //moet altijd onderaan staan
 app.get("*", function (req, res) {
     //runs if the user goes to literally any route except /welcome
@@ -480,6 +488,7 @@ server.listen(process.env.PORT || 3001, function () {
 ////// llistening //////
 
 let onlineUsers = {};
+let userCheck = {};
 //For social network io.on is under the server.listen
 io.on("connection", (socket) => {
     console.log(`socket with id: ${socket.id} has connected`);
@@ -494,8 +503,10 @@ io.on("connection", (socket) => {
     socket.join(userId);
 
     onlineUsers[userId] = socket.id;
+    userCheck[socket.id] = userId;
 
     const onlineUserIds = Object.keys(onlineUsers);
+    const numberCheck = Object.values(userCheck);
 
     db.getUsersByIds(onlineUserIds)
         .then(({ rows }) => {
@@ -504,7 +515,7 @@ io.on("connection", (socket) => {
         })
         .catch((err) => console.log("error in db.getUsersByIds", err));
 
-    if (onlineUserIds.filter((id) => id == userId).length == 1) {
+    if (numberCheck.filter((id) => id == userId).length == 1) {
         db.infoNewMessage(userId)
             .then(({ rows }) => {
                 //console.log("response van db.infoNewMessage", rows);
@@ -568,8 +579,8 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", function () {
         console.log(`socket with id: ${socket.id} just disconnected!`);
-        delete onlineUsers[socket.id];
-        if (Object.values(onlineUsers).indexOf(userId) < 0) {
+        delete userCheck[socket.id];
+        if (Object.values(userCheck).indexOf(userId) < 0) {
             socket.broadcast.emit("user left", { user: userId });
         }
     });

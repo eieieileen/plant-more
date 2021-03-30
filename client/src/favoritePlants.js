@@ -46,6 +46,9 @@ export default function favoritePlants({ id, deleteClick }) {
                                     </div>
                                 </Link>
                             </div>
+                            <button onClick={() => deleteClick(fav.id)}>
+                                delete
+                            </button>
                         </div>
                     ))}
             </div>
@@ -65,9 +68,6 @@ export default function favoritePlants({ id, deleteClick }) {
                                         off.scientific_name}
                                 </p>
                             </div>
-                            <button onClick={() => deleteClick()}>
-                                delete
-                            </button>
                         </div>
                     ))}
             </div>

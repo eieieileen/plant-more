@@ -113,4 +113,15 @@ export async function privateMessage(message) {
     };
 }
 
+export async function deleteWishlist(id) {
+    const { data } = await axios.post(`/deleteWishlistPlants`, {id: id}); 
+    console.log("data van axios post deleteOffered", data);
+    return {
+        type: "DELETE_WISHED_PLANTS",
+        data: id
+    };
+}
+
+
+
 

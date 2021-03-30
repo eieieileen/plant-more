@@ -96,6 +96,16 @@ export function reducer(state ={ private: [{}] }, action) {
             private: action.data.reverse(),
         };
 
-    } 
+    } else if (action.type === "DELETE_WISHED_PLANTS") {
+        state = {
+            ...state,
+            favPlants: state.favPlants.filter((gone)=> {
+                return gone.id != action.data;
+            })
+        };
+        //  online: state.online.filter((left) => {
+        //         return left.id != action.data.user;
+        //     }),
+    }
     return state;
 }
