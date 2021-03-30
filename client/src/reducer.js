@@ -93,9 +93,9 @@ export function reducer(state ={ private: [{}] }, action) {
     } else if (action.type === "PRIVATE_MESSAGES") {
         state = {
             ...state,
-            private: [...state.private, action.data],
+            private: action.data.reverse(),
         };
 
-    }
+    } 
     return state;
 }

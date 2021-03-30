@@ -4,7 +4,7 @@ import { getFavoritePlants, getOfferedPlants, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./favoritePlants.css";
 
-export default function favoritePlants({ id }) {
+export default function favoritePlants({ id, deleteClick }) {
     const dispatch = useDispatch();
     const offeredPlants = useSelector(
         (state) => state.offPlants && state.offPlants
@@ -65,6 +65,9 @@ export default function favoritePlants({ id }) {
                                         off.scientific_name}
                                 </p>
                             </div>
+                            <button onClick={() => deleteClick()}>
+                                delete
+                            </button>
                         </div>
                     ))}
             </div>

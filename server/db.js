@@ -212,15 +212,22 @@ module.exports.infoOfferedPlants = (apiId) => {
     return db.query(q, params);
 };
 
+
 module.exports.recentPM = (sender_id, recipient_id) => {
-    const q = `SELECT privateMessaging.id, privateMessaging.sender_id, privateMessaging.recipient_id privateMessaging.created_at, privateMessaging.message, users.first_name, users.last_name, users.imageUrl
-    FROM privateMessaging WHERE (users.sender_id = $1 AND users.recipient_id = $2) OR (users.recipient_id = §1 AND users.sender_id = $2)
-    JOIN users 
-    ON users.id = privateMessaging.sender_id
-    ORDER BY created_at DESC limit 10`;
+    const q = `(SELECT privateMessaging.sender_id, privateMessaging.message, privateMessaging.created_at, users.imageurl, users.first_name, users.last_name
+        FROM privateMessaging
+        JOIN users
+        ON privateMessaging.sender_id = users.id
+        WHERE privateMessaging.sender_id = ($1) AND privateMessaging.recipient_id = ($2)
+        OR privateMessaging.recipient_id = ($1) AND privateMessaging.sender_id = ($2)
+    LIMIT 10)
+    ORDER BY privateMessaging.created_at DESC
+    `;
     const params = [sender_id, recipient_id];
     return db.query(q, params);
 };
+
+
 //4
 module.exports.newPM = (sender_id, recipient_id, message) => {
     const q = `INSERT INTO privateMessaging (sender_id, recipient_id, message)
@@ -230,18 +237,9 @@ module.exports.newPM = (sender_id, recipient_id, message) => {
     return db.query(q, params);
 };
 
+module.exports.deleteOffered = (id) => {
+    const q = `DELETE FROM availablePlants WHERE id = ($1)`;
+    const params = [id];
+    return db.query(q, params);
+};
 
-
-//chat
-// module.exports.infoNewMessage = (id) => {
-//     const q = `SELECT id,first_name, last_name, imageUrl FROM users WHERE id = ($1)`;
-//     const params = [id];
-//     return db.query(q, params);
-// };
-
-//online
-// module.exports.getUsersByIds = (arrayOfIds) => {
-//     const q = `SELECT id, first_name, last_name, imageUrl FROM users WHERE id = ANY($1)`;
-//     const params = [arrayOfIds];
-//     return db.query(q, params);
-// };

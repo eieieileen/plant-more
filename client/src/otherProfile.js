@@ -2,7 +2,7 @@ import { Component } from "react";
 import axios from "./axios";
 import FriendshipButton from "./friendshipButton";
 import FavoritePlants from "./favoritePlants";
-import Private from "./private";
+// import Private from "./private";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -47,7 +47,7 @@ export default class OtherProfile extends Component {
 
                     <FriendshipButton id={this.props.match.params.id} />
                 </div>
-                <Private id={this.props.match.params.id} />
+                
             </div>
         );
     }

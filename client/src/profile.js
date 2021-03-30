@@ -10,8 +10,13 @@ export default function Profile({
     bio,
     toggleUploader,
     editBio,
-    id
+    id,
 }) {
+    function deleteClick() {
+        dispatch(deleteOffered());
+        console.log("i want to delete the offered plant");
+    }
+
     return (
         <div className="profilePage">
             <div className="bioPicClass">
@@ -26,8 +31,9 @@ export default function Profile({
                 <BioEditor bio={bio} editBio={(arg) => editBio(arg)} />
             </div>
             <div className="gridPlants">
-                <FavoritePlants id={id} />
+                <FavoritePlants deleteClick={deleteClick} id={id} />
             </div>
+            
         </div>
     );
 }

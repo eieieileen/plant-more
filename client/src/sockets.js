@@ -5,7 +5,6 @@ import {
     userJoined,
     userLeft,
     privateMessage,
-    sendedMessage
 } from "./actions";
 import { io } from "socket.io-client";
 

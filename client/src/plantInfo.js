@@ -58,6 +58,7 @@ export default function PlantInfo() {
         setAvailableButton(!availableButton);
     }
 
+   
     //plantuploader
 
     return (
@@ -89,6 +90,7 @@ export default function PlantInfo() {
                             apiId={plantInfo.main_species_id}
                         />
                     )}
+                   
                 </div>
             )}
             {offeredPlants &&

@@ -58,9 +58,6 @@ export default class Uploader extends Component {
                 >
                     SUBMIT
                 </button>
-                {/* <Link id="logIn" to={"/login"}>
-                    CLICK HERE TO LOG IN
-                </Link> */}
             </div>
         );
     }

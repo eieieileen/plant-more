@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import OnlineUsers from "./onlineUsers";
 
 
+
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
     const elemRef = useRef();
@@ -37,7 +38,10 @@ export default function Chat() {
                                 <p className="infoMessage">
                                     <img
                                         className="chatImg"
-                                        src={chatMessages.imageurl || "/default.jpg"}
+                                        src={
+                                            chatMessages.imageurl ||
+                                            "/default.jpg"
+                                        }
                                     ></img>
                                     {chatMessages.first_name}{" "}
                                     {chatMessages.last_name} -{" "}
@@ -53,7 +57,8 @@ export default function Chat() {
                 onKeyDown={keyCheck}
             ></textarea>
             <OnlineUsers />
-           
+            {/* <Private id={this.props.match.params.id} /> */}
+          
         </div>
     );
 }

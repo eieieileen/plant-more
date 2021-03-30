@@ -497,8 +497,6 @@ io.on("connection", (socket) => {
 
     const onlineUserIds = Object.keys(onlineUsers);
 
-   
-
     db.getUsersByIds(onlineUserIds)
         .then(({ rows }) => {
             //console.log("response van onlineUserIds", rows);
@@ -559,24 +557,11 @@ io.on("connection", (socket) => {
         console.log("pm inside private message: ", message);
         db.newPM(userId, message.recipient_id, message.message)
             .then(() => {
-                db.infoNewMessage(userId).then(({rows}) => {
-                    //console.log("rows ban infoNewMessage", rows);
-                    socket.emit("sent message", {
-                        message: message.message,
-                        // id: rows[0].id,
-                        first_name: rows[0].first_name,
-                        last_name: rows[0].last_name,
-                        imageurl: rows[0].imageurl,
-    
-                    });
-                    io.to(onlineUsers[message.recipient_id]).emit("new pm", {
-                        message: message.message,
-                        // id: rows[0].id,
-                        first_name: rows[0].first_name,
-                        last_name: rows[0].last_name,
-                        imageurl: rows[0].imageurl,
-                    });
-                }).catch((err => console.log("error in db. private message", err)));
+                db.recentPM(userId, message.recipient_id).then(({rows}) => {
+                    socket.emit("sent message", rows);
+                    io.to(onlineUsers[message.recipient_id]).emit("new pm", rows);
+                }).catch((err) => console.log("error in db.recentPM", err));
+               
             })
             .catch((err) => console.log("error in db.newPM", err));
     });
