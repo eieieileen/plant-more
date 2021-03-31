@@ -1,0 +1,49 @@
+.otherProfileContainer {
+    display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.otherProfilePicture {
+        width: 350px;
+    border: 3px solid #6F9F95;
+    height: 350px;
+    object-fit: cover;
+}
+
+.otherProfileDiv {
+    display: flex;
+    justify-content: center;
+    grid-area: 1 / 1 / 2 / 2;
+    align-items: center; 
+    flex-direction: column; 
+    align-self: center;
+    
+}
+
+.otherProfileDiv h2 {
+    text-align: center;
+    width: 100%;
+    color: #2C6240;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.introOtherProfile {
+    margin-bottom: 5px;
+}
+
+.introBio {
+      width: 100%;
+    text-align: center;
+    font-family: 'Lora';
+    padding: 10px;
+    color: #2C6240;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;  
+    align-items: center;
+}

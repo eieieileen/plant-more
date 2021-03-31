@@ -316,7 +316,7 @@ app.get("/addFriends/:id", (req, res) => {
 
 app.post("/requestFriend", (req, res) => {
     const { action, otherUser } = req.body;
-    if (action === "ADD TACO FRIEND") {
+    if (action === "add friend") {
         db.friendRequest(req.session.loggedIn, otherUser)
             .then(({ rows }) => {
                 console.log("response van db.friendRequest", rows[0]);
@@ -324,8 +324,8 @@ app.post("/requestFriend", (req, res) => {
             })
             .catch((err) => console.log("error in db.friendRequest", err));
     } else if (
-        action == "CANCEL TACO FRIEND" ||
-        action == "UNFRIEND FRIENDLY TACO"
+        action == "cancel request" ||
+        action == "unfriend"
     ) {
         db.deleteFriend(req.session.loggedIn, otherUser)
             .then(({ rows }) => {

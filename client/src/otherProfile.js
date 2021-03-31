@@ -3,6 +3,7 @@ import axios from "./axios";
 import FriendshipButton from "./friendshipButton";
 import FavoritePlants from "./favoritePlants";
 // import Private from "./private";
+import "./otherProfile.css";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -30,24 +31,22 @@ export default class OtherProfile extends Component {
 
     render() {
         return (
-            <div className="profilePage">
-                <div className="bioPicClass">
-                    <h2>
+            <div className="otherProfileContainer">
+                <div className="otherProfileDiv">
+                    <h2 className="introOtherProfile">
                         {" "}
-                        HI EILEEN I AM OTHER PROFIEL
-                        {this.state.first_name} {this.state.last_name}
-                        <img
-                            className="bioPic"
-                            src={this.state.imageurl || "/default.jpg"}
-                        ></img>
-                        <br></br>
-                        {this.state.bio}
+                        this is {this.state.first_name} {this.state.last_name}
                     </h2>
-                    <FavoritePlants id={this.props.match.params.id} />
-
-                    <FriendshipButton id={this.props.match.params.id} />
+                    <img
+                        className="otherProfilePicture"
+                        src={this.state.imageurl || "/default.jpg"}
+                    ></img>
+                    <br></br>
+                    <p className="introBio">{this.state.bio} </p>
                 </div>
-                
+
+                <FavoritePlants id={this.props.match.params.id} />
+                <FriendshipButton id={this.props.match.params.id} />
             </div>
         );
     }

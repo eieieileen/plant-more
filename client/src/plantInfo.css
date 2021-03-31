@@ -16,7 +16,8 @@
      font-family: "Lora";
      text-align: center;
      /* z-index: 1; */
-     color: #5E824B;
+   color: #accac0;
+   margin-top: 5px;
 }
 
 .buttonWish {
@@ -41,3 +42,4 @@ width: 100px;
 .plantInfoCN {
     z-index: 30000;
 }
+

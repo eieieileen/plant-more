@@ -1,0 +1,14 @@
+.friendshipContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.friendship {
+    align-self: center;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lora';
+}

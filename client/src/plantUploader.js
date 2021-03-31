@@ -1,5 +1,6 @@
 import axios from "./axios";
 import { useState } from "react";
+import "./plantUploader.css";
 
 export default function PlantUploader({ apiId, imageurl, common_name, setAvailableButton }) {
     //use state gebruiken om object
