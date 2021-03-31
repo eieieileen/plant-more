@@ -31,14 +31,15 @@ export default function Private({ id }) {
     };
 
     return (
-        <div ref={elemRef}>
+
+        <div className="privateContainer" ref={elemRef}>
             {privateMessage &&
                 privateMessage.map((privateMessage, index) => (
                     <div key={index}>
-                        <img src={privateMessage.imageurl}></img>
+                        <img className="privateImg" src={privateMessage.imageurl}></img>
                         <p>
                             {privateMessage.first_name} {" "}
-                            {privateMessage.last_name}
+                            {privateMessage.last_name} {" "} 
                             {privateMessage.message}
                         </p>
                     </div>

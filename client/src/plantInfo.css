@@ -1,0 +1,43 @@
+.plantInfoImg {
+    width: 500px;
+    height: 500px;
+    border-radius: 25%;
+    border: 3px solid #6F9F95;
+    margin-top: 30px;
+}
+
+.plantInfoContainer {
+    /* border: 3px solid pink; */
+    display: flex;
+    justify-content: center;
+}
+
+.plantInfoContainer h1 {
+     font-family: "Lora";
+     text-align: center;
+     /* z-index: 1; */
+     color: #5E824B;
+}
+
+.buttonWish {
+font-family: "Lora";
+width: 100px;
+    align-self: center;
+    margin: 10px;
+}
+
+.buttonAvailable {
+    font-family: "Lora";
+    width: 100px;
+    align-self: center;
+     margin: 10px;
+}
+
+.plantInfoFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+.plantInfoCN {
+    z-index: 30000;
+}

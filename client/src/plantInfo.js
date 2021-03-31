@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import PlantUploader from "./plantUploader";
 import { findOffers } from "./actions";
 import { Link } from "react-router-dom";
+import "./plantInfo.css";
 
 export default function PlantInfo() {
     const [favorite, setFavorite] = useState(true);
@@ -62,14 +63,17 @@ export default function PlantInfo() {
     //plantuploader
 
     return (
-        <div>
-            <h1>plant info</h1>
+        <div className="plantInfoContainer">
             {plantInfo && (
-                <div>
-                    <p>{plantInfo.common_name} </p>
-                    <img src={plantInfo.image_url || "/default.jpg"}></img>
+                <div className="plantInfoFlex">
+                    <h1 className="plantInfoCN">{plantInfo.common_name || plantInfo.scientific_name}</h1>
+                    <img
+                        className="plantInfoImg"
+                        src={plantInfo.image_url || "/default2.png"}
+                    ></img>
                     {favorite && (
                         <button
+                            className="buttonWish"
                             onClick={() =>
                                 handleClick(
                                     plantInfo.main_species_id,
@@ -81,7 +85,12 @@ export default function PlantInfo() {
                             wishlist
                         </button>
                     )}
-                    <button onClick={() => availableClick()}>available</button>
+                    <button
+                        className="buttonAvailable"
+                        onClick={() => availableClick()}
+                    >
+                        available
+                    </button>
                     {availableButton && (
                         <PlantUploader
                             setAvailableButton={setAvailableButton}
@@ -90,7 +99,6 @@ export default function PlantInfo() {
                             apiId={plantInfo.main_species_id}
                         />
                     )}
-                   
                 </div>
             )}
             {offeredPlants &&

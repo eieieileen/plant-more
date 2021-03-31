@@ -17,7 +17,7 @@ export default function plantSearch() {
 
     return (
         <div className="outerPlantSearchContainer">
-            <h1>look for your favourite plants</h1>
+            <h1>find your favourite plants</h1>
             <input onKeyDown={keyCheck}></input>
             <div className="plantSearchContainer">
                 {plants &&
