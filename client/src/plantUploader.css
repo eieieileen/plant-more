@@ -1,0 +1,47 @@
+.plantUploaderContainer {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.plantUploader {
+    /* z-index: 4; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    background-color: #accac0;
+    /* margin: 10px; */
+    font-family: "Lora";
+    height: auto;
+    /* padding: 15px;
+    padding-bottom: 30px; */
+    padding: 20px;
+    box-shadow: 0 8px 6px -6px black;
+    width: 400px;
+    /* height: 900px; */
+}
+
+.plantUploader input {
+    width: 380px;
+    margin: 3px;
+}
+.plantUploader form {
+    display: flex;
+    flex-direction: column;
+}
+.buttonPlantUploader {
+    font-family: "Lora";
+}

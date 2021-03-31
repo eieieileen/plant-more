@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveUsers, acceptFriend, unfriend } from "./actions";
+import { Link } from "react-router-dom";
 import "./friends.css";
 
 export default function Friends() {
@@ -29,10 +30,15 @@ export default function Friends() {
         <div className="friendsFlex">
             {friend.map((friend, index) => (
                 <div className="requestDiv" key={index}>
-                    <img className="requestImg" src={friend.imageurl}></img>
-                    <p className="requestName">
-                        {friend.first_name} {friend.last_name}
-                    </p>
+                    <Link to={`/user/${friend.id}`}>
+                        <img
+                            className="requestImg"
+                            src={friend.imageurl || "/default.jpg"}
+                        ></img>
+                        <p className="requestName">
+                            {friend.first_name} {friend.last_name}
+                        </p>
+                    </Link>
                     <button
                         className="friendsButton"
                         onClick={() => dispatch(unfriend(friend.id))}
@@ -43,10 +49,15 @@ export default function Friends() {
             ))}
             {wannabe.map((friend, index) => (
                 <div className="requestDiv" key={index}>
-                    <img className="requestImg" src={friend.imageurl}></img>
-                    <p className="requestName">
-                        {friend.first_name} {friend.last_name}
-                    </p>
+                    <Link to={`/user/${friend.id}`}>
+                        <img
+                            className="requestImg"
+                            src={friend.imageurl || "/default.jpg"}
+                        ></img>
+                        <p className="requestName">
+                            {friend.first_name} {friend.last_name}
+                        </p>
+                    </Link>
                     <button
                         className="friendsButton"
                         onClick={() => dispatch(acceptFriend(friend.id))}

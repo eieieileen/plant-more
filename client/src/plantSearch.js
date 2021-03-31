@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Avatar } from "@material-ui/core";
 import { getApi, getPlantInfo } from "./actions";
 import { Link } from "react-router-dom";
 import "./plantSearch.css";
@@ -36,7 +35,9 @@ export default function plantSearch() {
                                         "./default2.png"
                                     }
                                 ></img>
+                                
                                 <p>
+
                                     {plants.common_name ||
                                         plants.scientific_name}{" "}
                                 </p>

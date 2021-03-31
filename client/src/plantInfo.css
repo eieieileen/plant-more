@@ -9,7 +9,8 @@
 .plantInfoContainer {
     /* border: 3px solid pink; */
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+
 }
 
 .plantInfoContainer h1 {
@@ -43,3 +44,24 @@ width: 100px;
     z-index: 30000;
 }
 
+.offeredPlantsName {
+    font-family: "Lora";
+    color: #accac0;
+    text-align: center;
+}
+
+.offeredPlantsName h4 {
+    font-family: "Lora";
+    color: #accac0;
+    text-align: center;
+}
+
+.offeredPlantsImg {
+    width: 150px;
+    height: 150px;
+    border: 3px solid #6F9F95;
+    border-radius: 50%;
+    margin-top: 15px;
+    object-fit: cover;
+}
+   

@@ -2,13 +2,17 @@ import axios from "./axios";
 import { useState } from "react";
 import "./plantUploader.css";
 
-export default function PlantUploader({ apiId, imageurl, common_name, setAvailableButton }) {
+export default function PlantUploader({
+    apiId,
+    imageurl,
+    common_name,
+    setAvailableButton,
+}) {
     //use state gebruiken om object
     const [inputFields, setInputFields] = useState({
         apiId: apiId,
         imageurl: imageurl,
         common_name: common_name,
-
     });
 
     function handleClick() {
@@ -47,45 +51,44 @@ export default function PlantUploader({ apiId, imageurl, common_name, setAvailab
     }
 
     return (
-        <div>
-            <h1>HI EILEEN THIS IS PLANT plantUploader</h1>
-            <form>
-                <label>
-                    {/* e target value en file handlen naar s3 */}
-                    <input
-                        onChange={(e) => handleChange(e)}
-                        type="text"
-                        name="name"
-                        placeholder="name"
-                    />
-                    <input
-                        onChange={(e) => handleChange(e)}
-                        type="number"
-                        name="number"
-                        placeholder="age"
-                    />
-                    <input
-                        onChange={(e) => handleChange(e)}
-                        type="text"
-                        name="note"
-                        placeholder="tell a little more about the plant"
-                    />
-                    <input
-                        onChange={(e) => handleChange(e)}
-                        type="text"
-                        name="location"
-                        placeholder="location"
-                    />
-                    <input
-                        onChange={(e) => fileChange(e)}
-                        type="file"
-                        name="ownImage"
-                        accept="image/*"
-                    />
-                </label>
-            </form>
-            <button onClick={() => handleClick()}>submit</button>
+        <div className="plantUploaderContainer">
+            <div className="plantUploader">
+                <form>
+                    <label>
+                        <input
+                            onChange={(e) => handleChange(e)}
+                            type="text"
+                            name="name"
+                            placeholder="name"
+                        />
+                        <input
+                            onChange={(e) => handleChange(e)}
+                            type="number"
+                            name="number"
+                            placeholder="age"
+                        />
+                        <input
+                            onChange={(e) => handleChange(e)}
+                            type="text"
+                            name="note"
+                            placeholder="tell a little more about the plant"
+                        />
+                        <input
+                            onChange={(e) => handleChange(e)}
+                            type="text"
+                            name="location"
+                            placeholder="location"
+                        />
+                        <input
+                            onChange={(e) => fileChange(e)}
+                            type="file"
+                            name="ownImage"
+                            accept="image/*"
+                        />
+                    </label>
+                </form>
+                <button className="buttonPlantUploader" onClick={() => handleClick()}>submit</button>
+            </div>
         </div>
     );
 }
-//input field voor notitie, leeftijd,XX ownimageXX, locatieXX, nameXX

@@ -66,7 +66,9 @@ export default function PlantInfo() {
         <div className="plantInfoContainer">
             {plantInfo && (
                 <div className="plantInfoFlex">
-                    <h1 className="plantInfoCN">{plantInfo.common_name || plantInfo.scientific_name}</h1>
+                    <h1 className="plantInfoCN">
+                        {plantInfo.common_name || plantInfo.scientific_name}
+                    </h1>
                     <img
                         className="plantInfoImg"
                         src={plantInfo.image_url || "/default2.png"}
@@ -101,15 +103,21 @@ export default function PlantInfo() {
                     )}
                 </div>
             )}
-            {offeredPlants &&
-                offeredPlants.map((plant, index) => (
-                    <div key={index}>
-                        <Link to={`/user/${plant.userid}`}>
-                            <h1>{plant.nick_name}</h1>
-                            <img src={plant.ownimage}></img>
-                        </Link>
-                    </div>
-                ))}
+            <div>
+                {offeredPlants && <h1>Offered plants</h1>}
+                {offeredPlants &&
+                    offeredPlants.map((plant, index) => (
+                        <div className="offeredPlantsName" key={index}>
+                            <Link to={`/user/${plant.userid}`}>
+                                <h4>{plant.nick_name}</h4>
+                                <img
+                                    className="offeredPlantsImg"
+                                    src={plant.ownimage}
+                                ></img>
+                            </Link>
+                        </div>
+                    ))}
+            </div>
         </div>
     );
 }
