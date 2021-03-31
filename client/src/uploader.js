@@ -45,20 +45,22 @@ export default class Uploader extends Component {
 
     render() {
         return (
-            <div className="uploader">
-                <h1>UPLOAD PROFILE PICTURE</h1>
-                <input
-                    onChange={(e) => this.handleChange(e)}
-                    type="file"
-                    name="uploadImg"
-                    accept="image/*"
-                />
-                <button
-                    className="submitButton"
-                    onClick={() => this.handleClick()}
-                >
-                    SUBMIT
-                </button>
+            <div className="uploaderContainer">
+                <div className="uploader">
+                    <h1>UPLOAD PROFILE PICTURE</h1>
+                    <input
+                        onChange={(e) => this.handleChange(e)}
+                        type="file"
+                        name="uploadImg"
+                        accept="image/*"
+                    />
+                    <button
+                        className="submitButton"
+                        onClick={() => this.handleClick()}
+                    >
+                        SUBMIT
+                    </button>
+                </div>
             </div>
         );
     }

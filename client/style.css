@@ -33,48 +33,6 @@
 
 /* Chat  */
 
-.chatFlex {
-    display: flex;
-    flex-direction: column;
-}
-
-.classChat {
-    display: flex;
-    font-family: "Roboto Slab", serif;
-    padding: 10px;
-    align-items: center;
-    margin-top: 40px;
-    justify-content: center;
-}
-
-.chat-container {
-    height: 400px;
-    background-color: #fbedc0;
-    overflow-y: auto;
-    width: 500px;
-    border: 3px solid #bafdb9;
-    text-align: center;
-}
-
-.chatImg {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-#chatArea {
-    width: 500px;
-    height: 75px;
-    align-self: center;
-}
-
-.infoMessage {
-    display: flex;
-}
-
-/* end chat */
-
 /* onlineUsers */
 /* end onlineUsers */
 /* otherProfile */

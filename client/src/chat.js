@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { socket } from "./sockets";
 import { useSelector } from "react-redux";
 import OnlineUsers from "./onlineUsers";
-
-
+import "./chat.css";
 
 export default function Chat() {
     //chatMessages will be undefined at first once it is hooked up properly with redux, it should be an array of chat messages.
@@ -50,15 +49,14 @@ export default function Chat() {
                             </div>
                         ))}
                 </div>
+                <textarea
+                    className="chatArea"
+                    placeholder="hello!"
+                    onKeyDown={keyCheck}
+                ></textarea>
             </div>
-            <textarea
-                id="chatArea"
-                placeholder="TELL YOUR LOVE ABOUT TACO'S HERE"
-                onKeyDown={keyCheck}
-            ></textarea>
             <OnlineUsers />
             {/* <Private id={this.props.match.params.id} /> */}
-          
         </div>
     );
 }
