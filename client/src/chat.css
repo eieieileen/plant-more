@@ -21,6 +21,7 @@ grid-row-gap: 0px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ACCAC0;
+    margin: 2px;
 }
 
 .chatArea {
@@ -34,7 +35,8 @@ grid-row-gap: 0px;
 .infoMessage {
     display: flex;
     margin: 3px;
-  
+    align-items: center;
+    
 } 
 
 .classChat {

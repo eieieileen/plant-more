@@ -1,19 +1,21 @@
 import { socket } from "./sockets";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
+import "./private.css";
 // import {getRecentPrivates } from "./actions";
 
-export default function Private({ id }) {
+export default function Private({ id, first }) {
     // const dispatch = useDispatch();
     const privateMessage = useSelector(
         (state) => state.private && state.private
     );
     const elemRef = useRef();
-    const pm = useSelector ((state) => state.pm && state.pm);
+    const pm = useSelector((state) => state.pm && state.pm);
 
     useEffect(() => {
-        // dispatch(getRecentPrivates(id));
-        const newScrollTop = elemRef.current.scrollHeight - elemRef.current.clientHeight;
+        //dispatch(getRecentPrivates(id));
+        const newScrollTop =
+            elemRef.current.scrollHeight - elemRef.current.clientHeight;
         elemRef.current.scrollTop = newScrollTop;
     }, [pm]);
 
@@ -31,20 +33,27 @@ export default function Private({ id }) {
     };
 
     return (
-
-        <div className="privateContainer" ref={elemRef}>
-            {privateMessage &&
-                privateMessage.map((privateMessage, index) => (
-                    <div key={index}>
-                        <img className="privateImg" src={privateMessage.imageurl}></img>
-                        <p>
-                            {privateMessage.first_name} {" "}
-                            {privateMessage.last_name} {" "} 
-                            {privateMessage.message}
-                        </p>
-                    </div>
-                ))}
-            <textarea onKeyDown={keyCheck}></textarea>
+        <div>
+            <div className="privateContainer" ref={elemRef}>
+                <h4 className="chatWith">chat with {first}</h4>
+                {privateMessage &&
+                    privateMessage.map((privateMessage, index) => (
+                        <div className="flexDiv" key={index}>
+                            {/* <img className="privateImg" src={privateMessage.imageurl || '/default.jpg'}></img> */}
+                            <p className="textPrivate">
+                                {privateMessage.first_name}
+                                {"  "}
+                            </p>
+                            <p className="privateMessage">{privateMessage.message}</p>
+                            {/* {privateMessage.last_name}{" "} */}
+                        </div>
+                    ))}
+            </div>
+            <textarea
+                placeholder="hello!"
+                className="txtarea"
+                onKeyDown={keyCheck}
+            ></textarea>
         </div>
     );
 }

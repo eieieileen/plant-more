@@ -23,16 +23,25 @@ export default function OnlineUsers() {
             <h3>online users</h3>
             {onlineUsers &&
                 onlineUsers.map((online, index) => (
-                    <div key={index}>
-                        <img
-                            onClick={() => handleClick(online.id)}
-                            className="chatImg"
-                            src={online.imageurl || "/default.jpg"}
-                        ></img>
-                        <p>
-                            {online.first_name} {online.last_name}
-                        </p>
-                        {modal == online.id && <Private id={online.id} />}
+                    <div className="onlineUserDiv" key={index}>
+                        <div className="onlineInfo">
+                            <img
+                                onClick={() => handleClick(online.id)}
+                                className="chatImg"
+                                src={online.imageurl || "/default.jpg"}
+                            ></img>
+                            <p>
+                                {online.first_name} {online.last_name}
+                            </p>
+                        </div>
+                        <div className="modal">
+                            {modal == online.id && (
+                                <Private
+                                    first={online.first_name}
+                                    id={online.id}
+                                />
+                            )}
+                        </div>
                     </div>
                 ))}
         </div>

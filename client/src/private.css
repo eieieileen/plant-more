@@ -1,5 +1,5 @@
 .privateContainer {
-    height: 700px;
+     border: 3px solid #6F9F95;
 }
 
 .privateImg  {
@@ -7,4 +7,30 @@
     width: 150px;
     border-radius: 50%;
     border: 2px solid #6F9F95;
+}
+
+.chatWith {
+    color: #6F9F95;
+}
+
+.txtarea {
+    border: 1px dotted navy;
+    width: 280px;
+    margin-top: 3px;
+}
+
+.textPrivate {
+    color: #2C6240;
+    text-align: left;
+    padding: 5px;
+}
+
+.privateMessage {
+    color: #accac0;
+    text-align: left;
+}
+
+.flexDiv {
+    display: flex;
+    align-items: center;
 }

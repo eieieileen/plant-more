@@ -580,7 +580,6 @@ io.on("connection", (socket) => {
                     socket.emit("sent message", rows);
                     io.to(onlineUsers[message.recipient_id]).emit("new pm", rows);
                 }).catch((err) => console.log("error in db.recentPM", err));
-               
             })
             .catch((err) => console.log("error in db.newPM", err));
     });
