@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveUsers, acceptFriend, unfriend } from "./actions";
+import "./friends.css";
 
 export default function Friends() {
     const dispatch = useDispatch();
@@ -26,7 +27,6 @@ export default function Friends() {
 
     return (
         <div className="friendsFlex">
-            {/* <h1>HI EILEEN THIS IS FRIENDS</h1> */}
             {friend.map((friend, index) => (
                 <div className="requestDiv" key={index}>
                     <img className="requestImg" src={friend.imageurl}></img>

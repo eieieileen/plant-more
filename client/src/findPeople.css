@@ -35,5 +35,5 @@
     object-fit: contain;
     flex-direction: row;
     margin: 10px;
- 
+     border-radius: 25%;
 }

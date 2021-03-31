@@ -28,7 +28,7 @@ grid-row-gap: 0px;
     height: 75px;
     align-self: center;
     margin-top: 3px;
-   
+    font-family: 'Lora', serif;
 }
 
 .infoMessage {
@@ -50,6 +50,7 @@ grid-row-gap: 0px;
 
 .infoMessage {
     text-align: center;
-    margin-right: 3
+    margin-right: 3;
+    font-family: 'Lora', serif;
 }
 

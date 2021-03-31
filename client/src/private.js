@@ -37,7 +37,7 @@ export default function Private({ id }) {
                     <div key={index}>
                         <img src={privateMessage.imageurl}></img>
                         <p>
-                            {privateMessage.first_name}
+                            {privateMessage.first_name} {" "}
                             {privateMessage.last_name}
                             {privateMessage.message}
                         </p>

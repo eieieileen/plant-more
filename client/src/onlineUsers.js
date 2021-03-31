@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Private from "./private";
 import { useState } from "react";
+import "./onlineUsers.css";
 
 export default function OnlineUsers() {
     const onlineUsers = useSelector((state) => state.online && state.online);
@@ -18,14 +19,14 @@ export default function OnlineUsers() {
 
 
     return (
-        <div className="OUdiv">
-            <h3>ONLINE TACO&apos;S</h3>
+        <div className="onlineUsersContainer">
+            <h3>online users</h3>
             {onlineUsers &&
                 onlineUsers.map((online, index) => (
                     <div key={index}>
                         <img
                             onClick={() => handleClick(online.id)}
-                            className="chatImgOU"
+                            className="chatImg"
                             src={online.imageurl || "/default.jpg"}
                         ></img>
                         <p>

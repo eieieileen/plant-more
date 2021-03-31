@@ -1,0 +1,33 @@
+.requestImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 25%;
+     border: 3px solid #6F9F95;
+     object-fit: cover;
+     margin: 10px;
+      
+}
+
+.requestDiv p {
+    /* margin: -6px; */
+    text-align: center;
+}
+
+.friendsFlex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin-top: 100px;
+}
+
+.requestName {
+    font-family: 'Lora', serif;
+    padding: 10px; 
+}
+
+.friendsButton {
+    font-family: 'Lora', serif;
+    padding: 10px;
+    margin-left: 40px;
+}
