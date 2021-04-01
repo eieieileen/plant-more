@@ -31,6 +31,7 @@ export default function Chat() {
         <div className="chatFlex">
             <div className="classChat">
                 <div className="chat-container" ref={elemRef}>
+                    <h3>public chat</h3>
                     {chatMessages &&
                         chatMessages.map((chatMessages, index) => (
                             <div key={index}>
@@ -42,9 +43,11 @@ export default function Chat() {
                                             "/default.jpg"
                                         }
                                     ></img>
-                                    {chatMessages.first_name}{" "}
-                                    {chatMessages.last_name} -{" "}
-                                    {chatMessages.message}{" "}
+                                    <p className="chatNames">
+                                        {chatMessages.first_name}{" "}
+                                        {chatMessages.last_name}-{" "}
+                                    </p>
+                                    <p className="chatBericht">{chatMessages.message} </p>
                                 </p>
                             </div>
                         ))}

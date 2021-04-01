@@ -76,7 +76,7 @@ export default function favoritePlants({
                                 <div className="common_name">
                                     <img
                                         className="favPlants"
-                                        src={off.ownImage || off.imageurl}
+                                        src={off.ownimage || off.imageurl}
                                     ></img>
                                     <p>
                                         {off.nick_name ||

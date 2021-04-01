@@ -90,7 +90,7 @@ export async function getFavoritePlants(id) {
 
 export async function getOfferedPlants(id) {
     const { data } = await axios.get(`/getOfferedPlants/${id}`);
-    //console.log("data van getOfferedPlants", data);
+    console.log("data van getOfferedPlants", data);
     return {
         type: "OFFERED_PLANTS",
         dataFromOfferedPlants: data,
