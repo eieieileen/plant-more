@@ -323,10 +323,7 @@ app.post("/requestFriend", (req, res) => {
                 res.json({ rows: rows[0], loggedIn: req.session.loggedIn });
             })
             .catch((err) => console.log("error in db.friendRequest", err));
-    } else if (
-        action == "cancel request" ||
-        action == "unfriend"
-    ) {
+    } else if (action == "cancel request" || action == "unfriend") {
         db.deleteFriend(req.session.loggedIn, otherUser)
             .then(({ rows }) => {
                 console.log("response van db.deleteFriend", rows[0]);
@@ -463,18 +460,22 @@ app.get(`/seeOfferedPlants/:apiid`, (req, res) => {
 
 app.post(`/deleteWishlistPlants`, (req, res) => {
     const { id } = req.body;
-    db.deleteWishlist(id).then((response) => {
-        console.log("response van db.deleteWishlist", response);
-        res.json({ success: true});
-    }).catch((err) => console.log("error in db.deleteWishlist", err));
+    db.deleteWishlist(id)
+        .then((response) => {
+            console.log("response van db.deleteWishlist", response);
+            res.json({ success: true });
+        })
+        .catch((err) => console.log("error in db.deleteWishlist", err));
 });
 
 app.post(`/deleteOfferedPlants`, (req, res) => {
     const { id } = req.body;
-    db.deleteAvailable(id).then((response) => {
-        console.log("response van db.deleteAvailable", response);
-        res.json({ success: true});
-    }).catch((err) => console.log("error in db.deleteAvailable", err));
+    db.deleteAvailable(id)
+        .then((response) => {
+            console.log("response van db.deleteAvailable", response);
+            res.json({ success: true });
+        })
+        .catch((err) => console.log("error in db.deleteAvailable", err));
 });
 
 //moet altijd onderaan staan
@@ -571,15 +572,29 @@ io.on("connection", (socket) => {
         io.sockets.emit("sending back to client", msg);
     });
 
+    socket.on("get recent private messages", (user) => {
+        db.recentPM(userId, user.id).then(({rows}) => {
+            console.log("rows van db.infoNewMessage", rows);
+            socket.emit("recent messages incoming", rows);
+            // io.to(onlineUsers[user.id]).emit("new pm", rows);
+        }).catch((err) => console.log("error in socket on de nieuwe voor pm", err));
+
+    });
+
     //private messaging
     socket.on("my private message", (message) => {
         console.log("pm inside private message: ", message);
         db.newPM(userId, message.recipient_id, message.message)
             .then(() => {
-                db.recentPM(userId, message.recipient_id).then(({rows}) => {
-                    socket.emit("sent message", rows);
-                    io.to(onlineUsers[message.recipient_id]).emit("new pm", rows);
-                }).catch((err) => console.log("error in db.recentPM", err));
+                db.recentPM(userId, message.recipient_id)
+                    .then(({ rows }) => {
+                        socket.emit("sent message", rows);
+                        io.to(onlineUsers[message.recipient_id]).emit(
+                            "new pm",
+                            rows
+                        );
+                    })
+                    .catch((err) => console.log("error in db.recentPM", err));
             })
             .catch((err) => console.log("error in db.newPM", err));
     });

@@ -14,10 +14,15 @@ export default function Private({ id, first }) {
 
     useEffect(() => {
         //dispatch(getRecentPrivates(id));
-        const newScrollTop =
-            elemRef.current.scrollHeight - elemRef.current.clientHeight;
-        elemRef.current.scrollTop = newScrollTop;
-    }, [pm]);
+        if (id) {
+            socket.emit("get recent private messages", {
+                id: id,
+            });
+            const newScrollTop =
+                elemRef.current.scrollHeight - elemRef.current.clientHeight;
+            elemRef.current.scrollTop = newScrollTop;
+        }
+    }, [pm, id]);
 
     // met useSelector de private messages overal renderen waar wil
 
@@ -44,7 +49,9 @@ export default function Private({ id, first }) {
                                 {privateMessage.first_name}
                                 {"  "}
                             </p>
-                            <p className="privateMessage">{privateMessage.message}</p>
+                            <p className="privateMessage">
+                                {privateMessage.message}
+                            </p>
                             {/* {privateMessage.last_name}{" "} */}
                         </div>
                     ))}
