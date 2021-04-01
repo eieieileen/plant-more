@@ -573,12 +573,15 @@ io.on("connection", (socket) => {
     });
 
     socket.on("get recent private messages", (user) => {
-        db.recentPM(userId, user.id).then(({rows}) => {
-            console.log("rows van db.infoNewMessage", rows);
-            socket.emit("recent messages incoming", rows);
-            // io.to(onlineUsers[user.id]).emit("new pm", rows);
-        }).catch((err) => console.log("error in socket on de nieuwe voor pm", err));
-
+        db.recentPM(userId, user.id)
+            .then(({ rows }) => {
+                console.log("rows van db.infoNewMessage", rows);
+                socket.emit("recent messages incoming", rows);
+                // io.to(onlineUsers[user.id]).emit("new pm", rows);
+            })
+            .catch((err) =>
+                console.log("error in socket on de nieuwe voor pm", err)
+            );
     });
 
     //private messaging
@@ -588,6 +591,7 @@ io.on("connection", (socket) => {
             .then(() => {
                 db.recentPM(userId, message.recipient_id)
                     .then(({ rows }) => {
+                        console.log("my private message", rows);
                         socket.emit("sent message", rows);
                         io.to(onlineUsers[message.recipient_id]).emit(
                             "new pm",

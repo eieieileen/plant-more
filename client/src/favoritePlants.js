@@ -62,7 +62,7 @@ export default function favoritePlants({
                         </div>
                     ))}
             </div>
-            <h3 className="offeredPlants">offered plants</h3>
+            <h3 className="offeredPlants">available plants</h3>
             <div className="offeredPlants">
                 {offeredPlants &&
                     offeredPlants.map((off, index) => (

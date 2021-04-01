@@ -214,7 +214,7 @@ module.exports.infoOfferedPlants = (apiId) => {
 
 
 module.exports.recentPM = (sender_id, recipient_id) => {
-    const q = `(SELECT privateMessaging.sender_id, privateMessaging.message, privateMessaging.created_at, users.imageurl, users.first_name, users.last_name
+    const q = `(SELECT privateMessaging.sender_id, privateMessaging.recipient_id, privateMessaging.message, privateMessaging.created_at, users.imageurl, users.first_name, users.last_name
         FROM privateMessaging
         JOIN users
         ON privateMessaging.sender_id = users.id

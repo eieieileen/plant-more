@@ -1,11 +1,13 @@
 import { socket } from "./sockets";
 import { useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./private.css";
+import { Link } from "react-router-dom";
 // import {getRecentPrivates } from "./actions";
 
 export default function Private({ id, first }) {
     // const dispatch = useDispatch();
+    const [show, setShow] = useState(false);
     const privateMessage = useSelector(
         (state) => state.private && state.private
     );
@@ -14,14 +16,16 @@ export default function Private({ id, first }) {
 
     useEffect(() => {
         //dispatch(getRecentPrivates(id));
-        if (id) {
+        if (id && !show) {
             socket.emit("get recent private messages", {
                 id: id,
             });
-            const newScrollTop =
-                elemRef.current.scrollHeight - elemRef.current.clientHeight;
-            elemRef.current.scrollTop = newScrollTop;
+            setShow(true);
         }
+
+        const newScrollTop =
+            elemRef.current.scrollHeight - elemRef.current.clientHeight;
+        elemRef.current.scrollTop = newScrollTop;
     }, [pm, id]);
 
     // met useSelector de private messages overal renderen waar wil
@@ -45,10 +49,12 @@ export default function Private({ id, first }) {
                     privateMessage.map((privateMessage, index) => (
                         <div className="flexDiv" key={index}>
                             {/* <img className="privateImg" src={privateMessage.imageurl || '/default.jpg'}></img> */}
-                            <p className="textPrivate">
-                                {privateMessage.first_name}
-                                {"  "}
-                            </p>
+                            <Link to={`/user/${privateMessage.sender_id}`}>
+                                <p className="textPrivate">
+                                    {privateMessage.first_name}
+                                    {"  "}
+                                </p>
+                            </Link>
                             <p className="privateMessage">
                                 {privateMessage.message}
                             </p>

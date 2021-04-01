@@ -104,7 +104,7 @@ export default function PlantInfo() {
                 </div>
             )}
             <div>
-                {offeredPlants && <h1>Offered plants</h1>}
+                {offeredPlants && <h1>available plants</h1>}
                 {offeredPlants &&
                     offeredPlants.map((plant, index) => (
                         <div className="offeredPlantsName" key={index}>
