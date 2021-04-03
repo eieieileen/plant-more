@@ -15,7 +15,6 @@ export default function Private({ id, first }) {
     const pm = useSelector((state) => state.pm && state.pm);
 
     useEffect(() => {
-        //dispatch(getRecentPrivates(id));
         if (id && !show) {
             socket.emit("get recent private messages", {
                 id: id,
@@ -27,8 +26,6 @@ export default function Private({ id, first }) {
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
         elemRef.current.scrollTop = newScrollTop;
     }, [pm, id]);
-
-    // met useSelector de private messages overal renderen waar wil
 
     const keyCheck = (e) => {
         if (e.key === "Enter") {
@@ -48,7 +45,6 @@ export default function Private({ id, first }) {
                 {privateMessage &&
                     privateMessage.map((privateMessage, index) => (
                         <div className="flexDiv" key={index}>
-                            {/* <img className="privateImg" src={privateMessage.imageurl || '/default.jpg'}></img> */}
                             <Link to={`/user/${privateMessage.sender_id}`}>
                                 <p className="textPrivate">
                                     {privateMessage.first_name}
@@ -58,7 +54,6 @@ export default function Private({ id, first }) {
                             <p className="privateMessage">
                                 {privateMessage.message}
                             </p>
-                            {/* {privateMessage.last_name}{" "} */}
                         </div>
                     ))}
             </div>

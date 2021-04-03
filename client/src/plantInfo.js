@@ -10,8 +10,6 @@ export default function PlantInfo() {
     const [favorite, setFavorite] = useState(true);
     const [availableButton, setAvailableButton] = useState(false);
     const dispatch = useDispatch();
-    // usestate gebruiken om visible-setVisible true of false te zettenXX
-    // button set  visible - true
 
     const plantInfo = useSelector(
         (state) => state.plantInfo && state.plantInfo
@@ -58,9 +56,6 @@ export default function PlantInfo() {
         console.log("i clicked the availebutton");
         setAvailableButton(!availableButton);
     }
-
-   
-    //plantuploader
 
     return (
         <div className="plantInfoContainer">
