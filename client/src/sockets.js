@@ -23,7 +23,6 @@ export const init = (store) => {
         });
 
         socket.on("chatMessages", (msgs) => {
-            // console.log("chat maesae", msgs);
             store.dispatch(chatMessages(msgs));
         });
 
@@ -32,17 +31,14 @@ export const init = (store) => {
         });
 
         socket.on("online users", (onlineUsers) => {
-            // console.log("online users", onlineUsers);
             store.dispatch(onlineUser(onlineUsers));
         });
 
         socket.on("new user just joined", (newUser) => {
-            // console.log("new user just joined", newUser);
             store.dispatch(userJoined(newUser));
         });
 
         socket.on("user left", (userGone) => {
-            // console.log("user just left: ", userGone);
             store.dispatch(userLeft(userGone));
         });
 

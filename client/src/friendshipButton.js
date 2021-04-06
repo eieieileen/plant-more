@@ -1,7 +1,6 @@
 import axios from "./axios";
 import { useState, useEffect } from "react";
 import "./friendshipButton.css";
-//import OtherProfile from "./otherProfile";
 
 export default function FriendshipButton({ id }) {
     const [buttonText, setButtonText] = useState();
@@ -31,7 +30,6 @@ export default function FriendshipButton({ id }) {
     }
 
     useEffect(() => {
-        //axios zelfde route met id, ${}, response
         axios
             .get("/addfriends/" + id)
             .then(({ data }) => {

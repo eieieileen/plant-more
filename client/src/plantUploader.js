@@ -8,7 +8,6 @@ export default function PlantUploader({
     common_name,
     setAvailableButton,
 }) {
-    //use state gebruiken om object
     const [inputFields, setInputFields] = useState({
         apiId: apiId,
         imageurl: imageurl,
@@ -25,9 +24,6 @@ export default function PlantUploader({
         formData.append("number", inputFields.number);
         formData.append("location", inputFields.location);
         formData.append("file", inputFields.image);
-        //console.log("formdata", formData);
-        // console.log("inputfields", inputFields);
-        // console.log("i clicked the button");
         axios
             .post(`/sendPlantUploader`, formData)
             .then((response) => {
@@ -41,13 +37,10 @@ export default function PlantUploader({
 
     function handleChange(e) {
         setInputFields({ ...inputFields, [e.target.name]: e.target.value });
-        //console.log("invoeren van inputfields", e.target.value);
-        //console.log("inputfields", inputFields);
     }
 
     function fileChange(e) {
         setInputFields({ ...inputFields, image: e.target.files[0] });
-        //console.log("target file", e.target.files[0]);
     }
 
     return (

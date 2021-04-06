@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import "./private.css";
 import { Link } from "react-router-dom";
-// import {getRecentPrivates } from "./actions";
+
 
 export default function Private({ id, first }) {
-    // const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const privateMessage = useSelector(
         (state) => state.private && state.private

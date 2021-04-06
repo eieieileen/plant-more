@@ -2,7 +2,6 @@ import { Component } from "react";
 import axios from "./axios";
 import FriendshipButton from "./friendshipButton";
 import FavoritePlants from "./favoritePlants";
-// import Private from "./private";
 import "./otherProfile.css";
 
 export default class OtherProfile extends Component {

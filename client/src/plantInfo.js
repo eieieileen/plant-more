@@ -26,7 +26,7 @@ export default function PlantInfo() {
         if (plantInfo) {
             dispatch(findOffers(plantInfo.main_species_id));
         }
-        //console.log("favorite plants", filteredPlants);
+
         if (filteredPlants && plantInfo) {
             for (let i = 0; i < filteredPlants.length; i++) {
                 if (filteredPlants[i].apiid == plantInfo.id) {

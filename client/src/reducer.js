@@ -103,9 +103,7 @@ export function reducer(state ={ private: [{}] }, action) {
                 return gone.id != action.data;
             })
         };
-        //  online: state.online.filter((left) => {
-        //         return left.id != action.data.user;
-        //     }),
+
     } else if (action.type === "DELETE_AVAILABLE_PLANTS") {
         state = {
             ...state,
@@ -114,11 +112,7 @@ export function reducer(state ={ private: [{}] }, action) {
             })
         };
     }
-    // else if (action.type === "OFFERED_PLANTS") {
-    //     state = {
-    //         ...state,
-    //         offPlants: action.dataFromOfferedPlants,
-    //     };
+
 
     return state;
 }

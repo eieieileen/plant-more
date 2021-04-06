@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./registration.css";
 
 export default class Registration extends React.Component {
-    //React.Component should always be written like this with capital R and C
     constructor() {
         super();
         this.state = {
@@ -17,12 +16,9 @@ export default class Registration extends React.Component {
         axios
             .post("/registration", this.state)
             .then(({ data }) => {
-                // console.log("/registration data", data);
                 if (data.success == true) {
-                    //redirect
                     location.replace("/");
                 } else {
-                    //render an error message
                     this.setState({
                         error: true,
                     });
@@ -94,4 +90,4 @@ export default class Registration extends React.Component {
     }
 }
 
-//onChange tells react to listen to the change event to listen on the inputfield
+

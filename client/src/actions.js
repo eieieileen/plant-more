@@ -4,11 +4,10 @@ export async function receiveUsers() {
     const { data } = await axios.get("/get-friends");
     return {
         type: "GET_LIST",
-        friendsList: data, //aka data instead of friendsList
+        friendsList: data, 
     };
 }
 
-// await axios.post(`/accept-friend/`, {otherUser: id}); = sending a body mee op deze manier
 export async function acceptFriend(id) {
     await axios.post(`/accept-friend`, { otherUser: id });
     return {
@@ -62,7 +61,6 @@ export async function userLeft(userLeft) {
 
 export async function getApi(search) {
     const { data } = await axios.get(`/trefleApi/${search}`);
-    //console.log("data van getApi", data.data);
     return {
         type: "GET_PLANTS",
         dataFromPlants: data.data,
@@ -72,7 +70,6 @@ export async function getApi(search) {
 export async function getPlantInfo(plantid) {
     console.log("plantid", plantid);
     const { data } = await axios.get(`/api/plantInfo/${plantid}`);
-    //console.log("data van getPlantInfo", data.data);
     return {
         type: "GET_PLANT_INFO",
         dataFromPlantsInfo: data.data,
@@ -81,7 +78,6 @@ export async function getPlantInfo(plantid) {
 
 export async function getFavoritePlants(id) {
     const { data } = await axios.get(`/getFavoritePlants/${id}`);
-    //console.log("data", data);
     return {
         type: "FAVORITE_PLANTS",
         dataFromFavoritePlants: data,

@@ -12,9 +12,6 @@ import PlantSearch from "./plantSearch";
 import PlantInfo from "./plantInfo";
 import "./app.css";
 
-// import { BrowserRouter, Route } from "react-router-dom";
-// import OtherProfile from "./otherProfile";
-
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +25,6 @@ export default class App extends Component {
         axios
             .get("/user")
             .then(({ data }) => {
-                //console.log("response van component did mount", data);
                 this.setState(data);
                 console.log("App mounted after data!🥑");
             })
